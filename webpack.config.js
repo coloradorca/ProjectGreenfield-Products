@@ -23,11 +23,7 @@ module.exports = {
               ],
               '@babel/preset-react'
             ],
-            plugins: [
-              '@babel/plugin-proposal-class-properties',
-              'transform-es2015-destructuring',
-              'transform-object-rest-spread'
-            ]
+            plugins: ['@babel/plugin-proposal-class-properties']
           }
         }
       }
