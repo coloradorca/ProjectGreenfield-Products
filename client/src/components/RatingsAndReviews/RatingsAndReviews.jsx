@@ -1,11 +1,8 @@
 import React from 'react';
 
 class RatingsAndReviews extends React.Component {
-
   render() {
-    return (
-      <div>Ratings And Reviews</div>
-    )
+    return <div>Ratings And Reviews</div>;
   }
 }
 

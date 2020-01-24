@@ -14,7 +14,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log('s om eth i ng');
     return (
       <div>
         <RatingsAndReviews />
