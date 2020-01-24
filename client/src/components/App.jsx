@@ -5,7 +5,7 @@ import ProductOverview from './ProductOverview/ProductOverview.jsx';
 import RatingsAndReviews from './RatingsAndReviews/RatingsAndReviews.jsx';
 import QuestionsAndAnswers from './QuestionsAndAnswers/QuestionsAndAnswers.jsx';
 
-import '../Styles/App.scss';
+import '../App.scss';
 
 class App extends React.Component {
   constructor(props) {
