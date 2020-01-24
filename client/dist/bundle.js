@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("throw new Error(\"Module build failed: Error: ENOENT: no such file or directory, open '/Users/robgonzalez-pita/Desktop/UglyDog/client/src/Styles/App.scss'\");//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9jbGllbnQvc3JjL1N0eWxlcy9BcHAuc2Nzcy5qcyIsInNvdXJjZXMiOltdLCJtYXBwaW5ncyI6IiIsInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./client/src/Styles/App.scss\n");
+eval("// utilize sass for styling components\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9jbGllbnQvc3JjL1N0eWxlcy9BcHAuc2Nzcy5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL2NsaWVudC9zcmMvU3R5bGVzL0FwcC5zY3NzPzgzY2UiXSwic291cmNlc0NvbnRlbnQiOlsiLy8gdXRpbGl6ZSBzYXNzIGZvciBzdHlsaW5nIGNvbXBvbmVudHNcbiJdLCJtYXBwaW5ncyI6IkFBQUE7Iiwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./client/src/Styles/App.scss\n");
 
 /***/ }),
 
