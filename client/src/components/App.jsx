@@ -4,28 +4,22 @@ import ProductOverview from './ProductOverview/ProductOverview.jsx';
 import RatingsAndReviews from './RatingsAndReviews/RatingsAndReviews.jsx';
 import QuestionsAndAnswers from './QuestionsAndAnswers/QuestionsAndAnswers.jsx';
 
-
 class App extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state = {
-
-    }
+    this.state = {};
   }
 
-render () {
-  console.log("s om eth i ng")
-  return (
-
-    <div>
-
+  render() {
+    console.log('s om eth i ng');
+    return (
+      <div>
         <RatingsAndReviews />
         <QuestionsAndAnswers />
         <ProductOverview />
-
-    </div>
-  )
-}
+      </div>
+    );
+  }
 }
 
 export default App;
