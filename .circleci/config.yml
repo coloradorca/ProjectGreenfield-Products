@@ -26,7 +26,15 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: npm install
+      # - run: npm install
+
+       - run:
+          name: 'Test'
+          command: echo "Hello World"
+
+      - run: # test what branch we're on.
+          name: 'What branch am I on?'
+          command: echo ${CIRCLE_BRANCH}
 
       - save_cache:
           paths:
@@ -34,4 +42,4 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
-      - run: npm test
+      # - run: npm test
