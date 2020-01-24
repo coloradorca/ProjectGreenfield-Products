@@ -6,7 +6,7 @@ import RatingsAndReviews from './RatingsAndReviews/RatingsAndReviews.jsx';
 import QuestionsAndAnswers from './QuestionsAndAnswers/QuestionsAndAnswers.jsx';
 let exampleSampleProductStyle = require('/Users/palmimoller/HRBLD07/ProjectGreenfield/sampleData/Product/styles.json');
 
-import '../Styles/App.scss';
+import '../App.scss';
 
 class App extends React.Component {
   constructor(props) {
