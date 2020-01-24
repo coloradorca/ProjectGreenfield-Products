@@ -1,8 +1,9 @@
 import React from 'react';
+//import RAR File
 
-class QuestionsAndAnswers extends React.Component {
+class RateAndReview extends React.Component {
   render() {
-    return <div>Questions And Answers</div>;
+    return <div>Ratings and Reviews</div>;
   }
 }
 
