@@ -28,7 +28,7 @@ jobs:
 
       # - run: npm install
 
-       - run:
+      - run:
           name: 'Test'
           command: echo "Hello World"
 
@@ -36,7 +36,7 @@ jobs:
           name: 'What branch am I on?'
           command: echo ${CIRCLE_BRANCH}
 
-      - save_cache:
+        - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
