@@ -9,23 +9,7 @@ module.exports = {
         test: /\.(js|jsx)$/,
         include: path.join(__dirname, 'client/src'),
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              [
-                '@babel/preset-env',
-                {
-                  targets: {
-                    node: '10'
-                  }
-                }
-              ],
-              '@babel/preset-react'
-            ],
-            plugins: ['@babel/plugin-proposal-class-properties']
-          }
-        }
+        use: ['babel-loader', 'eslint-loader']
       }
     ]
   },
