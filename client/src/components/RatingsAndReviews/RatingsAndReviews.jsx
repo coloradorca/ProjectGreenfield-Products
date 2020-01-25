@@ -7,3 +7,7 @@ class RatingsAndReviews extends React.Component {
 }
 
 export default RatingsAndReviews;
+
+// things to take in a review list
+// the review graphic on the sideß
+// teakes in new review
