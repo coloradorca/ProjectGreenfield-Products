@@ -26,11 +26,12 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
               #change run scripts here
-      - run: echo "Hello World"
+
+      - run: npm install
 
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       # run tests!
-      # - run: npm test
+      - run: npm test
