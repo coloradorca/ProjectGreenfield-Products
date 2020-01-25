@@ -1,9 +1,10 @@
-//DEFINE IMPORTS
+/* eslint-disable no-unused-vars */
+// DEFINE IMPORTS
 import { combineReducers } from 'redux';
 
 const initialState = {
   addedIds: [],
-  quantityById: {}
+  quantityById: {},
 };
 
 const addedIds = (state = initialState.addedIds, action) => {
@@ -28,11 +29,6 @@ const quantityById = (state = initialState.quantityById, action) => {
   }
 };
 
-export const getQuantity = (state, productId) =>
-  state.quantityById[productId] || 0;
-
-export const getAddedIds = (state) => state.addedIds;
-
 const cart = (state = initialState, action) => {
   switch (action.type) {
     // case CHECKOUT_REQUEST:
@@ -42,7 +38,7 @@ const cart = (state = initialState, action) => {
     default:
       return {
         addedIds: addedIds(state.addedIds, action),
-        quantityById: quantityById(state.quantityById, action)
+        quantityById: quantityById(state.quantityById, action),
       };
   }
 };
