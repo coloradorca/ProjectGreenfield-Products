@@ -1,3 +1,5 @@
+/* eslint-disable no-plusplus */
+/* eslint-disable no-undef */
 const sum = require('./example');
 
 test('adds 1 + 2 to equal 3', () => {
@@ -10,7 +12,7 @@ test('two plus two is four', () => {
 
 test('object assignment', () => {
   const data = { one: 1 };
-  data['two'] = 2;
+  data.two = 2;
   expect(data).toEqual({ one: 1, two: 2 });
 });
 
@@ -65,7 +67,7 @@ const shoppingList = [
   'kleenex',
   'trash bags',
   'paper towels',
-  'beer'
+  'beer',
 ];
 
 test('the shopping list has beer on it', () => {

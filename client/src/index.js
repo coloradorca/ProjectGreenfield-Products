@@ -1,8 +1,3 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import App from './components/App.jsx';
-// ReactDOM.render(<App />, document.getElementById('app'));
-
 import React from 'react';
 import { render } from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
@@ -19,11 +14,9 @@ if (process.env.NODE_ENV !== 'production') {
 
 const store = createStore(reducer, applyMiddleware(...middleware));
 
-// store.dispatch(getAllProducts())
-
 render(
   <Provider store={store}>
     <App />
   </Provider>,
-  document.getElementById('app')
+  document.getElementById('app'),
 );
