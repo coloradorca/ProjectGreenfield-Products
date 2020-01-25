@@ -1,4 +1,6 @@
-//DEFINE IMPORTS
+/* eslint-disable no-case-declarations */
+
+// DEFINE IMPORTS
 import { combineReducers } from 'redux';
 
 const products = (state, action) => {
@@ -28,7 +30,7 @@ const byId = (state = {}, action) => {
       if (productId) {
         return {
           ...state,
-          [productId]: products(state[productId], action)
+          [productId]: products(state[productId], action),
         };
       }
       return state;
@@ -46,10 +48,7 @@ const visibleIds = (state = [], action) => {
 
 export default combineReducers({
   byId,
-  visibleIds
+  visibleIds,
 });
 
 export const getProduct = (state, id) => state.byId[id];
-
-export const getVisibleProducts = (state) =>
-  state.visibleIds.map((id) => getProduct(state, id));
