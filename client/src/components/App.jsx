@@ -1,12 +1,9 @@
-/* eslint-disable  */
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import ProductOverview from './ProductOverview/ProductOverview.jsx';
-import RatingsAndReviews from './RatingsAndReviews/RatingsAndReviews.jsx';
-import QuestionsAndAnswers from './QuestionsAndAnswers/QuestionsAndAnswers.jsx';
-// let exampleSampleProductStyle = require('/Users/palmimoller/HRBLD07/ProjectGreenfield/sampleData/Product/styles.json');
+import ProductOverview from './ProductOverview/ProductOverview';
+import RatingsAndReviews from './RatingsAndReviews/RatingsAndReviews';
+import QuestionsAndAnswers from './QuestionsAndAnswers/QuestionsAndAnswers';
 
 import '../App.scss';
 
@@ -17,9 +14,8 @@ class App extends React.Component {
   }
 
   render() {
-    // console.log(exampleSampleProductStyle.results);
     return (
-      <div className='mains'>
+      <div className="mains">
         <RatingsAndReviews />
         <QuestionsAndAnswers />
         <ProductOverview />
@@ -27,5 +23,6 @@ class App extends React.Component {
     );
   }
 }
+var test = 'hello';
 
 export default App;
