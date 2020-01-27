@@ -1,3 +1,20 @@
+import React from 'react';
+
+class Stars extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      // star rating
+      <div>{this.props.rating}</div>
+    );
+  }
+}
+
+export default Stars;
+
 // this is where the stars aspect of the ratigs go
 
 //This will be the rating given to the product by this individual review. The rating will be displayed in the format of solid or outlined stars, where the solid stars represent the review score.  A total of 5 stars should always appear, and the amount filled in should correspond to the average score.

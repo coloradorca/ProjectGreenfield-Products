@@ -2,6 +2,7 @@
 import React from 'react';
 import ReviewList from './ReviewList.jsx';
 import exampleData from '/Users/Savi/Desktop/ProjectGreenfield/sampleData/RAR/reviewsList.json';
+import './RAR.scss';
 
 class RatingsAndReviews extends React.Component {
   constructor(props) {
