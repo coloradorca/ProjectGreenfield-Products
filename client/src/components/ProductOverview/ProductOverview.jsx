@@ -1,11 +1,26 @@
-/* eslint-disable class-methods-use-this */
-
 import React from 'react';
+// import Headers from './Header/headers.jsx';
+
+// import productList from './sampleData/productList.json';
+// import details from './sampleData/details.json';
+// import styles from './sampleData/styles.json';
 
 class ProductOverview extends React.Component {
-  // eslint-disable-next-line class-methods-use-this
+  constructor() {
+    super();
+    this.state = {
+      text: 'Product Overview',
+    };
+  }
+
   render() {
-    return <div>Product Overview</div>;
+    // console.log(styles);
+    return (
+      <div>
+        {this.state.text}
+        {/* <Headers /> */}
+      </div>
+    );
   }
 }
 
