@@ -1,6 +1,7 @@
 /* eslint-disable class-methods-use-this */
 import React from 'react';
 import ReviewList from './ReviewList.jsx';
+import NewReview from './NewReview.jsx';
 import exampleData from '/Users/Savi/Desktop/ProjectGreenfield/sampleData/RAR/reviewsList.json';
 import './RAR.scss';
 
@@ -17,6 +18,8 @@ class RatingsAndReviews extends React.Component {
       <div className="RAR">
         Ratings And Reviews
         <ReviewList data={this.state.data} />
+        <br />
+        <NewReview />
       </div>
     );
   }
