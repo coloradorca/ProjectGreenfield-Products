@@ -1,31 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ProductOverview from './ProductOverview/ProductOverview.jsx';
-import RatingsAndReviews from './RatingsAndReviews/RatingsAndReviews.jsx';
-import QuestionsAndAnswers from './QuestionsAndAnswers/QuestionsAndAnswers.jsx';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import ProductOverview from './ProductOverview/ProductOverview';
+import RatingsAndReviews from './RatingsAndReviews/RatingsAndReviews';
+import QuestionsAndAnswers from './QuestionsAndAnswers/QuestionsAndAnswers';
 
+import '../App.scss';
 
 class App extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state = {
-
-    }
+    this.state = {};
   }
 
-render () {
-  console.log("s om eth i ng")
-  return (
-
-    <div>
-
+  render() {
+    return (
+      <div className="mains">
         <RatingsAndReviews />
         <QuestionsAndAnswers />
         <ProductOverview />
-
-    </div>
-  )
+      </div>
+    );
+  }
 }
-}
+var test = 'hello';
 
 export default App;

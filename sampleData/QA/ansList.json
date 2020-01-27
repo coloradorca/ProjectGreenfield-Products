@@ -1,0 +1,31 @@
+{
+  "question": "36",
+  "page": 0,
+  "count": 5,
+  "results": [
+    {
+      "answer_id": 28,
+      "body": "Suede",
+      "date": "2018-01-17T00:00:00.000Z",
+      "answerer_name": "sillyguy",
+      "helpfulness": 3,
+      "photos": []
+    },
+    {
+      "answer_id": 124882,
+      "body": "...",
+      "date": "2019-12-18T00:00:00.000Z",
+      "answerer_name": "eve",
+      "helpfulness": 0,
+      "photos": []
+    },
+    {
+      "answer_id": 124883,
+      "body": "cotton",
+      "date": "2019-12-18T00:00:00.000Z",
+      "answerer_name": "alex",
+      "helpfulness": 0,
+      "photos": []
+    }
+  ]
+}
