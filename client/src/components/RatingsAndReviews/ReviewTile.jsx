@@ -6,7 +6,27 @@ class ReviewTile extends React.Component {
   }
 
   render() {
-    return <div>Hi</div>;
+    return (
+      // star rating
+      <div>
+        <div>{this.props.review.rating}</div>
+        {/* date of review- Month DD, YYYY */}
+        <div>{this.props.review.date}</div>
+        {/* // review summary */}
+        <div>{this.props.review.summary}</div>
+        {/* // review body */}
+        <div>{this.props.review.body}</div>
+        {/* // recommned */}
+        <div>{this.props.review.recommend}</div>
+        {/* // reviewer name */}
+        <div>{this.props.review.reviewer_name}</div>
+        {/* // response to review */}
+        <div>{this.props.review.response}</div>
+        {/* // rating helpfulness */}
+        <div>{this.props.review.helpfulness}</div>
+        <br />
+      </div>
+    );
   }
 }
 

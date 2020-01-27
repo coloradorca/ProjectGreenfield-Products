@@ -1,12 +1,13 @@
 /* eslint-disable class-methods-use-this */
 import React from 'react';
 import ReviewList from './ReviewList.jsx';
+import exampleData from '/Users/Savi/Desktop/ProjectGreenfield/sampleData/RAR/reviewsList.json';
 
 class RatingsAndReviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [1, 2, 3, 4],
+      data: exampleData.results,
     };
   }
 
@@ -14,9 +15,7 @@ class RatingsAndReviews extends React.Component {
     return (
       <div className="RAR">
         Ratings And Reviews
-        {this.props.data.map((review) => {
-          return <ReviewList review={review} />;
-        })}
+        <ReviewList data={this.state.data} />
       </div>
     );
   }

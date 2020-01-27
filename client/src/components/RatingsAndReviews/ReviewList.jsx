@@ -10,8 +10,10 @@ class ReviewList extends React.Component {
 
   render() {
     return (
-      <div>
-        <ReviewTile />
+      <div className="reviewList">
+        {this.props.data.map((review) => {
+          return <ReviewTile review={review} />;
+        })}
         <button className="moreReviews">More</button>
       </div>
     );
