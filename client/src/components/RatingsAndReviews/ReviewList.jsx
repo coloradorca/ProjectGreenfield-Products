@@ -11,7 +11,8 @@ class ReviewList extends React.Component {
   render() {
     return (
       <div>
-        <ReviewTile />;<button className='moreReviews'>More</button>
+        <ReviewTile />
+        <button className="moreReviews">More</button>
       </div>
     );
   }

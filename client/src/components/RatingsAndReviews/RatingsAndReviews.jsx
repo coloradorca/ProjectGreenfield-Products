@@ -3,11 +3,20 @@ import React from 'react';
 import ReviewList from './ReviewList.jsx';
 
 class RatingsAndReviews extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [1, 2, 3, 4],
+    };
+  }
+
   render() {
     return (
-      <div>
+      <div className="RAR">
         Ratings And Reviews
-        <ReviewList />
+        {this.props.data.map((review) => {
+          return <ReviewList review={review} />;
+        })}
       </div>
     );
   }
