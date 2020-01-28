@@ -1,7 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-
-import Slider from './Slider.jsx';
 
 import './Slider.scss';
 
