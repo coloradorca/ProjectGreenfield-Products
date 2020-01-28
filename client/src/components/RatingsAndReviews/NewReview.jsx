@@ -2,6 +2,44 @@
 //button under the list
 //opens up modal window named wite your review about product name
 
+import React from 'react';
+
+class NewReview extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      // these go in the form brackert action = '/thewebsitehere' (similar to fetching) method = 'post'
+      <form className="newReview">
+        <input type="radio" name="newRating" required /> overall ratin -m
+        <br />
+        <input type="radio" name="newRecommend" required /> recommended-m
+        <br />
+        <input type="text" name="newCharecteristics" required /> charecteristics
+        -m
+        <br />
+        <input type="text" name="newSummary" /> review summary
+        <br />
+        <textArea name="newBody" rows="10" cols="40" required />
+        body -m
+        <br />
+        <input type="text" name="newPhotos" /> photos
+        <br />
+        <input type="text" name="newName" required /> name -m
+        <br />
+        <input type="email" name="newEmail" required />
+        email- m
+        <br />
+        <input type="submit" />
+      </form>
+    );
+  }
+}
+
+export default NewReview;
+
 // overall rating (mandatory)- empty stars appear click to fill on them (fractions allowed)
 
 //recomned (mandatory)- radio button y/n
