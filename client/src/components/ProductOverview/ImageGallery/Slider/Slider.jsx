@@ -34,6 +34,7 @@ class Slider extends React.Component {
       this.setState((prevState) => ({
         currentIndex: prevState.currentIndex - 1,
         translateValue: prevState.translateValue + this.slideWidth(),
+        currentImage: undefined,
       }));
     }
   }
@@ -48,15 +49,23 @@ class Slider extends React.Component {
     return this.setState((prevState) => ({
       currentIndex: prevState.currentIndex + 1,
       translateValue: prevState.translateValue + -this.slideWidth(),
+      currentImage: undefined,
     }));
   }
 
   displayCurrent(e, imgUrl) {
     e.preventDefault();
-
-    this.setState({
-      currentImage: imgUrl,
+    let selectedImageIndex = 0;
+    this.state.photos.forEach((element, index) => {
+      if (element.url === imgUrl) {
+        selectedImageIndex = index;
+      }
+      return selectedImageIndex;
     });
+    this.setState((prevState) => ({
+      // currentIndex: selectedImageIndex,
+      currentImage: imgUrl,
+    }));
   }
 
   render() {
