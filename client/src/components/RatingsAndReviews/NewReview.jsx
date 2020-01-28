@@ -55,7 +55,7 @@ class NewReview extends React.Component {
         <ReviewChar />
         Review Summary
         <br />
-        <input type="text" name="newSummary" maxlength="60" />
+        <input type="text" name="newSummary" maxLength="60" />
         <br />
         Your Review* - mandatory
         <br />
@@ -64,8 +64,8 @@ class NewReview extends React.Component {
           rows="10"
           cols="40"
           placeholder="Why did you like the product or not?"
-          minlength="50"
-          maxlength="1000"
+          minLength="50"
+          maxLength="1000"
           onChange={(e) => this.handleChange(e)}
           required
         />
@@ -77,11 +77,11 @@ class NewReview extends React.Component {
         <br />
         Your Name * mandatory & will be shared
         <br />
-        <input type="text" name="newName" maxlength="60" required />
+        <input type="text" name="newName" maxLength="60" required />
         <br />
         Your email * mandatory will not be shared
         <br />
-        <input type="email" name="newEmail" maxlength="60" required />
+        <input type="email" name="newEmail" maxLength="60" required />
         <br />
         <input type="submit" />
       </form>
