@@ -16,7 +16,6 @@ class ProductOverview extends React.Component {
   }
 
   render() {
-    // console.log(styles);
     return (
       <div>
         {this.state.text}
