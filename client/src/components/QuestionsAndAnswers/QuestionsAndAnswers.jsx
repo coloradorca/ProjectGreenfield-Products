@@ -18,7 +18,10 @@ class QuestionsAndAnswers extends Component {
     return (
       <div>
         Questions And Answers
-        <div>Product: {name}</div>
+        <div>
+          Product:
+          <span>{name}</span>
+        </div>
         <QuestionList />
       </div>
     );
