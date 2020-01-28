@@ -3,10 +3,33 @@
 //opens up modal window named wite your review about product name
 
 import React from 'react';
+import ReviewChar from './ReviewChar.jsx';
 
 class NewReview extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      charCountDown: 50,
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    let countdown = this.state.charCountDown - 1;
+    // eventTarget.addEventListener('keydown', (event) => {
+    //   if (event.isComposing || event.keyCode === 8) {
+    //     let countdown = this.state.charCountDown + 1;
+    //   }
+    //   return countdown;
+    // });
+    if (countdown <= 0) {
+      countdown = 'Minimum reached';
+    }
+    this.setState({
+      charCountDown: countdown,
+    });
+    console.log(this.state.charCountDown);
   }
 
   render() {
@@ -29,16 +52,24 @@ class NewReview extends React.Component {
           <input type="radio" name="noRecommend" /> No
           <br />
         </div>
-        <input type="text" name="newCharecteristics" required /> charecteristics
-        -m
-        <br />
+        <ReviewChar />
         Review Summary
         <br />
-        <input type="text" name="newSummary" />
+        <input type="text" name="newSummary" maxlength="60" />
         <br />
         Your Review* - mandatory
         <br />
-        <textArea name="newBody" rows="10" cols="40" required />
+        <textArea
+          name="newBody"
+          rows="10"
+          cols="40"
+          placeholder="Why did you like the product or not?"
+          minlength="50"
+          maxlength="1000"
+          onChange={(e) => this.handleChange(e)}
+          required
+        />
+        <div>{this.state.charCountDown}</div>
         <br />
         Submit your photos here
         <br />
@@ -46,11 +77,11 @@ class NewReview extends React.Component {
         <br />
         Your Name * mandatory & will be shared
         <br />
-        <input type="text" name="newName" required />
+        <input type="text" name="newName" maxlength="60" required />
         <br />
         Your email * mandatory will not be shared
         <br />
-        <input type="email" name="newEmail" required />
+        <input type="email" name="newEmail" maxlength="60" required />
         <br />
         <input type="submit" />
       </form>
