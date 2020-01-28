@@ -1,4 +1,5 @@
 import React from 'react';
+import Stars from './Stars.jsx';
 
 class ReviewTile extends React.Component {
   constructor(props) {
@@ -6,7 +7,30 @@ class ReviewTile extends React.Component {
   }
 
   render() {
-    return <div>Hi</div>;
+    return (
+      // star rating
+      <div>
+        {/* this will eventually go to the star rating page */}
+        <div className="productRating">
+          <Stars rating={this.props.review.rating} />
+        </div>
+        {/* date of review- Month DD, YYYY */}
+        <div className="reviewDate">{Date(this.props.review.date)}</div>
+        {/* // review summary */}
+        <div className="reviewSummary">{this.props.review.summary}</div>
+        {/* // review body */}
+        <div className="reviewBody">{this.props.review.body}</div>
+        {/* // recommned */}
+        <div className="productRecommend">{this.props.review.recommend}</div>
+        {/* // reviewer name */}
+        <div className="reviewerName">{this.props.review.reviewer_name}</div>
+        {/* // response to review */}
+        <div className="sellerResponse">{this.props.review.response}</div>
+        {/* // rating helpfulness */}
+        <div className="helpfulnessRating">{this.props.review.helpfulness}</div>
+        <br />
+      </div>
+    );
   }
 }
 
