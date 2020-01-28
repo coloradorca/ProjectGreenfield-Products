@@ -1,6 +1,5 @@
 // /* eslint-disable react/destructuring-assignment */
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import styles from '../../sampleData/styles';
 
@@ -17,10 +16,12 @@ class Slider extends React.Component {
       photos: styles[0].results[0].photos,
       currentIndex: 0,
       translateValue: 0,
+      currentImage: undefined,
     };
     this.goToPreviousSlide = this.goToPreviousSlide.bind(this);
     this.goToNextSlide = this.goToNextSlide.bind(this);
     this.slideWidth = this.slideWidth.bind(this);
+    this.displayCurrent = this.displayCurrent.bind(this);
   }
 
   slideWidth() {
@@ -50,8 +51,15 @@ class Slider extends React.Component {
     }));
   }
 
+  displayCurrent(e, imgUrl) {
+    e.preventDefault();
+
+    this.setState({
+      currentImage: imgUrl,
+    });
+  }
+
   render() {
-    console.log(this.state.photos.length);
     return (
       <div className="slider">
         <div
@@ -61,9 +69,19 @@ class Slider extends React.Component {
             transition: 'transform ease-out 0.45s',
           }}
         >
-          {this.state.photos.map((image, i) => (
-            <DisplayImage key={i} image={image.thumbnail_url} />
-          ))}
+          {(!this.state.currentImage &&
+            this.state.photos.map((image, i) => (
+              <DisplayImage
+                displayCurrent={this.displayCurrent}
+                key={i}
+                image={image.url}
+              />
+            ))) || (
+            <DisplayImage
+              image={this.state.currentImage}
+              displayCurrent={this.displayCurrent}
+            />
+          )}
         </div>
         {this.state.currentIndex !== 0 && (
           <LeftArrow goToPreviousSlide={this.goToPreviousSlide} />

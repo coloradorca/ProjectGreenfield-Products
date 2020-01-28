@@ -8,7 +8,8 @@
     "react-dev": "webpack -d --watch",
     "start": "live-server ./client/dist",
     "dev:start": "npm run react-dev & npm run start",
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint"
   },
   "keywords": [],
   "author": "",

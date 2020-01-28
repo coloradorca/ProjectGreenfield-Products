@@ -1,8 +1,8 @@
 .slider {
   position: relative;
-  width: 500px;
+  width: 600px;
   margin: 0 auto;
-  height: 500px;
+  height: 600px;
   overflow: hidden;
   white-space: nowrap;
 }
@@ -50,4 +50,11 @@
 .fa-arrow-right:before,
 .fa-arrow-left:before {
   color: #222;
+}
+
+.thumbnailImage {
+  height: 80px;
+  width: 80px;
+  border: 5px solid blue;
+  margin: 10px;
 }
