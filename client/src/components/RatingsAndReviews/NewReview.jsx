@@ -13,24 +13,44 @@ class NewReview extends React.Component {
     return (
       // these go in the form brackert action = '/thewebsitehere' (similar to fetching) method = 'post'
       <form className="newReview">
-        <input type="radio" name="newRating" required /> overall ratin -m
-        <br />
-        <input type="radio" name="newRecommend" required /> recommended-m
-        <br />
+        What would you rate this item?* mandatory
+        {/* somehow have to connect this to stars */}
+        <div name="newRating" required>
+          <input type="radio" name="poor" /> Poor
+          <input type="radio" name="fair" /> Fair
+          <input type="radio" name="average" /> Average
+          <input type="radio" name="good" /> Good
+          <input type="radio" name="great" /> Great
+          <br />
+        </div>
+        Do you recommend this product?* mandatory
+        <div name="newRecommend" required>
+          <input type="radio" name="yesRecommend" /> Yes
+          <input type="radio" name="noRecommend" /> No
+          <br />
+        </div>
         <input type="text" name="newCharecteristics" required /> charecteristics
         -m
         <br />
-        <input type="text" name="newSummary" /> review summary
+        Review Summary
+        <br />
+        <input type="text" name="newSummary" />
+        <br />
+        Your Review* - mandatory
         <br />
         <textArea name="newBody" rows="10" cols="40" required />
-        body -m
         <br />
-        <input type="text" name="newPhotos" /> photos
+        Submit your photos here
         <br />
-        <input type="text" name="newName" required /> name -m
+        <input type="file" name="newPhotos" accept="image/*" />
+        <br />
+        Your Name * mandatory & will be shared
+        <br />
+        <input type="text" name="newName" required />
+        <br />
+        Your email * mandatory will not be shared
         <br />
         <input type="email" name="newEmail" required />
-        email- m
         <br />
         <input type="submit" />
       </form>
