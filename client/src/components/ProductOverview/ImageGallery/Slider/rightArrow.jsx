@@ -1,7 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-
-import styles from '../../sampleData/styles.js';
 
 import './Slider.scss';
 
