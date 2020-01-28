@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import ProductOverview from './ProductOverview/ProductOverview';
-import RatingsAndReviews from './RatingsAndReviews/RatingsAndReviews';
-import QuestionsAndAnswers from './QuestionsAndAnswers/QuestionsAndAnswers';
+import ProductOverview from './ProductOverview/ProductOverview.jsx';
+import RatingsAndReviews from './RatingsAndReviews/RatingsAndReviews.jsx';
+import QuestionsAndAnswers from './QuestionsAndAnswers/QuestionsAndAnswers.jsx';
 
 import '../App.scss';
 
@@ -16,12 +16,12 @@ class App extends React.Component {
   render() {
     return (
       <div className="mains">
+        <ProductOverview />
         <RatingsAndReviews />
         <QuestionsAndAnswers />
       </div>
     );
   }
 }
-var test = 'hello';
 
 export default App;

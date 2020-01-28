@@ -1,10 +1,30 @@
-/* eslint-disable class-methods-use-this */
+import React, { Component } from 'react';
+import QuestionList from './QuestionList.jsx';
 
-import React from 'react';
+const data = require('../../../../sampleData/QA/quesList.json');
 
-class QuestionsAndAnswers extends React.Component {
+// (QA) -renders-> QuestionList -renders-> Question -renders-> Answer
+
+class QuestionsAndAnswers extends Component {
+  constructor() {
+    super();
+    this.state = {
+      name: 'Heir Force Ones',
+    };
+  }
+
   render() {
-    return <div>Questions And Answers</div>;
+    const { name } = this.state;
+    return (
+      <div>
+        Questions And Answers
+        <div>
+          Product:
+          <span>{name}</span>
+        </div>
+        <QuestionList />
+      </div>
+    );
   }
 }
 
