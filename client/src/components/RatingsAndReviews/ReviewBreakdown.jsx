@@ -18,6 +18,7 @@ class ReviewBreakdown extends React.Component {
     this.reviewPercent = this.reviewPercent.bind(this);
   }
   //this.props.data
+  //this might need to be redux related
   reviewPercent() {
     this.props.data.map((review) => {
       if (review.rating === 5) {
@@ -57,19 +58,23 @@ class ReviewBreakdown extends React.Component {
       }
     });
     console.log(this.state);
-    this.setState({
-      fiveStar: this.state.fiveStar / this.state.totalReviews,
-      fourStar: this.state.fourStar / this.state.totalReviews,
-      threeStar: this.state.threeStar / this.state.totalReviews,
-      twoStar: this.state.twoStar / this.state.totalReviews,
-      oneStar: this.state.oneStar / this.state.totalReviews,
-      recommend: this.state.recommend / this.state.totalReviews,
+    this.setState((prevState) => {
+      return {
+        fiveStar: Math.floor(prevState.fiveStar / prevState.totalReviews) * 100,
+        fourStar: Math.floor(prevState.fourStar / prevState.totalReviews) * 100,
+        threeStar:
+          Math.floor(prevState.threeStar / prevState.totalReviews) * 100,
+        twoStar: Math.floor(prevState.twoStar / prevState.totalReviews) * 100,
+        oneStar: Math.floor(prevState.oneStar / prevState.totalReviews) * 100,
+        recommend:
+          Math.floor(prevState.recommend / prevState.totalReviews) * 100,
+      };
     });
   }
 
-  componentDidUpdate() {
-    this.reviewPercent();
+  componentDidMount() {
     console.log(this.state);
+    this.reviewPercent();
   }
 
   render() {
@@ -78,7 +83,7 @@ class ReviewBreakdown extends React.Component {
       <div>
         <div>Stars Go Here</div>
         <div>Average Rating Number goes here</div>
-        <div>% of viewers reccomend this product go here</div>
+        <div>{this.state.recommend}% of viewers reccomend this product</div>
         <ul className="breakdownGraph">
           <li className="fiveStarPercent">5</li>
           <li className="fourStarPercent">4</li>
