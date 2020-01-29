@@ -10,16 +10,19 @@ class ReviewList extends React.Component {
 
   render() {
     return (
-      <div className="reviewList">
-        <select name="reviewFilters">
+      <div>
+        Number of Reviews sorted by
+        <select className="reviewFilters">
           <option value="Newest">Newest</option>
           <option value="Helpful">Helpful</option>
           <option value="Relevant">Relevant</option>
         </select>
+        <br />
         {this.props.data.map((review) => {
           return <ReviewTile review={review} />;
         })}
-        <button className="moreReviews">More</button>
+        <button className="moreReviews">More Reviews</button>
+        <button className="addReview"> Add a Review +</button>
       </div>
     );
   }

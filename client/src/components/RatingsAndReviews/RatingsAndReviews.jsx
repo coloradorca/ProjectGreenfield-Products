@@ -16,12 +16,16 @@ class RatingsAndReviews extends React.Component {
 
   render() {
     return (
-      <div className="RAR">
-        Ratings And Reviews
-        <ReviewBreakdown data={this.state.data} />
-        <ReviewList data={this.state.data} />
+      <div className="ratingsComp">
+        Ratings and Reviews
         <br />
-        <NewReview />
+        <br />
+        <div className="rar">
+          <ReviewBreakdown data={this.state.data} className="reviewColumn" />
+          <ReviewList data={this.state.data} className="reviewColumn" />
+          <br />
+          {/* <NewReview /> */}
+        </div>
       </div>
     );
   }
