@@ -4,6 +4,22 @@ import Stars from './Stars.jsx';
 class ReviewTile extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      date: '',
+    };
+  }
+
+  componentDidMount() {
+    const newDate = new Date(this.props.review.date);
+    const formatDate =
+      newDate.getMonth() +
+      '-' +
+      newDate.getDate() +
+      '-' +
+      newDate.getFullYear();
+    this.setState({
+      date: formatDate,
+    });
   }
 
   render() {
@@ -15,7 +31,7 @@ class ReviewTile extends React.Component {
           <Stars rating={this.props.review.rating} />
         </div>
         {/* date of review- Month DD, YYYY */}
-        <div className="reviewDate">{Date(this.props.review.date)}</div>
+        <div className="reviewDate">{this.state.date}</div>
         {/* // review summary */}
         <div className="reviewSummary">{this.props.review.summary}</div>
         {/* // review body */}

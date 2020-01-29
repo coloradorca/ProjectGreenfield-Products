@@ -2,6 +2,7 @@
 import React from 'react';
 import ReviewList from './ReviewList.jsx';
 import NewReview from './NewReview.jsx';
+import ReviewBreakdown from './ReviewBreakdown.jsx';
 import exampleData from '../../../../sampleData/RAR/reviewsList.json';
 import './RAR.scss';
 
@@ -17,6 +18,7 @@ class RatingsAndReviews extends React.Component {
     return (
       <div className="RAR">
         Ratings And Reviews
+        <ReviewBreakdown data={this.state.data} />
         <ReviewList data={this.state.data} />
         <br />
         <NewReview />
