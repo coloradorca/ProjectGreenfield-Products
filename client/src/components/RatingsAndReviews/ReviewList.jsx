@@ -23,6 +23,7 @@ class ReviewList extends React.Component {
         })}
         <button className="moreReviews">More Reviews</button>
         <button className="addReview"> Add a Review +</button>
+        {/* <NewReview /> */}
       </div>
     );
   }

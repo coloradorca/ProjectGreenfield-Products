@@ -24,7 +24,6 @@ class RatingsAndReviews extends React.Component {
           <ReviewBreakdown data={this.state.data} className="reviewColumn" />
           <ReviewList data={this.state.data} className="reviewColumn" />
           <br />
-          {/* <NewReview /> */}
         </div>
       </div>
     );
