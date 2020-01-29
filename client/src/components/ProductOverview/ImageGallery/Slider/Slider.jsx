@@ -28,7 +28,6 @@ class Slider extends React.Component {
     return document.querySelector('.displayImage').clientWidth;
   }
 
-  // reducer function will eventually take place of these funcs
   goToPreviousSlide() {
     if (this.state.currentIndex !== 0) {
       this.setState((prevState) => ({
@@ -81,12 +80,14 @@ class Slider extends React.Component {
           {(!this.state.currentImage &&
             this.state.photos.map((image, i) => (
               <DisplayImage
+                openModal={this.props.openModal}
                 displayCurrent={this.displayCurrent}
                 key={i}
                 image={image.url}
               />
             ))) || (
             <DisplayImage
+              openModal={this.props.openModal}
               image={this.state.currentImage}
               displayCurrent={this.displayCurrent}
             />
