@@ -1,5 +1,18 @@
 .ProductOverview {
-  display: inline-flex;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.leftContainer {
+  float: left;
+}
+
+.rightContainer {
+  height: 100%;
+  float: right;
+}
+
+.bottomContainer {
 }
 
 .ExpandedView {
@@ -7,6 +20,19 @@
 }
 
 .StyleSelector {
-  flex-wrap: wrap;
+  // flex-wrap: wrap;
   float: right;
+  display: flex;
+  flex-wrap: wrap;
+  height: 400px;
+  width: auto;
+}
+
+.AddToCart {
+  float: left;
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  height: 400px;
+  // width: auto;
 }
