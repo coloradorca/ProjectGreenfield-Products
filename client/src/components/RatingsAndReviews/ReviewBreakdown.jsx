@@ -80,17 +80,58 @@ class ReviewBreakdown extends React.Component {
   render() {
     return (
       // star rating
-      <div>
-        <div>Stars Go Here</div>
+      <div className="breakdownSection">
+        <div className="avgStars">
+          <span class="fa fa-star checked" />
+          <span class="fa fa-star checked" />
+          <span class="fa fa-star checked" />
+          <span class="fa fa-star " />
+          <span class="fa fa-star " />
+        </div>
         <div>Average Rating Number goes here</div>
         <div>{this.state.recommend}% of viewers reccomend this product</div>
-        <ul className="breakdownGraph">
-          <li className="fiveStarPercent">5</li>
-          <li className="fourStarPercent">4</li>
-          <li className="threeStarPercent">3</li>
-          <li className="twoStarPercent">2</li>
-          <li className="oneStarPercent">1</li>
-        </ul>
+        <div className="breakdownRow">
+          <div className="breakdownSide">
+            <div> 5 Star</div>
+          </div>
+          <div class="breakdownMiddle">
+            <div className="breakBarContainer">
+              <div className="breakBarFive"></div>
+            </div>
+          </div>
+          <div className="breakdownSide">
+            <div> 4 Star</div>
+          </div>
+          <div class="breakdownMiddle">
+            <div className="breakBarContainer">
+              <div className="breakBarFour"></div>
+            </div>
+          </div>
+          <div className="breakdownSide">
+            <div> 3 Star</div>
+          </div>
+          <div class="breakdownMiddle">
+            <div className="breakBarContainer">
+              <div className="breakBarThree"></div>
+            </div>
+          </div>
+          <div className="breakdownSide">
+            <div> 2 Star</div>
+          </div>
+          <div class="breakdownMiddle">
+            <div className="breakBarContainer">
+              <div className="breakBarTwo"></div>
+            </div>
+          </div>
+          <div className="breakdownSide">
+            <div> 1 Star</div>
+          </div>
+          <div class="breakdownMiddle">
+            <div className="breakBarContainer">
+              <div className="breakBarOne"></div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
