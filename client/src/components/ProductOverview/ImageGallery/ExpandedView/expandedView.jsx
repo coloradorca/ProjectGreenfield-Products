@@ -4,6 +4,8 @@ import Modal from 'react-responsive-modal';
 import Slider from '../Slider/Slider.jsx';
 import DisplayImage from '../displayImage/displayImage.jsx';
 
+import DefaultView from '../DefaultView/defaultView.jsx';
+
 import './expandedView.scss';
 
 class ExpandedView extends React.Component {
@@ -35,12 +37,12 @@ class ExpandedView extends React.Component {
           contentLabel="Example Modal"
           center
         >
-          {/* below where <Slider/> is now, create a new component that will serve as the expanded view with zoom */}
+          {/* below where <Slider/> is now, create a new component  that will serve as the expanded view with zoom */}
           <div className="sliderModal">
             <Slider openModal={this.onOpenModal} />
           </div>
         </Modal>
-        {/* keep this as default view */}
+        {/* keep this as the (DefaultView) */}
         <Slider openModal={this.onOpenModal} />
       </div>
     );

@@ -34,7 +34,7 @@ class DisplayImage extends React.Component {
       >
         {this.state.inlaid.map((thumb, id) => (
           <ThumbNailView
-            // onClick={(e) => this.props.displayCurrent(e, this)}
+            onClick={(e) => this.props.displayCurrent(e, this)}
             displayCurrent={this.props.displayCurrent}
             image={thumb.url}
             key={id}

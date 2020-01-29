@@ -40,18 +40,16 @@ class ProductOverview extends React.Component {
         </div>
         <div className="rightContainer">
           <div className="ProductDetail">
-            <ProductDetail data={this.state.productList[0]} />
+            {/* <ProductDetail data={this.state.productList[0]} /> */}
           </div>
-          <div className="StyleSelector">
-            <StyleSelector />
-          </div>
+          <div className="StyleSelector">{/* <StyleSelector /> */}</div>
           <br />
           <div className="AddToCart">
-            <AddToCart data={this.state.styles[0]} />
+            {/* <AddToCart data={this.state.styles[0]} /> */}
           </div>
         </div>
         <div className="bottomContainer">
-          <ProductDescription data={this.state.details[0]} />
+          {/* <ProductDescription data={this.state.details[0]} /> */}
         </div>
       </div>
     );
