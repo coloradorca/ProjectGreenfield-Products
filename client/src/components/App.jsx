@@ -16,9 +16,9 @@ class App extends React.Component {
   render() {
     return (
       <div className="mains">
+        <QuestionsAndAnswers />
         <ProductOverview />
         <RatingsAndReviews />
-        <QuestionsAndAnswers />
       </div>
     );
   }

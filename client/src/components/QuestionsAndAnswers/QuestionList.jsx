@@ -16,14 +16,13 @@ export default class QuestionList extends Component {
 
   render() {
     const { questions } = this.state;
-    // render Question component, start with 4 on page load
     return (
       <div>
         <div>
           Question List
-          {questions.map((q) => (
-            <div>
-              {'Q: '}
+          {questions.map((q, i) => (
+            <div key={q.question_id}>
+              {`Q${i + 1}: `}
               {q.question_body}
               <div>
                 {'A: '}
@@ -31,6 +30,12 @@ export default class QuestionList extends Component {
               </div>
             </div>
           ))}
+          <button
+            type="button"
+            onClick={() => console.log('show more questions')}
+          >
+            More Answered Questions
+          </button>
         </div>
       </div>
     );
