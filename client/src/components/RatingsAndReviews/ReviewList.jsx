@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 // the review List and functionality of the review list goes here
 // imprts review tile
 import React from 'react';

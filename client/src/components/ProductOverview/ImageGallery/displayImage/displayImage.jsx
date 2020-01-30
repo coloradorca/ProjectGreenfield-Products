@@ -1,12 +1,7 @@
 import React from 'react';
-
 import './displayImage.scss';
-
 import styles from '../../sampleData/styles';
-
-import ThumbNailView from './ThumbNailView.jsx';
-
-import '../ExpandedView/expandedView.jsx';
+import ThumbNailView from '../DefaultView/ThumbNailView.jsx';
 
 class DisplayImage extends React.Component {
   constructor(props) {
@@ -24,17 +19,19 @@ class DisplayImage extends React.Component {
       backgroundPosition: 'center',
     };
     return (
-      <div
-        role="button"
-        tabIndex="0"
-        className="displayImage"
-        style={styles}
-        onKeyDown={this.props.openModal}
-        onClick={this.props.openModal}
-      >
+      <div role="button" tabIndex="0" className="displayImage" style={styles}>
+        <div
+          role="button"
+          tabIndex={0}
+          className="imageViewButton "
+          onKeyDown={this.props.openModal}
+          onClick={this.props.openModal}
+        >
+          <i className="fa fa-arrows-alt" size={70} aria-hidden="true" />
+        </div>
         {this.state.inlaid.map((thumb, id) => (
           <ThumbNailView
-            // onClick={(e) => this.props.displayCurrent(e, this)}
+            onClick={(e) => this.props.displayCurrent(e, this)}
             displayCurrent={this.props.displayCurrent}
             image={thumb.url}
             key={id}
