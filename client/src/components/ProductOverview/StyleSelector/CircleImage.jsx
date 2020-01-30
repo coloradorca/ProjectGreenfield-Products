@@ -13,7 +13,6 @@ function CircleImage(props) {
     <div
       className="CircleImage"
       style={styles}
-      // change these to display selected image(might need to refactor slider.jsx and create a defatul view)
       onKeyPress={(e) => console.log(e, props.image)}
       onClick={(e) => console.log(e, props.image)}
       role="button"

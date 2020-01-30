@@ -1,12 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Modal from 'react-responsive-modal';
-import Slider from '../Slider/Slider.jsx';
-import DisplayImage from '../displayImage/displayImage.jsx';
+import DefaultView from '../DefaultView/DefaultView.jsx';
+import ModalDisplay from '../ModalDisplay.jsx';
 
-import './expandedView.scss';
+import './imageView.scss';
 
-class ExpandedView extends React.Component {
+class ImageView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -35,16 +34,14 @@ class ExpandedView extends React.Component {
           contentLabel="Example Modal"
           center
         >
-          {/* below where <Slider/> is now, create a new component that will serve as the expanded view with zoom */}
-          <div className="sliderModal">
-            <Slider openModal={this.onOpenModal} />
+          <div className="DefaultViewModal">
+            <ModalDisplay />
           </div>
         </Modal>
-        {/* keep this as default view */}
-        <Slider openModal={this.onOpenModal} />
+        <DefaultView openModal={this.onOpenModal} />
       </div>
     );
   }
 }
 
-export default ExpandedView;
+export default ImageView;
