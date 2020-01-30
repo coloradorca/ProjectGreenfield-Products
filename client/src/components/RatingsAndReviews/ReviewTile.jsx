@@ -1,3 +1,6 @@
+/* eslint-disable prefer-template */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import TileStar from './Stars/TileStar.jsx';
 
