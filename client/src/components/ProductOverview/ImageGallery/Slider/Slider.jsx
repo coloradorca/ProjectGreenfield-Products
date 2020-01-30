@@ -28,12 +28,12 @@ class Slider extends React.Component {
     return document.querySelector('.displayImage').clientWidth;
   }
 
-  // reducer function will eventually take place of these funcs
   goToPreviousSlide() {
     if (this.state.currentIndex !== 0) {
       this.setState((prevState) => ({
         currentIndex: prevState.currentIndex - 1,
         translateValue: prevState.translateValue + this.slideWidth(),
+        currentImage: undefined,
       }));
     }
   }
@@ -48,15 +48,23 @@ class Slider extends React.Component {
     return this.setState((prevState) => ({
       currentIndex: prevState.currentIndex + 1,
       translateValue: prevState.translateValue + -this.slideWidth(),
+      currentImage: undefined,
     }));
   }
 
   displayCurrent(e, imgUrl) {
     e.preventDefault();
-
-    this.setState({
-      currentImage: imgUrl,
+    let selectedImageIndex = 0;
+    this.state.photos.forEach((element, index) => {
+      if (element.url === imgUrl) {
+        selectedImageIndex = index;
+      }
+      return selectedImageIndex;
     });
+    this.setState((prevState) => ({
+      // currentIndex: selectedImageIndex,
+      currentImage: imgUrl,
+    }));
   }
 
   render() {
@@ -72,12 +80,14 @@ class Slider extends React.Component {
           {(!this.state.currentImage &&
             this.state.photos.map((image, i) => (
               <DisplayImage
+                openModal={this.props.openModal}
                 displayCurrent={this.displayCurrent}
                 key={i}
                 image={image.url}
               />
             ))) || (
             <DisplayImage
+              openModal={this.props.openModal}
               image={this.state.currentImage}
               displayCurrent={this.displayCurrent}
             />

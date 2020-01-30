@@ -1,3 +1,41 @@
-.reviewSummary{
+ul.breakdownGraph {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+ul.breakdownGraph li {
+  margin-bottom: 0.5em;
+  padding: 0.2em;
+  background: gray;
+  color: #fff;
+}
+
+ul.breakdownGraph li.fiveStarPercent {
+  background: green;
+  width: 20%;
+}
+
+ul.breakdownGraph li.fourStarPercent {
+  background: green;
+  width: 40%;
+}
+
+ul.breakdownGraph li.threeStarPercent {
+  background: green;
+  width: 60%;
+}
+
+ul.breakdownGraph li.twoStarPercent {
+  background: green;
+  width: 80%;
+}
+
+ul.breakdownGraph li.oneStarPercent {
+  background: green;
+  width: 100%;
+}
+
+.reviewSummary {
   font-weight: bold;
 }

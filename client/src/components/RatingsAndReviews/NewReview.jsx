@@ -3,34 +3,85 @@
 //opens up modal window named wite your review about product name
 
 import React from 'react';
+import ReviewChar from './ReviewChar.jsx';
 
 class NewReview extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      charCountDown: 50,
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    let countdown = this.state.charCountDown - 1;
+    // eventTarget.addEventListener('keydown', (event) => {
+    //   if (event.isComposing || event.keyCode === 8) {
+    //     let countdown = this.state.charCountDown + 1;
+    //   }
+    //   return countdown;
+    // });
+    if (countdown <= 0) {
+      countdown = 'Minimum reached';
+    }
+    this.setState({
+      charCountDown: countdown,
+    });
+    console.log(this.state.charCountDown);
   }
 
   render() {
     return (
       // these go in the form brackert action = '/thewebsitehere' (similar to fetching) method = 'post'
       <form className="newReview">
-        <input type="radio" name="newRating" required /> overall ratin -m
+        What would you rate this item?* mandatory
+        {/* somehow have to connect this to stars */}
+        <div name="newRating" required>
+          <input type="radio" name="poor" /> Poor
+          <input type="radio" name="fair" /> Fair
+          <input type="radio" name="average" /> Average
+          <input type="radio" name="good" /> Good
+          <input type="radio" name="great" /> Great
+          <br />
+        </div>
+        Do you recommend this product?* mandatory
+        <div name="newRecommend" required>
+          <input type="radio" name="yesRecommend" /> Yes
+          <input type="radio" name="noRecommend" /> No
+          <br />
+        </div>
+        <ReviewChar />
+        Review Summary
         <br />
-        <input type="radio" name="newRecommend" required /> recommended-m
+        <input type="text" name="newSummary" maxLength="60" />
         <br />
-        <input type="text" name="newCharecteristics" required /> charecteristics
-        -m
+        Your Review* - mandatory
         <br />
-        <input type="text" name="newSummary" /> review summary
+        <textArea
+          name="newBody"
+          rows="10"
+          cols="40"
+          placeholder="Why did you like the product or not?"
+          minLength="50"
+          maxLength="1000"
+          onChange={(e) => this.handleChange(e)}
+          required
+        />
+        <div>{this.state.charCountDown}</div>
         <br />
-        <textArea name="newBody" rows="10" cols="40" required />
-        body -m
+        Submit your photos here
         <br />
-        <input type="text" name="newPhotos" /> photos
+        <input type="file" name="newPhotos" accept="image/*" />
         <br />
-        <input type="text" name="newName" required /> name -m
+        Your Name * mandatory & will be shared
         <br />
-        <input type="email" name="newEmail" required />
-        email- m
+        <input type="text" name="newName" maxLength="60" required />
+        <br />
+        Your email * mandatory will not be shared
+        <br />
+        <input type="email" name="newEmail" maxLength="60" required />
         <br />
         <input type="submit" />
       </form>

@@ -6,6 +6,8 @@ import styles from '../../sampleData/styles';
 
 import ThumbNailView from './ThumbNailView.jsx';
 
+import '../ExpandedView/expandedView.jsx';
+
 class DisplayImage extends React.Component {
   constructor(props) {
     super(props);
@@ -15,7 +17,6 @@ class DisplayImage extends React.Component {
   }
 
   render() {
-    // console.log(this.state.inlaid);
     const styles = {
       backgroundImage: `url(${this.props.image})`,
       backgroundSize: 'cover',
@@ -23,7 +24,14 @@ class DisplayImage extends React.Component {
       backgroundPosition: 'center',
     };
     return (
-      <div className="displayImage" style={styles}>
+      <div
+        role="button"
+        tabIndex="0"
+        className="displayImage"
+        style={styles}
+        onKeyDown={this.props.openModal}
+        onClick={this.props.openModal}
+      >
         {this.state.inlaid.map((thumb, id) => (
           <ThumbNailView
             // onClick={(e) => this.props.displayCurrent(e, this)}
@@ -38,13 +46,3 @@ class DisplayImage extends React.Component {
 }
 
 export default DisplayImage;
-
-// function DisplayImage({ image }) {
-//   const styles = {
-//     backgroundImage: `url(${image})`,
-//     backgroundSize: 'cover',
-//     backgroundRepeat: 'no-repeat',
-//     backgroundPosition: 'center',
-//   };
-//   return <div className="displayImage" style={styles} />;
-// }

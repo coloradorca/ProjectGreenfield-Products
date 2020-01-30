@@ -12,7 +12,11 @@ function ThumbNailView(props) {
     <div
       className="thumbnailImage"
       style={styles}
+      onKeyPress={(e) => props.displayCurrent(e, props.image)}
       onClick={(e) => props.displayCurrent(e, props.image)}
+      role="button"
+      tabIndex={0}
+      aria-label="Save"
     />
   );
 }

@@ -1,0 +1,15 @@
+.styleSelector {
+  display: flex;
+  float: right;
+}
+
+.CircleImage {
+  float: left;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  flex-direction: row;
+  padding: 10px;
+  margin: 10px;
+  cursor: pointer;
+}
