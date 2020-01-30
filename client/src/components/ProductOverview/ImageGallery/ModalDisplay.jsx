@@ -1,15 +1,12 @@
 // /* eslint-disable react/destructuring-assignment */
 import React from 'react';
+import styles from '../sampleData/styles';
+import RightArrow from './DefaultView/rightArrow.jsx';
+import LeftArrow from './DefaultView/leftArrow.jsx';
+import DisplayExpanded from './DisplayExpanded.jsx';
+import './DefaultView/DefaultView.scss';
 
-import styles from '../../sampleData/styles';
-
-import DisplayImage from '../displayImage/displayImage.jsx';
-import RightArrow from './rightArrow.jsx';
-import LeftArrow from './leftArrow.jsx';
-
-import './Slider.scss';
-
-class Slider extends React.Component {
+class ModalDisplay extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,7 +18,6 @@ class Slider extends React.Component {
     this.goToPreviousSlide = this.goToPreviousSlide.bind(this);
     this.goToNextSlide = this.goToNextSlide.bind(this);
     this.slideWidth = this.slideWidth.bind(this);
-    this.displayCurrent = this.displayCurrent.bind(this);
   }
 
   slideWidth() {
@@ -52,24 +48,9 @@ class Slider extends React.Component {
     }));
   }
 
-  displayCurrent(e, imgUrl) {
-    e.preventDefault();
-    let selectedImageIndex = 0;
-    this.state.photos.forEach((element, index) => {
-      if (element.url === imgUrl) {
-        selectedImageIndex = index;
-      }
-      return selectedImageIndex;
-    });
-    this.setState((prevState) => ({
-      // currentIndex: selectedImageIndex,
-      currentImage: imgUrl,
-    }));
-  }
-
   render() {
     return (
-      <div className="slider">
+      <div className="DefaultView">
         <div
           className="slideWrap"
           style={{
@@ -77,21 +58,14 @@ class Slider extends React.Component {
             transition: 'transform ease-out 0.45s',
           }}
         >
-          {(!this.state.currentImage &&
-            this.state.photos.map((image, i) => (
-              <DisplayImage
-                openModal={this.props.openModal}
-                displayCurrent={this.displayCurrent}
-                key={i}
-                image={image.url}
-              />
-            ))) || (
-            <DisplayImage
+          {this.state.photos.map((image, i) => (
+            <DisplayExpanded
               openModal={this.props.openModal}
-              image={this.state.currentImage}
               displayCurrent={this.displayCurrent}
+              key={i}
+              image={image.url}
             />
-          )}
+          ))}
         </div>
         {this.state.currentIndex !== 0 && (
           <LeftArrow goToPreviousSlide={this.goToPreviousSlide} />
@@ -104,4 +78,4 @@ class Slider extends React.Component {
   }
 }
 
-export default Slider;
+export default ModalDisplay;

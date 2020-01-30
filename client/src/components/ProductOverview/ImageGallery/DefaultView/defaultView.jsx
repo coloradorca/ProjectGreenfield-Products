@@ -1,11 +1,9 @@
 // /* eslint-disable react/destructuring-assignment */
 import React from 'react';
-
 import styles from '../../sampleData/styles';
-
 import DisplayImage from '../displayImage/displayImage.jsx';
 
-import '../Slider/Slider.scss';
+import './DefaultView.scss';
 
 class DefaultView extends React.Component {
   constructor(props) {
@@ -14,10 +12,8 @@ class DefaultView extends React.Component {
       photos: styles[0].results[0].photos,
       currentIndex: 0,
       translateValue: 0,
-      currentImage: undefined,
+      currentImage: styles[0].results[0].photos[0].url,
     };
-
-    this.slideWidth = this.slideWidth.bind(this);
     this.displayCurrent = this.displayCurrent.bind(this);
   }
 
@@ -31,14 +27,14 @@ class DefaultView extends React.Component {
       return selectedImageIndex;
     });
     this.setState((prevState) => ({
-      currentIndex: selectedImageIndex,
+      // currentIndex: selectedImageIndex,
       currentImage: imgUrl,
     }));
   }
 
   render() {
     return (
-      <div className="slider">
+      <div className="DefaultView">
         <div
           className="slideWrap"
           style={{
@@ -58,13 +54,3 @@ class DefaultView extends React.Component {
 }
 
 export default DefaultView;
-
-// (!this.state.currentImage &&
-//   this.state.photos.map((image, i) => (
-//     <DisplayImage
-//       openModal={this.props.openModal}
-//       displayCurrent={this.displayCurrent}
-//       key={i}
-//       image={image.url}
-//     />
-//   ))) || (

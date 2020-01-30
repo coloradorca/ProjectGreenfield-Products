@@ -1,8 +1,8 @@
 import React from 'react';
 
 import Headers from './Header/headers.jsx';
-import Slider from './ImageGallery/Slider/Slider.jsx';
-import ExpandedView from './ImageGallery/ExpandedView/expandedView.jsx';
+import DefaultView from './ImageGallery/DefaultView/DefaultView.jsx';
+import ImageView from './ImageGallery/ImageView/imageView.jsx';
 import Share from './ProductDetail/ShareOnSocials/Share.jsx';
 import StyleSelector from './StyleSelector/styleSelector.jsx';
 import AddToCart from './AddToCart/addToCart.jsx';
@@ -30,26 +30,28 @@ class ProductOverview extends React.Component {
     return (
       <div className="ProductOverview">
         {/* <Headers /> */}
-        {/* <div className="sliderComponent">
-          <Slider />
+        {/* <div className="DefaultViewComponent">
+          <DefaultView />
         </div> */}
         <div className="leftContainer">
-          <div id="ExpandedView" className="ExpandedView">
-            <ExpandedView />
+          <div id="ImageView" className="ImageView">
+            <ImageView />
           </div>
         </div>
         <div className="rightContainer">
           <div className="ProductDetail">
-            {/* <ProductDetail data={this.state.productList[0]} /> */}
+            <ProductDetail data={this.state.productList[0]} />
           </div>
-          <div className="StyleSelector">{/* <StyleSelector /> */}</div>
+          <div className="StyleSelector">
+            <StyleSelector />
+          </div>
           <br />
           <div className="AddToCart">
-            {/* <AddToCart data={this.state.styles[0]} /> */}
+            <AddToCart data={this.state.styles[0]} />
           </div>
         </div>
         <div className="bottomContainer">
-          {/* <ProductDescription data={this.state.details[0]} /> */}
+          <ProductDescription data={this.state.details[0]} />
         </div>
       </div>
     );

@@ -1,7 +1,5 @@
 import React from 'react';
-
 import './displayImage/displayImage.scss';
-
 import styles from '../sampleData/styles';
 
 class DisplayExpanded extends React.Component {

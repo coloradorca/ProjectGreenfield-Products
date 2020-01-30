@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './Slider.scss';
+import './DefaultView.scss';
 
 function RightArrow(props) {
   return (
