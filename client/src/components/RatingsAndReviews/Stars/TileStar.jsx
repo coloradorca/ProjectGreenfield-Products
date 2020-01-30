@@ -6,19 +6,15 @@ class TileStar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      rating:this.props.rating,
-    }
+      rating: this.props.rating,
+    };
   }
 
   //this.props.rating => for immported stars
   // need to make on click for not clicked stars
 
   render() {
-    return (
-      <div>
-        HI
-        </div>
-    )
+    return <div>HI</div>;
   }
 }
 
