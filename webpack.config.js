@@ -10,7 +10,31 @@ module.exports = {
         test: /\.(js|jsx)$/,
         include: path.join(__dirname, 'client/src'),
         exclude: /node_modules/,
-        use: ['babel-loader', 'eslint-loader'],
+        use: [
+          'babel-loader',
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                [
+                  '@babel/preset-env',
+                  {
+                    targets: {
+                      node: '10',
+                      browsers: ['>0.25%', 'not ie 11', 'not op_mini all'],
+                    },
+                  },
+                ],
+                '@babel/preset-react',
+              ],
+              plugins: [
+                '@babel/plugin-proposal-class-properties',
+                '@babel/plugin-transform-runtime',
+              ],
+            },
+          },
+          'eslint-loader',
+        ],
       },
       {
         test: /\.scss$/,
