@@ -84,7 +84,6 @@ class ReviewBreakdown extends React.Component {
       // star rating
       <div className="breakdownSection">
         <AverageStar data={this.props.data} />
-        <div>Average Rating Number goes here</div>
         <div>{this.state.recommend}% of viewers reccomend this product</div>
         <div className="breakdownRow">
           <div className="breakdownSide">

@@ -9,6 +9,24 @@ import NewReview from './NewReview.jsx';
 class ReviewList extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      showNewReview: false,
+    };
+    this.openNewReview = this.openNewReview.bind(this);
+    this.closeNewReview = this.closeNewReview.bind(this);
+  }
+
+  openNewReview() {
+    console.log('clicked');
+    this.setState({
+      showNewReview: true,
+    });
+  }
+
+  closeNewReview() {
+    this.setState({
+      showNewReview: false,
+    });
   }
 
   render() {
@@ -24,9 +42,20 @@ class ReviewList extends React.Component {
         {this.props.data.map((review) => {
           return <ReviewTile review={review} />;
         })}
+        {this.state.reviewShown}
         <button className="moreReviews">More Reviews</button>
-        <button className="addReview"> Add a Review +</button>
-        <NewReview />
+        <button
+          className="addReview"
+          onClick={() => {
+            return this.openNewReview();
+          }}
+        >
+          Add a Review +
+        </button>
+        <NewReview
+          showNewReview={this.state.showNewReview}
+          closeNewReview={this.closeNewReview}
+        />
       </div>
     );
   }
