@@ -5,10 +5,40 @@ class Stars extends React.Component {
     super(props);
   }
 
+  //this.props.rating => for immported stars
+  // need to make on click for not clicked stars
+
   render() {
     return (
       // star rating
-      <div>{this.props.rating}</div>
+      <div className="starRatings">
+        <span className="s" data-low="0.5" data-high="1">
+          <i className="fa fa-star"></i>
+        </span>
+        <span className="s" data-low="1.5" data-high="2">
+          <i className="fa fa-star"></i>
+        </span>
+        <span className="s" data-low="2.5" data-high="3">
+          <i className="fa fa-star"></i>
+        </span>
+        <span className="s" data-low="3.5" data-high="4">
+          <i className="fa fa-star"></i>
+        </span>
+        <span className="s" data-low="4.5" data-high="5">
+          <i className="fa fa-star"></i>
+        </span>
+
+        <span className="r r05" data-rating="1" data-value="0.5"></span>
+        <span className="r r1" data-rating="1" data-value="1"></span>
+        <span className="r r105" data-rating="15" data-value="1.5"></span>
+        <span className="r r2" data-rating="2" data-value="2"></span>
+        <span className="r r205" data-rating="25" data-value="2.5"></span>
+        <span className="r r3" data-rating="3" data-value="3"></span>
+        <span className="r r305" data-rating="35" data-value="3.5"></span>
+        <span className="r r4" data-rating="4" data-value="4"></span>
+        <span className="r r405" data-rating="45" data-value="4.5"></span>
+        <span className="r r5" data-rating="5" data-value="5"></span>
+      </div>
     );
   }
 }

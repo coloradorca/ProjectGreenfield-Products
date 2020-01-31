@@ -1,0 +1,45 @@
+.answer {
+  font-size: 13px;
+  border: none;
+  color: black;
+  opacity: 90%;
+}
+
+.user {
+  font-size: 12px;
+  border: none;
+  color: gray;
+  opacity: 90%;
+}
+
+.answerButton {
+  margin: 10px 5px 10px 0;
+  font-size: 12px;
+  height: auto;
+  width: auto;
+  border-radius: 2px;
+  border: solid;
+  box-shadow: 1px 1px 0px 2px rgba (0, 0, 0, 0.3);
+  background: none;
+  cursor: pointer;
+}
+
+.linkButton {
+  font-size: 12px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  display: inline;
+  margin: 5px 1px 5px 5px;
+  padding: 0;
+}
+
+.linkButton:hover,
+.linkButton:focus {
+  text-decoration: none;
+}
+
+.count {
+  margin: 2px;
+}

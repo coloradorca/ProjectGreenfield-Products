@@ -1,41 +1,159 @@
-ul.breakdownGraph {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
+.ratingsComp {
+  color: black;
+  font-size: 20px;
+}
+.rar {
+  display: flex;
 }
 
-ul.breakdownGraph li {
-  margin-bottom: 0.5em;
-  padding: 0.2em;
-  background: gray;
-  color: #fff;
+.reviewColumn {
+  flex: 50%;
 }
 
-ul.breakdownGraph li.fiveStarPercent {
-  background: green;
-  width: 20%;
+// .reviewColumn {
+//   // float: left;
+//   // width: 50%;
+//   flex: 50%;
+// }
+
+// .rar:after {
+//   content: '';
+//   display: table;
+//   clear: both;
+// }
+
+.breakdownSection {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 20px;
+  float: left;
 }
 
-ul.breakdownGraph li.fourStarPercent {
-  background: green;
-  width: 40%;
+// .fa {
+//   font-size: 25px;
+// }
+
+// .checked {
+//   color: orange;
+// }
+
+.breakdownSide {
+  float: left;
+  width: 15%;
+  margin-top: 10px;
 }
 
-ul.breakdownGraph li.threeStarPercent {
-  background: green;
-  width: 60%;
+.breakdownMiddle {
+  margin-top: 10px;
+  float: left;
+  width: 70%;
 }
 
-ul.breakdownGraph li.twoStarPercent {
-  background: green;
-  width: 80%;
+.breakdownRow:after {
+  content: '';
+  display: table;
+  clear: both;
 }
 
-ul.breakdownGraph li.oneStarPercent {
-  background: green;
+.breakBarContainer {
   width: 100%;
+  background-color: gray;
+  text-align: center;
+  color: white;
+}
+
+.breakBarFive {
+  width: 60%;
+  height: 18px;
+  background-color: green;
+}
+
+.breakBarFour {
+  width: 30%;
+  height: 18px;
+  background-color: green;
+}
+
+.breakBarThree {
+  width: 10%;
+  height: 18px;
+  background-color: green;
+}
+
+.breakBarTwo {
+  width: 4%;
+  height: 18px;
+  background-color: green;
+}
+
+.breakBarOne {
+  width: 15%;
+  height: 18px;
+  background-color: green;
+}
+
+@media (max-width: 400px) {
+  .breakdownSide {
+    width: 100%;
+  }
+  .breakdownMiddle {
+    width: 100%;
+  }
+}
+
+.reviewFilters {
+  margin-bottom: 1em;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 2px;
+  padding: 0.25em;
+  border: 0;
+  border-bottom: 2px solid black;
+  font-weight: bold;
+  border-radius: 0;
+  background-color: transparent;
+  font-size: 14px;
+}
+
+.topLineTile {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+}
+
+.reviewerName {
+  grid-column: 7;
+  grid-row: 1;
+}
+
+.reviewDate {
+  grid-column: 8;
+  grid-row: 1;
 }
 
 .reviewSummary {
   font-weight: bold;
+  word-break: break-all;
+}
+
+.helpTile {
+  display: inline-flex;
+}
+
+.tileLineBreak {
+  border: 1px solid black;
+  margin-top: 10px;
+}
+
+.moreReviews {
+  border-radius: 0px;
+  font-size: 14px;
+  padding: 10px 24px;
+  margin-right: 15px;
+}
+
+.addReview {
+  border-radius: 0px;
+  font-size: 14px;
+  padding: 10px 24px;
 }

@@ -1,0 +1,30 @@
+<<<<<<< Updated upstream
+=======
+$font-stack: Helvetica, sans-serif;
+$primary-color: green;
+$background-color: rgb(141, 217, 252);
+
+>>>>>>> Stashed changes
+.questionButton {
+  margin: 20px 50px 20px 0;
+  font-size: 16px;
+  height: 65px;
+  width: 250px;
+  border-radius: 10px;
+  border: solid;
+  box-shadow: 1px 1px 0px 2px rgba (0, 0, 0, 0.3);
+  background: beige;
+  cursor: pointer;
+}
+
+.red {
+  background: red;
+}
+
+.green {
+  background: green;
+}
+
+.yellow {
+  background: yellow;
+}
