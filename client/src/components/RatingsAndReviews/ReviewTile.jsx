@@ -1,5 +1,8 @@
+/* eslint-disable prefer-template */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
 import React from 'react';
-import Stars from './Stars.jsx';
+import TileStar from './Stars/TileStar.jsx';
 
 class ReviewTile extends React.Component {
   constructor(props) {
@@ -27,11 +30,14 @@ class ReviewTile extends React.Component {
       // star rating
       <div>
         {/* this will eventually go to the star rating page */}
-        <div className="productRating">
-          <Stars rating={this.props.review.rating} />
+        <div className="topLineTile">
+          <div className="productRating">
+            <TileStar rating={this.props.review.rating} />
+          </div>
+          {/* date of review- Month DD, YYYY */}
+          <div className="reviewerName">{this.props.review.reviewer_name}</div>
+          <div className="reviewDate">{this.state.date}</div>
         </div>
-        {/* date of review- Month DD, YYYY */}
-        <div className="reviewDate">{this.state.date}</div>
         {/* // review summary */}
         <div className="reviewSummary">{this.props.review.summary}</div>
         {/* // review body */}
@@ -39,11 +45,17 @@ class ReviewTile extends React.Component {
         {/* // recommned */}
         <div className="productRecommend">{this.props.review.recommend}</div>
         {/* // reviewer name */}
-        <div className="reviewerName">{this.props.review.reviewer_name}</div>
         {/* // response to review */}
         <div className="sellerResponse">{this.props.review.response}</div>
         {/* // rating helpfulness */}
-        <div className="helpfulnessRating">{this.props.review.helpfulness}</div>
+        <div className="helpTile">
+          Helpful? Yes
+          <input type="radio" className="yesHelp" />
+          <div className="helpfulnessRating">
+            {this.props.review.helpfulness}
+          </div>
+        </div>
+        <div className="tileLineBreak" />
         <br />
       </div>
     );

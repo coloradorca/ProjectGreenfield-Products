@@ -1,9 +1,14 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/no-access-state-in-setstate */
+/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable react/destructuring-assignment */
 // this is the input for new review, utlizies a forms
-//button under the list
-//opens up modal window named wite your review about product name
+// button under the list
+// opens up modal window named wite your review about product name
 
 import React from 'react';
 import ReviewChar from './ReviewChar.jsx';
+import NewReviewStars from './Stars/NewReviewStars.jsx';
 
 class NewReview extends React.Component {
   constructor(props) {
@@ -38,14 +43,15 @@ class NewReview extends React.Component {
       <form className="newReview">
         What would you rate this item?* mandatory
         {/* somehow have to connect this to stars */}
-        <div name="newRating" required>
+        {/* <div name="newRating" required>
           <input type="radio" name="poor" /> Poor
           <input type="radio" name="fair" /> Fair
           <input type="radio" name="average" /> Average
           <input type="radio" name="good" /> Good
           <input type="radio" name="great" /> Great
           <br />
-        </div>
+        </div> */}
+        <NewReviewStars />
         Do you recommend this product?* mandatory
         <div name="newRecommend" required>
           <input type="radio" name="yesRecommend" /> Yes
@@ -93,11 +99,11 @@ export default NewReview;
 
 // overall rating (mandatory)- empty stars appear click to fill on them (fractions allowed)
 
-//recomned (mandatory)- radio button y/n
+// recomned (mandatory)- radio button y/n
 
-//Characteristics (mandatory)- 5 radio buttons look on sheet
+// Characteristics (mandatory)- 5 radio buttons look on sheet
 
-//Review summary - A text input allowing up to 60 characters.
+// Review summary - A text input allowing up to 60 characters.
 
 // Review body (mandatory)- A text input allowing up to 1000 characters.
 // Placeholder text should read: “Why did you like the product or not?”.
@@ -111,8 +117,8 @@ export default NewReview;
 
 // Your email (mandatory)- A text input allowing up to 60 characters.  Placeholder text should read: “Example: jackson11@email.com”. Below this field, the text “For authentication reasons, you will not be emailed” will appear.
 
-//Submit review (button) - A button by which the review can be submitted.Upon selecting this button the form’s inputs should be validated.   If there are any invalid entries, the submission should be prevented, and a warning message will appear.   This message should be titled “You must enter the following:”
-//This error will occur if:
+// Submit review (button) - A button by which the review can be submitted.Upon selecting this button the form’s inputs should be validated.   If there are any invalid entries, the submission should be prevented, and a warning message will appear.   This message should be titled “You must enter the following:”
+// This error will occur if:
 // Any mandatory fields are blank
 // The review body is less than 50 characters
 // The email address provided is not in correct email format

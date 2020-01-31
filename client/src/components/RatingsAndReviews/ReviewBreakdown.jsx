@@ -1,7 +1,13 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable react/no-access-state-in-setstate */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/prop-types */
 // the graphical representation of the review
 // in the top left corner of module
 
 import React from 'react';
+import AverageStar from './Stars/AverageStar.jsx';
 
 class ReviewBreakdown extends React.Component {
   constructor(props) {
@@ -17,8 +23,9 @@ class ReviewBreakdown extends React.Component {
     };
     this.reviewPercent = this.reviewPercent.bind(this);
   }
-  //this.props.data
-  //this might need to be redux related
+  // this.props.data
+  // this might need to be redux related
+
   reviewPercent() {
     this.props.data.map((review) => {
       if (review.rating === 5) {
@@ -72,25 +79,55 @@ class ReviewBreakdown extends React.Component {
     });
   }
 
-  componentDidMount() {
-    console.log(this.state);
-    this.reviewPercent();
-  }
-
   render() {
     return (
       // star rating
-      <div>
-        <div>Stars Go Here</div>
+      <div className="breakdownSection">
+        <AverageStar data={this.props.data} />
         <div>Average Rating Number goes here</div>
         <div>{this.state.recommend}% of viewers reccomend this product</div>
-        <ul className="breakdownGraph">
-          <li className="fiveStarPercent">5</li>
-          <li className="fourStarPercent">4</li>
-          <li className="threeStarPercent">3</li>
-          <li className="twoStarPercent">2</li>
-          <li className="oneStarPercent">1</li>
-        </ul>
+        <div className="breakdownRow">
+          <div className="breakdownSide">
+            <div> 5 Star</div>
+          </div>
+          <div className="breakdownMiddle">
+            <div className="breakBarContainer">
+              <div className="breakBarFive" />
+            </div>
+          </div>
+          <div className="breakdownSide">
+            <div> 4 Star</div>
+          </div>
+          <div className="breakdownMiddle">
+            <div className="breakBarContainer">
+              <div className="breakBarFour" />
+            </div>
+          </div>
+          <div className="breakdownSide">
+            <div> 3 Star</div>
+          </div>
+          <div className="breakdownMiddle">
+            <div className="breakBarContainer">
+              <div className="breakBarThree" />
+            </div>
+          </div>
+          <div className="breakdownSide">
+            <div> 2 Star</div>
+          </div>
+          <div className="breakdownMiddle">
+            <div className="breakBarContainer">
+              <div className="breakBarTwo" />
+            </div>
+          </div>
+          <div className="breakdownSide">
+            <div> 1 Star</div>
+          </div>
+          <div className="breakdownMiddle">
+            <div className="breakBarContainer">
+              <div className="breakBarOne" />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
@@ -98,13 +135,13 @@ class ReviewBreakdown extends React.Component {
 
 export default ReviewBreakdown;
 
-//ratings summary with the stars
-//see grpahical
-//the stars as a whole should appear
-//under that breakdown graph
-//for % that has been attributed to each star fill in green and the rest of bar to be left gray
-//clicking on a star will only show reviews in list for reviews with that rating
-//should be additiive, toggled with an on and off click
+// ratings summary with the stars
+// see grpahical
+// the stars as a whole should appear
+// under that breakdown graph
+// for % that has been attributed to each star fill in green and the rest of bar to be left gray
+// clicking on a star will only show reviews in list for reviews with that rating
+// should be additiive, toggled with an on and off click
 
 // under initial stars % with recomnennded appears
 
