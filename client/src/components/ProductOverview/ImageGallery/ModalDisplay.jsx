@@ -10,7 +10,7 @@ class ModalDisplay extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      photos: styles[0].results[0].photos,
+      photos: this.props.gallery.photos,
       currentIndex: 0,
       translateValue: 0,
       currentImage: undefined,
@@ -59,12 +59,7 @@ class ModalDisplay extends React.Component {
           }}
         >
           {this.state.photos.map((image, i) => (
-            <DisplayExpanded
-              openModal={this.props.openModal}
-              displayCurrent={this.displayCurrent}
-              key={i}
-              image={image.url}
-            />
+            <DisplayExpanded key={i} image={image.url} />
           ))}
         </div>
         {this.state.currentIndex !== 0 && (

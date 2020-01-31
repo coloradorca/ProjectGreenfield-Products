@@ -6,7 +6,7 @@ class DisplayExpanded extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      inlaid: styles[0].results[0].photos,
+      // inlaid: styles[0].results[0].photos,
     };
   }
 

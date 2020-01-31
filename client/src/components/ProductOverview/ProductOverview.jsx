@@ -23,27 +23,40 @@ class ProductOverview extends React.Component {
       styles: styles[0].results,
       productList: productList,
       details: details,
+      currentStyle: styles[0].results[0],
     };
+    this.changeStyle = this.changeStyle.bind(this);
+  }
+
+  changeStyle(newStyle) {
+    this.setState({
+      currentStyle: newStyle,
+    });
   }
 
   render() {
+    // console.log(this.state.currentStyle);
     return (
       <div className="ProductOverview">
-        {/* <Headers /> */}
-        {/* <div className="DefaultViewComponent">
-          <DefaultView />
-        </div> */}
+        <div className="headers">{/* <Headers /> */}</div>
+
         <div className="leftContainer">
           <div id="ImageView" className="ImageView">
-            <ImageView />
+            <ImageView gallery={this.state.currentStyle} />
           </div>
         </div>
         <div className="rightContainer">
           <div className="ProductDetail">
-            <ProductDetail data={this.state.productList[0]} />
+            <ProductDetail
+              currentStyle={this.state.currentStyle}
+              data={this.state.productList[0]}
+            />
           </div>
           <div className="StyleSelector">
-            <StyleSelector />
+            <StyleSelector
+              changeStyle={this.changeStyle}
+              styles={this.state.styles}
+            />
           </div>
           <br />
           <div className="AddToCart">
@@ -51,7 +64,12 @@ class ProductOverview extends React.Component {
           </div>
         </div>
         <div className="bottomContainer">
-          <ProductDescription data={this.state.details[0]} />
+          <div className="prodcutDescription">
+            <ProductDescription data={this.state.details[0]} />
+          </div>
+          <div className="share">
+            <Share />
+          </div>
         </div>
       </div>
     );

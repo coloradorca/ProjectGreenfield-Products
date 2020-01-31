@@ -3,7 +3,7 @@ import React from 'react';
 import './styleSelector.scss';
 
 function CircleImage(props) {
-  const styles = {
+  const imageStyles = {
     backgroundImage: `url(${props.image})`,
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
@@ -12,9 +12,9 @@ function CircleImage(props) {
   return (
     <div
       className="CircleImage"
-      style={styles}
-      onKeyPress={(e) => console.log(e, props.image)}
-      onClick={(e) => console.log(e, props.image)}
+      style={imageStyles}
+      onKeyPress={(e) => props.updateStyle(e, props.image)}
+      onClick={(e) => props.updateStyle(e, props.image)}
       role="button"
       tabIndex={0}
       aria-label="Save"
