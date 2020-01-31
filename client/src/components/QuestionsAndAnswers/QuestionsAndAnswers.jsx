@@ -1,28 +1,22 @@
 import React, { Component } from 'react';
-import QuestionList from './QuestionList.jsx';
+import QuestionList from './QuestionList/QuestionList.jsx';
 
-const data = require('../../../../sampleData/QA/quesList.json');
-
-// (QA) -renders-> QuestionList -renders-> Question -renders-> Answer
+const rando = Math.ceil(Math.random() * 100);
 
 class QuestionsAndAnswers extends Component {
   constructor() {
     super();
     this.state = {
-      name: 'Heir Force Ones',
+      productId: rando,
     };
   }
 
   render() {
-    const { name } = this.state;
+    const { productId } = this.state;
     return (
       <div>
-        Questions And Answers
-        <div>
-          Product:
-          <span>{name}</span>
-        </div>
-        <QuestionList />
+        <h3>Questions And Answers</h3>
+        <QuestionList productId={productId} />
       </div>
     );
   }
