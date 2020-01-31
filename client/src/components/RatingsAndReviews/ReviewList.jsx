@@ -4,6 +4,7 @@
 // imprts review tile
 import React from 'react';
 import ReviewTile from './ReviewTile.jsx';
+import NewReview from './NewReview.jsx';
 
 class ReviewList extends React.Component {
   constructor(props) {
@@ -25,7 +26,7 @@ class ReviewList extends React.Component {
         })}
         <button className="moreReviews">More Reviews</button>
         <button className="addReview"> Add a Review +</button>
-        {/* <NewReview /> */}
+        <NewReview />
       </div>
     );
   }

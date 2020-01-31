@@ -17,7 +17,6 @@ class AverageStar extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.state.averageRating);
     return this.getAverage();
   }
 
@@ -32,7 +31,6 @@ class AverageStar extends React.Component {
       return sum;
     });
     const average = Math.floor(sum / arr.length);
-    console.log(average);
     this.setState({
       averageRating: average,
     });
