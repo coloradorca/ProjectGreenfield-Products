@@ -9,27 +9,41 @@ class DefaultView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      photos: styles[0].results[0].photos,
+      photos: this.props.images.photos,
       currentIndex: 0,
       translateValue: 0,
-      currentImage: styles[0].results[0].photos[0].url,
+      currentImage: this.props.images.photos[0].url,
     };
     this.displayCurrent = this.displayCurrent.bind(this);
+    this.changePhotos = this.changePhotos.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({
+      photos: this.props.images.photos,
+      currentImage: this.props.images.photos[0].url,
+    });
+  }
+
+  componentWillReceiveProps() {
+    this.setState({
+      photos: this.props.images.photos,
+      currentImage: this.props.images.photos[0].url,
+    });
   }
 
   displayCurrent(e, imgUrl) {
     e.preventDefault();
-    let selectedImageIndex = 0;
-    this.state.photos.forEach((element, index) => {
-      if (element.url === imgUrl) {
-        selectedImageIndex = index;
-      }
-      return selectedImageIndex;
-    });
     this.setState((prevState) => ({
-      // currentIndex: selectedImageIndex,
       currentImage: imgUrl,
     }));
+  }
+
+  changePhotos(e, newPhotos) {
+    e.preventDefault();
+    this.setState({
+      photos: newPhotos,
+    });
   }
 
   render() {
@@ -43,9 +57,13 @@ class DefaultView extends React.Component {
           }}
         >
           <DisplayImage
+            imageGallery={this.props.images.photos}
+            // imageGallery={this.state.photos}
             openModal={this.props.openModal}
             image={this.state.currentImage}
+            // image={this.props.images.photos[0].url}
             displayCurrent={this.displayCurrent}
+            changePhotos={this.changePhotos}
           />
         </div>
       </div>

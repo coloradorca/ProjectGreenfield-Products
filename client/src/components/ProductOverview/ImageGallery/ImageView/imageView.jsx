@@ -24,6 +24,7 @@ class ImageView extends React.Component {
   }
 
   render() {
+    // console.log(this.props.gallery);
     const { open } = this.state;
     return (
       <div className="modalContainer">
@@ -35,10 +36,14 @@ class ImageView extends React.Component {
           center
         >
           <div className="DefaultViewModal">
-            <ModalDisplay />
+            <ModalDisplay gallery={this.props.gallery} />
           </div>
         </Modal>
-        <DefaultView openModal={this.onOpenModal} />
+        <DefaultView
+          changeImage={this.props.changeImage}
+          images={this.props.gallery}
+          openModal={this.onOpenModal}
+        />
       </div>
     );
   }

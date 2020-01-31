@@ -7,7 +7,7 @@ class DisplayImage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      inlaid: styles[0].results[0].photos,
+      inlaid: this.props.imageGallery,
     };
   }
 
@@ -29,7 +29,7 @@ class DisplayImage extends React.Component {
         >
           <i className="fa fa-arrows-alt" size={70} aria-hidden="true" />
         </div>
-        {this.state.inlaid.map((thumb, id) => (
+        {this.props.imageGallery.map((thumb, id) => (
           <ThumbNailView
             onClick={(e) => this.props.displayCurrent(e, this)}
             displayCurrent={this.props.displayCurrent}

@@ -1,6 +1,16 @@
-.styleSelector {
+.styleSelectorContainer {
+  // padding: 20px;
+  margin: 40px;
+  margin-left: 0px;
+  margin-right: 0px;
+  height: auto;
+  width: auto;
+}
+
+.styleSelectorText {
   display: flex;
-  float: right;
+  float: center;
+  flex-wrap: wrap;
 }
 
 .CircleImage {
