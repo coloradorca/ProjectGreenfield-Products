@@ -4,7 +4,7 @@
 import React from 'react';
 import ReviewList from './ReviewList.jsx';
 import NewReview from './NewReview.jsx';
-import SideGraph from './SideGraph.jsx';
+// import SideGraph from './SideGraph.jsx';
 import ReviewBreakdown from './ReviewBreakdown.jsx';
 import exampleData from '../../../../sampleData/RAR/reviewsList.json';
 import './RAR.scss';
