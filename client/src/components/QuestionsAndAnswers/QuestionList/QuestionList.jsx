@@ -35,21 +35,19 @@ export default class QuestionList extends Component {
     const { questions, showing } = this.state;
     return (
       <div>
-        <div>
-          <h4>Question List</h4>
-          {questions.slice(0, showing).map((q, i) => (
-            <div key={q.question_id}>
-              <Question question={q} qId={q.question_id} />
-            </div>
-          ))}
-          <button
-            className="questionButton"
-            type="button"
-            onClick={() => this.handleClick()}
-          >
-            MORE ANSWERED QUESTIONS
-          </button>
-        </div>
+        <h4>Question List</h4>
+        {questions.slice(0, showing).map((q) => (
+          <div key={q.question_id} className="questionListQuestion">
+            <Question question={q} qId={q.question_id} />
+          </div>
+        ))}
+        <button
+          className="questionButton"
+          type="button"
+          onClick={() => this.handleClick()}
+        >
+          MORE ANSWERED QUESTIONS
+        </button>
       </div>
     );
   }

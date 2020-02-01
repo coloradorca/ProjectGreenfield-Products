@@ -1,46 +1,77 @@
 import React, { Component } from 'react';
 import Moment from 'react-moment';
+import axios from 'axios';
+import Name from './Name.jsx';
 import './Answer.scss';
+
+const url = 'http://3.134.102.30/qa/answer';
 
 export default class Answer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       reported: 'Report',
+      helpful: 'Yes',
+      helpfulness: 0,
     };
   }
 
-  handleClick = () => {
-    this.setState({ reported: 'Reported' });
-    console.log(this.state);
+  componentDidMount() {
+    const { answer } = this.props;
+    this.setState({ helpfulness: answer.helpfulness });
+  }
+
+  handleReportClick = () => {
+    const { reported } = this.state;
+    const { aId } = this.props;
+
+    if (reported === 'Report') {
+      axios.put(`${url}/${aId}/report`);
+      this.setState({ reported: 'Reported' });
+      console.log(this.state);
+    }
+    return null;
+  };
+
+  handleHelpfulClick = () => {
+    const { aId } = this.props;
+    const { helpful } = this.state;
+
+    if (helpful === 'Yes') {
+      axios.put(`${url}/${aId}/helpful`);
+      this.setState((previous) => ({ helpfulness: previous.helpfulness + 1 }));
+      this.setState({ helpful: 'Yep' });
+    }
+    return null;
   };
 
   render() {
-    const { answer, aId } = this.props;
-    const { reported } = this.state;
+    const { answer } = this.props;
+    const { reported, helpfulness } = this.state;
+
     return (
       <div className="answer">
         {`A: ${answer.body} `}
         <div className="user">
           <span>{'by: '}</span>
-          <span>{answer.answerer_name}</span>
+          <Name name={answer.answerer_name} />
           <span>{', '}</span>
           <span>
             <Moment format="MMMM DD, YYYY">{answer.date}</Moment>
           </span>
-          <span className="helpful">{` | Helpful?`}</span>
+          <span className="helpfulA">{` | Helpful? `}</span>
           <button
             type="button"
-            className="linkButton"
-            onClick={() => console.log('POST helpfulness+1')}
+            className="answerLinkButton"
+            onClick={() => this.handleHelpfulClick()}
           >
             Yes
           </button>
-          <span className="count">{`(${answer.helpfulness}) | `}</span>
+          <span className="count">{`(${helpfulness}) | `}</span>
           <button
             type="button"
-            className="linkButton"
-            onClick={() => this.handleClick()}
+            className="answerLinkButton"
+            onClick={() => this.handleReportClick()}
           >
             {reported}
           </button>
@@ -49,37 +80,5 @@ export default class Answer extends Component {
     );
   }
 }
-
-// const Answer = ({ answer, aId }) => {
-//   return (
-//     <div className="answer">
-//       {`A: ${answer.body} `}
-//       <div className="user">
-//         <span>{'by: '}</span>
-//         <span>{answer.answerer_name}</span>
-//         <span>{', '}</span>
-//         <span>
-//           <Moment format="MMMM DD, YYYY">{answer.date}</Moment>
-//         </span>
-//         <span className="helpful">{` | Helpful?`}</span>
-//         <button
-//           type="button"
-//           className="linkButton"
-//           onClick={() => console.log('POST helpfulness+1')}
-//         >
-//           Yes
-//         </button>
-//         <span className="count">{`(${answer.helpfulness}) | `}</span>
-//         <button
-//           type="button"
-//           className="linkButton"
-//           onClick={() => console.log('reported')}
-//         >
-//           Report
-//         </button>
-//       </div>
-//     </div>
-//   );
-// };
 
 // export default Answer;
