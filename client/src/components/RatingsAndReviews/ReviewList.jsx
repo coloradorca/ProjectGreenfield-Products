@@ -11,13 +11,61 @@ class ReviewList extends React.Component {
     super(props);
     this.state = {
       showNewReview: false,
+      reviewShown: [],
+      reviewSplitNum: 0,
+      data: this.props.data,
+      selectedValue: 'Newest',
     };
     this.openNewReview = this.openNewReview.bind(this);
     this.closeNewReview = this.closeNewReview.bind(this);
+    this.moreReviews = this.moreReviews.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  componentDidMount() {
+    const listArr = this.state.data.slice(
+      this.state.reviewSplitNum,
+      this.state.reviewSplitNum + 2,
+    );
+    this.setState({
+      reviewShown: this.state.reviewShown.concat(listArr),
+      reviewSplitNum: this.state.reviewSplitNum + 2,
+    });
+  }
+
+  componentDidUpdate() {
+    const sortArr = this.state.data.slice(0, 2);
+    this.setState({
+      reviewShown: this.state.reviewShown.concat(sortArr),
+      reviewSplitNum: this.state.reviewSplitNum + 2,
+    });
+  }
+
+  handleChange(e) {
+    this.setState(
+      {
+        selectedValue: e.target.value,
+      },
+      () => {
+        console.log(this.state.selectedValue);
+      },
+    );
+    this.sortList();
+  }
+
+  moreReviews(e) {
+    e.preventDefault();
+    const addArr = this.state.data.slice(
+      this.state.reviewSplitNum,
+      this.state.reviewSplitNum + 2,
+    );
+    this.setState({
+      reviewShown: this.state.reviewShown.concat(addArr),
+      reviewSplitNum: this.state.reviewSplitNum + 2,
+    });
   }
 
   openNewReview() {
-    console.log('clicked');
     this.setState({
       showNewReview: true,
     });
@@ -29,21 +77,68 @@ class ReviewList extends React.Component {
     });
   }
 
+  sortList() {
+    if (this.state.selectedValue === 'Newest') {
+      //sort by newest date
+      let newArr = this.state.data.sort((a, b) => {
+        return a.date - b.date;
+      });
+      return this.setState(
+        {
+          data: newArr,
+        },
+        () => {
+          console.log(this.state.sortedArr);
+        },
+      );
+    } else if (this.state.selectedValue === 'Helpful') {
+      //sort by the most helpful => helpfulness
+      let helpArr = this.state.data.sort((a, b) => {
+        return b.helpfulness - a.helpfulness;
+      });
+      console.log(helpArr);
+      return this.setState(
+        {
+          data: helpArr,
+        },
+        () => {
+          console.log(this.state.sortedArr);
+        },
+      );
+    }
+    // else if (this.state.selectedValue === 'Relevant') {
+    //   //sort by the most relevent
+    // }
+  }
+
   render() {
+    if (this.props.showReviewList === false) {
+      return null;
+    }
     return (
       <div>
         Number of Reviews sorted by
-        <select className="reviewFilters">
+        <select
+          className="reviewFilters"
+          value={this.state.selectedValue}
+          onChange={this.handleChange}
+        >
           <option value="Newest">Newest</option>
           <option value="Helpful">Helpful</option>
           <option value="Relevant">Relevant</option>
         </select>
         <br />
-        {this.props.data.map((review) => {
+        {this.state.reviewShown.map((review) => {
           return <ReviewTile review={review} />;
         })}
-        {this.state.reviewShown}
-        <button className="moreReviews">More Reviews</button>
+        <button
+          className="moreReviews"
+          onClick={(e) => {
+            this.moreReviews(e);
+          }}
+        >
+          More Reviews
+        </button>
         <button
           className="addReview"
           onClick={() => {
