@@ -1,9 +1,23 @@
 import React, { Component } from 'react';
 // import React, { Component } from 'react'
 import axios from 'axios';
-import Modal from 'react-responsive-modal';
+import Modal from 'react-modal';
 import AnswerList from '../AnswerList/AnswerList.jsx';
+import AddAnswer from '../AddAnswer/AddAnswer.jsx';
 import './Question.scss';
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
+
+Modal.setAppElement(document.getElementById('app'));
 
 const url = 'http://3.134.102.30/qa/question';
 
@@ -13,8 +27,6 @@ export default class Question extends Component {
     this.state = {
       helpful: 'Yes',
       helpfulness: 0,
-      open: false,
-      value: '',
     };
   }
 
@@ -22,14 +34,6 @@ export default class Question extends Component {
     const { question } = this.props;
     this.setState({ helpfulness: question.question_helpfulness });
   }
-
-  onOpenModal = () => {
-    this.setState({ open: true });
-  };
-
-  onCloseModal = () => {
-    this.setState({ open: false });
-  };
 
   handleHelpfulClick = () => {
     const { qId } = this.props;
@@ -43,22 +47,12 @@ export default class Question extends Component {
     return null;
   };
 
-  handleSubmit = (event) => {
-    const { value } = this.state;
-    console.log(`A name was submitted: ${value}`);
-    event.preventDefault();
-  };
-
-  handleChange = (event) => {
-    this.setState({ value: event.target.value });
-  };
-
   render() {
-    const { question, qId } = this.props;
-    const { helpfulness, open, value } = this.state;
+    const { question, qId, productDetails } = this.props;
+    const { helpfulness } = this.state;
 
     return (
-      <div className="question">
+      <span className="question">
         <span>{`Q: ${question.question_body}`}</span>
         <span className="helpfulQ">
           {`Helpful? `}
@@ -71,31 +65,11 @@ export default class Question extends Component {
               Yes
             </button>
             <span className="count">{`(${helpfulness}) | `}</span>
-            <button
-              type="button"
-              className="questionLinkButton"
-              onClick={() => this.onOpenModal()}
-            >
-              Add Answer
-            </button>
-            <Modal open={open} onClose={() => this.onCloseModal()} center>
-              <h2>Simple centered modal</h2>
-              <form onSubmit={this.handleSubmit}>
-                <label>
-                  Answer:
-                  <input
-                    type="text"
-                    value={value}
-                    onChange={this.handleChange}
-                  />
-                </label>
-                <input type="submit" value="Submit" />
-              </form>
-            </Modal>
+            <AddAnswer productDetails={productDetails} question={question} />
           </span>
         </span>
         <AnswerList qId={qId} />
-      </div>
+      </span>
     );
   }
 }
