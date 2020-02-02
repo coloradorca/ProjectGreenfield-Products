@@ -33,13 +33,13 @@ class ReviewList extends React.Component {
     });
   }
 
-  componentDidUpdate() {
-    const sortArr = this.state.data.slice(0, 2);
-    this.setState({
-      reviewShown: this.state.reviewShown.concat(sortArr),
-      reviewSplitNum: this.state.reviewSplitNum + 2,
-    });
-  }
+  // componentDidUpdate() {
+  //   const sortArr = this.state.data.slice(0, 2);
+  //   this.setState({
+  //     reviewShown: this.state.reviewShown.concat(sortArr),
+  //     reviewSplitNum: this.state.reviewSplitNum + 2,
+  //   });
+  // }
 
   handleChange(e) {
     this.setState(
