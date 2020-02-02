@@ -16,8 +16,8 @@ class App extends React.Component {
   render() {
     return (
       <div className="mains">
-        {/* <ProductOverview />
-        <RatingsAndReviews /> */}
+        <ProductOverview />
+        <RatingsAndReviews />
         <QuestionsAndAnswers />
       </div>
     );
