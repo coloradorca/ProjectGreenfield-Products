@@ -1,8 +1,13 @@
 import React from 'react';
 
 function ThumbNailView(props) {
+  const { image } = props;
+  const { changeIndex } = props;
+  const { changeImage } = props;
+  const { index } = props;
+
   const styles = {
-    backgroundImage: `url(${props.image})`,
+    backgroundImage: `url(${image})`,
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
@@ -12,10 +17,10 @@ function ThumbNailView(props) {
       role="button"
       className="thumbnailImage"
       style={styles}
-      onKeyPress={(e) => props.changeImage(props.image)}
-      onClick={function(e) {
-        props.changeIndex(props.index);
-        props.changeImage(props.image);
+      onKeyPress={() => changeImage(image)}
+      onClick={function() {
+        changeIndex(index);
+        changeImage(image);
       }}
       tabIndex={0}
       aria-label="yes"

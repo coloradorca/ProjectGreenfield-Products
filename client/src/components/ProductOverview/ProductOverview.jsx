@@ -20,8 +20,8 @@ class ProductOverview extends React.Component {
     super();
     this.state = {
       styles: styles[0].results,
-      productList: productList,
-      details: details,
+      productList,
+      details,
       currentStyle: styles[0].results[0],
       currentImage: styles[0].results[0].photos[0].url,
       currentIndex: 0,
@@ -44,14 +44,19 @@ class ProductOverview extends React.Component {
   }
 
   changeIndex(num) {
-    // console.log(num);
     this.setState({
       currentIndex: num,
     });
   }
 
   render() {
-    // console.log(this.state.currentImage);
+    const { currentIndex } = this.state;
+    const { currentImage } = this.state;
+    const { currentStyle } = this.state;
+    const { productList } = this.state;
+    const { styles } = this.state;
+    const { details } = this.state;
+
     return (
       <div className="ProductOverview">
         <div className="headers">{/* <Headers /> */}</div>
@@ -59,37 +64,34 @@ class ProductOverview extends React.Component {
         <div className="leftContainer">
           <div id="ImageView" className="ImageView">
             <ImageView
-              currentIndex={this.state.currentIndex}
+              currentIndex={currentIndex}
               changeStyle={this.changeStyle}
               changeImage={this.changeImage}
-              currentStyle={this.state.currentStyle}
-              currentImage={this.state.currentImage}
+              currentStyle={currentStyle}
+              currentImage={currentImage}
               changeIndex={this.changeIndex}
             />
           </div>
         </div>
         <div className="rightContainer">
           <div className="ProductDetail">
-            <ProductDetail
-              currentStyle={this.state.currentStyle}
-              data={this.state.productList[0]}
-            />
+            <ProductDetail currentStyle={currentStyle} data={productList[0]} />
           </div>
           <div className="StyleSelector">
             <StyleSelector
               changeImage={this.changeImage}
               changeStyle={this.changeStyle}
-              styles={this.state.styles}
+              styles={styles}
             />
           </div>
           <br />
           <div className="AddToCart">
-            <AddToCart data={this.state.styles[0]} />
+            <AddToCart data={styles[0]} />
           </div>
         </div>
         <div className="bottomContainer">
           <div className="prodcutDescription">
-            <ProductDescription data={this.state.details[0]} />
+            <ProductDescription data={details[0]} />
           </div>
           <div className="share">
             <Share />

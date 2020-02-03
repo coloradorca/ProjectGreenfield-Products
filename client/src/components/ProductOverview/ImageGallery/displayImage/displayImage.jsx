@@ -10,8 +10,14 @@ class DisplayImage extends React.Component {
 
   render() {
     // console.log('images in displayImage', this.props.currentImage);
+    const { changeIndex } = this.props;
+    const { changeImage } = this.props;
+    const { currentImage } = this.props;
+    const { openModal } = this.props;
+    const { currentStyle } = this.props;
+
     const styles = {
-      backgroundImage: `url(${this.props.currentImage})`,
+      backgroundImage: `url(${currentImage})`,
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'center',
@@ -22,18 +28,18 @@ class DisplayImage extends React.Component {
           role="button"
           tabIndex={0}
           className="imageViewButton "
-          onKeyDown={this.props.openModal}
-          onClick={this.props.openModal}
+          onKeyDown={openModal}
+          onClick={openModal}
         >
           <i className="fa fa-arrows-alt" size={70} aria-hidden="true" />
         </div>
-        {this.props.currentStyle.photos.map((thumb, id) => (
+        {currentStyle.photos.map((thumb, id) => (
           <ThumbNailView
-            changeIndex={this.props.changeIndex}
-            changeImage={this.props.changeImage}
+            changeIndex={changeIndex}
+            changeImage={changeImage}
             image={thumb.url}
             index={id}
-            key={id}
+            key={thumb.url}
           />
         ))}
       </div>

@@ -11,7 +11,6 @@ class ImageView extends React.Component {
     super(props);
     this.state = {
       open: false,
-      // currentGallery: this.props.currentStyle.photos,
     };
     this.onOpenModal = this.onOpenModal.bind(this);
     this.onCloseModal = this.onCloseModal.bind(this);
@@ -26,33 +25,34 @@ class ImageView extends React.Component {
   }
 
   render() {
-    // console.log('images in imageview', this.props.currentStyle.photos);
+    const { currentIndex } = this.props;
+    const { currentStyle } = this.props;
+    const { currentImage } = this.props;
+    const { changeImage } = this.props;
+    const { changeIndex } = this.props;
+    const { changeStyle } = this.props;
     const { open } = this.state;
+
     return (
       <div className="modalContainer">
-        <Modal
-          className="modal"
-          open={open}
-          onClose={this.onCloseModal}
-          // contentLabel="Example Modal"
-        >
+        <Modal className="modal" open={open} onClose={this.onCloseModal}>
           <div className="DefaultViewModal">
             <ModalDisplay
-              currentIndex={this.props.currentIndex}
-              gallery={this.props.currentStyle.photos}
-              currentImage={this.props.currentImage}
+              currentIndex={currentIndex}
+              gallery={currentStyle.photos}
+              currentImage={currentImage}
             />
           </div>
         </Modal>
         <div className="DefaultView">
           <div className="slideWrap">
             <DisplayImage
-              changeIndex={this.props.changeIndex}
+              changeIndex={changeIndex}
               openModal={this.onOpenModal}
-              currentImage={this.props.currentImage}
-              currentStyle={this.props.currentStyle}
-              changeImage={this.props.changeImage}
-              changeStyle={this.props.changeStyle}
+              currentImage={currentImage}
+              currentStyle={currentStyle}
+              changeImage={changeImage}
+              changeStyle={changeStyle}
             />
           </div>
         </div>

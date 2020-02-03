@@ -1,4 +1,3 @@
-// /* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import RightArrow from './DefaultView/rightArrow.jsx';
 import LeftArrow from './DefaultView/leftArrow.jsx';
@@ -9,37 +8,47 @@ class ModalDisplay extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      photos: this.props.gallery,
-      currentIndex: this.props.currentIndex,
-      currentImage: this.props.currentImage,
-      // currentImage: this.state.photos[this.state.currentIndex].url,
+      photos: 'this.props.gallery',
+      currentIndex: 'this.props.currentIndex',
+      currentImage: 'this.props.currentImage',
     };
     this.goToPreviousSlide = this.goToPreviousSlide.bind(this);
     this.goToNextSlide = this.goToNextSlide.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.setState({
-  //     // currentImage: this.state.photos[this.state.currentIndex].url,
-  //   });
-  // }
+  componentDidMount() {
+    const { gallery } = this.props;
+    const { currentImage } = this.props;
+    const { currentIndex } = this.props;
+    this.setState({
+      photos: gallery,
+      currentIndex,
+      currentImage,
+    });
+  }
 
   goToPreviousSlide() {
-    if (this.state.currentIndex !== 0) {
+    const { currentIndex } = this.props;
+    if (currentIndex !== 0) {
       this.setState(
         (prevState) => ({
           currentIndex: prevState.currentIndex - 1,
         }),
-        () =>
+        function() {
+          const { photos } = this.state;
+          const { currentIndex } = this.state;
           this.setState({
-            currentImage: this.state.photos[this.state.currentIndex].url,
-          }),
+            currentImage: photos[currentIndex].url,
+          });
+        },
       );
     }
   }
 
   goToNextSlide() {
-    if (this.state.currentIndex === this.state.photos.length - 1) {
+    const { currentIndex } = this.props;
+    const { photos } = this.state;
+    if (currentIndex === photos.length - 1) {
       this.setState({
         currentIndex: 0,
       });
@@ -48,24 +57,29 @@ class ModalDisplay extends React.Component {
       (prevState) => ({
         currentIndex: prevState.currentIndex + 1,
       }),
-      () =>
+      function() {
+        const { photos } = this.state;
+        const { currentIndex } = this.state;
         this.setState({
-          currentImage: this.state.photos[this.state.currentIndex].url,
-        }),
+          currentImage: photos[currentIndex].url,
+        });
+      },
     );
   }
 
   render() {
-    console.log(this.state.currentIndex);
+    const { currentImage } = this.state;
+    const { currentIndex } = this.state;
+    const { photos } = this.state;
     return (
       <div className="DefaultView">
         <div className="slideWrap">
-          <DisplayExpanded currentImage={this.state.currentImage} />
+          <DisplayExpanded currentImage={currentImage} />
         </div>
-        {this.state.currentIndex !== 0 && (
+        {currentIndex !== 0 && (
           <LeftArrow goToPreviousSlide={this.goToPreviousSlide} />
         )}
-        {this.state.currentIndex !== this.state.photos.length - 1 && (
+        {currentIndex !== photos.length - 1 && (
           <RightArrow goToNextSlide={this.goToNextSlide} />
         )}
       </div>
