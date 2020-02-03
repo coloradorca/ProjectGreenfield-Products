@@ -10,14 +10,14 @@ class ReviewList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showNewReview: false,
+      // showNewReview: false,
       reviewShown: [],
       reviewSplitNum: 0,
       data: this.props.data,
       selectedValue: 'Newest',
     };
-    this.openNewReview = this.openNewReview.bind(this);
-    this.closeNewReview = this.closeNewReview.bind(this);
+    // this.openNewReview = this.openNewReview.bind(this);
+    // this.closeNewReview = this.closeNewReview.bind(this);
     this.moreReviews = this.moreReviews.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -65,17 +65,17 @@ class ReviewList extends React.Component {
     });
   }
 
-  openNewReview() {
-    this.setState({
-      showNewReview: true,
-    });
-  }
+  // openNewReview() {
+  //   this.setState({
+  //     showNewReview: true,
+  //   });
+  // }
 
-  closeNewReview() {
-    this.setState({
-      showNewReview: false,
-    });
-  }
+  // closeNewReview() {
+  //   this.setState({
+  //     showNewReview: false,
+  //   });
+  // }
 
   sortList() {
     if (this.state.selectedValue === 'Newest') {
@@ -139,17 +139,17 @@ class ReviewList extends React.Component {
         >
           More Reviews
         </button>
-        <button
+        {/* <button
           className="addReview"
           onClick={() => {
             return this.openNewReview();
           }}
         >
           Add a Review +
-        </button>
+        </button> */}
         <NewReview
-          showNewReview={this.state.showNewReview}
-          closeNewReview={this.closeNewReview}
+        // showNewReview={this.state.showNewReview}
+        // closeNewReview={this.closeNewReview}
         />
       </div>
     );
