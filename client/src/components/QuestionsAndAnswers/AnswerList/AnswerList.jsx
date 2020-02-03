@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 import axios from 'axios';
 import Answer from '../Answer/Answer.jsx';
+import './AnswerList.scss';
 
 const url = 'http://3.134.102.30';
 
@@ -41,7 +42,7 @@ export default class AnswerList extends Component {
     const { answers, showing, status } = this.state;
     if (answers.length > 2) {
       return (
-        <div>
+        <div className="answerList">
           {answers.slice(0, showing).map((a) => (
             <div key={a.answer_id}>
               <Answer answer={a} aId={a.answer_id} />
@@ -60,7 +61,7 @@ export default class AnswerList extends Component {
       );
     }
     return (
-      <div>
+      <div className="answerList">
         {answers.slice(0, showing).map((a) => (
           <div key={a.answer_id}>
             <Answer answer={a} aId={a.answer_id} />

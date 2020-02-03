@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 
 class ReviewChar extends React.Component {
