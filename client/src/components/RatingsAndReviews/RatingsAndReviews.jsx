@@ -14,7 +14,16 @@ class RatingsAndReviews extends React.Component {
     super(props);
     this.state = {
       data: exampleData.results,
+      showReviewList: true,
     };
+  }
+
+  componendDidMount() {
+    if (this.state.data.length === 0) {
+      this.setState({
+        showReviewList: false,
+      });
+    }
   }
 
   render() {
@@ -26,7 +35,11 @@ class RatingsAndReviews extends React.Component {
         <div className="rar">
           {/* <SideGraph data={this.state.data} /> */}
           <ReviewBreakdown data={this.state.data} className="reviewColumn" />
-          <ReviewList data={this.state.data} className="reviewColumn" />
+          <ReviewList
+            data={this.state.data}
+            className="reviewColumn"
+            showReviewList={this.state.showReviewList}
+          />
           <br />
         </div>
       </div>

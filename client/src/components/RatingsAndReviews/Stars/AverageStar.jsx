@@ -41,12 +41,15 @@ class AverageStar extends React.Component {
 
   render() {
     return (
-      <StarRatingComponent
-        name="tileStar"
-        editing={false}
-        starCount={5}
-        value={this.state.averageRating}
-      />
+      <div>
+        <StarRatingComponent
+          name="tileStar"
+          editing={false}
+          starCount={5}
+          value={this.state.averageRating}
+        />
+        <div>{this.state.averageRating}</div>
+      </div>
     );
   }
 }
