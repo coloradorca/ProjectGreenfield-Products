@@ -24,8 +24,10 @@ class ProductOverview extends React.Component {
       productList: productList,
       details: details,
       currentStyle: styles[0].results[0],
+      currentImage: styles[0].results[0].photos[0].url,
     };
     this.changeStyle = this.changeStyle.bind(this);
+    this.changeImage = this.changeImage.bind(this);
   }
 
   changeStyle(newStyle) {
@@ -34,15 +36,26 @@ class ProductOverview extends React.Component {
     });
   }
 
+  changeImage(newUrl) {
+    this.setState({
+      currentImage: newUrl,
+    });
+  }
+
   render() {
-    // console.log(this.state.currentStyle);
+    // console.log(this.state.currentImage);
     return (
       <div className="ProductOverview">
         <div className="headers">{/* <Headers /> */}</div>
 
         <div className="leftContainer">
           <div id="ImageView" className="ImageView">
-            <ImageView gallery={this.state.currentStyle} />
+            <ImageView
+              changeStyle={this.changeStyle}
+              changeImage={this.changeImage}
+              currentStyle={this.state.currentStyle}
+              currentImage={this.state.currentImage}
+            />
           </div>
         </div>
         <div className="rightContainer">
@@ -54,6 +67,7 @@ class ProductOverview extends React.Component {
           </div>
           <div className="StyleSelector">
             <StyleSelector
+              changeImage={this.changeImage}
               changeStyle={this.changeStyle}
               styles={this.state.styles}
             />

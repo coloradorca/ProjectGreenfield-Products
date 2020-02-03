@@ -37,6 +37,7 @@ class StyleSelector extends React.Component {
           {this.state.images.map((element, i) => {
             return (
               <CircleImage
+                changeImage={this.props.changeImage}
                 updateStyle={this.updateStyle}
                 changeStyle={this.props.changeStyle}
                 updateSelected={this.updateSelected}

@@ -12,10 +12,10 @@ function ThumbNailView(props) {
       role="button"
       className="thumbnailImage"
       style={styles}
-      onKeyPress={(e) => props.displayCurrent(e, props.image)}
-      onClick={(e) => props.displayCurrent(e, props.image)}
+      onKeyPress={(e) => props.changeImage(props.image)}
+      onClick={(e) => props.changeImage(props.image)}
       tabIndex={0}
-      aria-hidden="true"
+      aria-label="yes"
     />
   );
 }
