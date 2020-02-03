@@ -1,19 +1,11 @@
 import React from 'react';
 import './displayImage.scss';
-import styles from '../../sampleData/styles';
 import ThumbNailView from '../DefaultView/ThumbNailView.jsx';
 
 class DisplayImage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      inlaid: this.props.currentStyle,
-      // //below taken from default view
-      // // photos: this.props.images.photos,
-      // currentIndex: 0,
-      // translateValue: 0,
-      // // currentImage: this.props.images.photos[0].url,
-    };
+    this.state = {};
   }
 
   render() {
@@ -37,8 +29,10 @@ class DisplayImage extends React.Component {
         </div>
         {this.props.currentStyle.photos.map((thumb, id) => (
           <ThumbNailView
+            changeIndex={this.props.changeIndex}
             changeImage={this.props.changeImage}
             image={thumb.url}
+            index={id}
             key={id}
           />
         ))}
@@ -48,24 +42,3 @@ class DisplayImage extends React.Component {
 }
 
 export default DisplayImage;
-
-/* </div>
-      <div className="DefaultView">
-      <div
-        className="slideWrap"
-        style={{
-          transform: `translateX(${this.state.translateValue}px)`,
-          transition: 'transform ease-out 0.45s',
-        }}
-      >
-        <DisplayImage
-          imageGallery={this.props.images.photos}
-          // imageGallery={this.state.photos}
-          openModal={this.props.openModal}
-          image={this.state.currentImage}
-          // image={this.props.images.photos[0].url}
-          displayCurrent={this.displayCurrent}
-          changePhotos={this.changePhotos}
-        />
-      </div>
-    </div> */

@@ -12,7 +12,7 @@ class DisplayExpanded extends React.Component {
 
   render() {
     const styles = {
-      backgroundImage: `url(${this.props.image})`,
+      backgroundImage: `url(${this.props.currentImage})`,
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'center',

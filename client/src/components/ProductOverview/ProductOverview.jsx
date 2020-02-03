@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Headers from './Header/headers.jsx';
-import DefaultView from './ImageGallery/DefaultView/DefaultView.jsx';
 import ImageView from './ImageGallery/ImageView/imageView.jsx';
 import Share from './ProductDetail/ShareOnSocials/Share.jsx';
 import StyleSelector from './StyleSelector/styleSelector.jsx';
@@ -25,9 +24,11 @@ class ProductOverview extends React.Component {
       details: details,
       currentStyle: styles[0].results[0],
       currentImage: styles[0].results[0].photos[0].url,
+      currentIndex: 0,
     };
     this.changeStyle = this.changeStyle.bind(this);
     this.changeImage = this.changeImage.bind(this);
+    this.changeIndex = this.changeIndex.bind(this);
   }
 
   changeStyle(newStyle) {
@@ -42,6 +43,13 @@ class ProductOverview extends React.Component {
     });
   }
 
+  changeIndex(num) {
+    // console.log(num);
+    this.setState({
+      currentIndex: num,
+    });
+  }
+
   render() {
     // console.log(this.state.currentImage);
     return (
@@ -51,10 +59,12 @@ class ProductOverview extends React.Component {
         <div className="leftContainer">
           <div id="ImageView" className="ImageView">
             <ImageView
+              currentIndex={this.state.currentIndex}
               changeStyle={this.changeStyle}
               changeImage={this.changeImage}
               currentStyle={this.state.currentStyle}
               currentImage={this.state.currentImage}
+              changeIndex={this.changeIndex}
             />
           </div>
         </div>

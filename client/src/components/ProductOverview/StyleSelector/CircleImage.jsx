@@ -14,7 +14,6 @@ function CircleImage(props) {
       className="CircleImage"
       style={imageStyles}
       onKeyPress={(e) => props.updateStyle(e, props.image)}
-      // onClick={(e) => props.updateStyle(e, props.image)}
       onClick={function(e) {
         props.updateStyle(e, props.image);
         props.changeImage(props.image);

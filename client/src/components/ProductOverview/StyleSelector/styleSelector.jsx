@@ -1,6 +1,5 @@
 import React from 'react';
 import CircleImage from './CircleImage.jsx';
-import styles from '../sampleData/styles';
 
 import './styleSelector.scss';
 

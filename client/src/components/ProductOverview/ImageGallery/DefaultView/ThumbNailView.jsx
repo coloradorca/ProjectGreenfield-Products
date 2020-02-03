@@ -13,7 +13,10 @@ function ThumbNailView(props) {
       className="thumbnailImage"
       style={styles}
       onKeyPress={(e) => props.changeImage(props.image)}
-      onClick={(e) => props.changeImage(props.image)}
+      onClick={function(e) {
+        props.changeIndex(props.index);
+        props.changeImage(props.image);
+      }}
       tabIndex={0}
       aria-label="yes"
     />

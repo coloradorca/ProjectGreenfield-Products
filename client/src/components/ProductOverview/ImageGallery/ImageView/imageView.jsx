@@ -1,6 +1,5 @@
 import React from 'react';
 import Modal from 'react-responsive-modal';
-import DefaultView from '../DefaultView/DefaultView.jsx';
 import ModalDisplay from '../ModalDisplay.jsx';
 import DisplayImage from '../displayImage/displayImage.jsx';
 
@@ -12,7 +11,7 @@ class ImageView extends React.Component {
     super(props);
     this.state = {
       open: false,
-      currentGallery: this.props.currentStyle.photos,
+      // currentGallery: this.props.currentStyle.photos,
     };
     this.onOpenModal = this.onOpenModal.bind(this);
     this.onCloseModal = this.onCloseModal.bind(this);
@@ -36,20 +35,19 @@ class ImageView extends React.Component {
           open={open}
           onClose={this.onCloseModal}
           // contentLabel="Example Modal"
-          center
         >
           <div className="DefaultViewModal">
-            <ModalDisplay gallery={this.state.currentGallery} />
+            <ModalDisplay
+              currentIndex={this.props.currentIndex}
+              gallery={this.props.currentStyle.photos}
+              currentImage={this.props.currentImage}
+            />
           </div>
         </Modal>
-        {/* <DefaultView
-          changeImage={this.props.changeImage}
-          images={this.props.gallery}
-          openModal={this.onOpenModal}
-        /> */}
         <div className="DefaultView">
           <div className="slideWrap">
             <DisplayImage
+              changeIndex={this.props.changeIndex}
               openModal={this.onOpenModal}
               currentImage={this.props.currentImage}
               currentStyle={this.props.currentStyle}
