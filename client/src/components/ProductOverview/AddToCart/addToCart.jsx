@@ -8,7 +8,7 @@ class AddToCart extends React.Component {
 
     this.state = {
       cart: [],
-      allsizes: [this.props.data.skus],
+      allsizes: '',
       size: '',
       numberOfSizeSelected: 15,
     };
@@ -16,8 +16,15 @@ class AddToCart extends React.Component {
     this.selectSize = this.selectSize.bind(this);
   }
 
+  componentDidMount() {
+    const { data } = this.props;
+    this.setState({
+      allsizes: [data.skus],
+    });
+  }
+
   createQuantity() {
-    let quantity = [];
+    const quantity = [];
     for (let i = 0; i <= this.state.numberOfSizeSelected; i++) {
       quantity.push(<a key={i}>{i}</a>);
     }
@@ -25,9 +32,17 @@ class AddToCart extends React.Component {
   }
 
   selectSize(select) {
+    const { allsizes } = this.state;
     this.setState({
       size: select,
     });
+    for (const key in allsizes[0]) {
+      if (select === key) {
+        this.setState({
+          numberOfSizeSelected: allsizes[0][key],
+        });
+      }
+    }
   }
 
   render() {
