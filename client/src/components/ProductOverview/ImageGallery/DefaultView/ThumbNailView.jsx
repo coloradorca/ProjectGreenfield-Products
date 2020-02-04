@@ -13,18 +13,20 @@ function ThumbNailView(props) {
     backgroundPosition: 'center',
   };
   return (
-    <div
-      role="button"
-      className="thumbnailImage"
-      style={styles}
-      onKeyPress={() => changeImage(image)}
-      onClick={function() {
-        changeIndex(index);
-        changeImage(image);
-      }}
-      tabIndex={0}
-      aria-label="yes"
-    />
+    <div className="allThumbs">
+      <div
+        className="thumbnailImage"
+        role="button"
+        style={styles}
+        onKeyPress={() => changeImage(image)}
+        onClick={function() {
+          changeIndex(index);
+          changeImage(image);
+        }}
+        tabIndex={0}
+        aria-label="yes"
+      />
+    </div>
   );
 }
 

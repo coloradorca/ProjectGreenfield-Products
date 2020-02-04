@@ -9,7 +9,6 @@ class DisplayImage extends React.Component {
   }
 
   render() {
-    // console.log('images in displayImage', this.props.currentImage);
     const { changeIndex } = this.props;
     const { changeImage } = this.props;
     const { currentImage } = this.props;
@@ -33,15 +32,17 @@ class DisplayImage extends React.Component {
         >
           <i className="fa fa-arrows-alt" size={70} aria-hidden="true" />
         </div>
-        {currentStyle.photos.map((thumb, id) => (
-          <ThumbNailView
-            changeIndex={changeIndex}
-            changeImage={changeImage}
-            image={thumb.url}
-            index={id}
-            key={thumb.url}
-          />
-        ))}
+        <div className="thumbnails">
+          {currentStyle.photos.map((thumb, id) => (
+            <ThumbNailView
+              changeIndex={changeIndex}
+              changeImage={changeImage}
+              image={thumb.url}
+              index={id}
+              key={thumb.url}
+            />
+          ))}
+        </div>
       </div>
     );
   }
