@@ -2,3 +2,21 @@
 //   transform: translateX(200px);
 //   transition: 'transform ease-out 0.45s';
 // }
+
+.thumbnails {
+  overflow-y: scroll;
+}
+
+.magnified {
+  cursor: zoom-out;
+  background-image: none;
+}
+.displayImageModal {
+  cursor: zoom-out;
+  background-image: none;
+}
+
+.displayImage {
+  // cursor: none;
+  background-image: none;
+}

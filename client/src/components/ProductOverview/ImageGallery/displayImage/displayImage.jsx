@@ -1,19 +1,22 @@
 import React from 'react';
 import './displayImage.scss';
-import styles from '../../sampleData/styles';
 import ThumbNailView from '../DefaultView/ThumbNailView.jsx';
 
 class DisplayImage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      inlaid: this.props.imageGallery,
-    };
+    this.state = {};
   }
 
   render() {
+    const { changeIndex } = this.props;
+    const { changeImage } = this.props;
+    const { currentImage } = this.props;
+    const { openModal } = this.props;
+    const { currentStyle } = this.props;
+
     const styles = {
-      backgroundImage: `url(${this.props.image})`,
+      backgroundImage: `url(${currentImage})`,
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'center',
@@ -24,19 +27,22 @@ class DisplayImage extends React.Component {
           role="button"
           tabIndex={0}
           className="imageViewButton "
-          onKeyDown={this.props.openModal}
-          onClick={this.props.openModal}
+          onKeyDown={openModal}
+          onClick={openModal}
         >
           <i className="fa fa-arrows-alt" size={70} aria-hidden="true" />
         </div>
-        {this.props.imageGallery.map((thumb, id) => (
-          <ThumbNailView
-            onClick={(e) => this.props.displayCurrent(e, this)}
-            displayCurrent={this.props.displayCurrent}
-            image={thumb.url}
-            key={id}
-          />
-        ))}
+        <div className="thumbnails">
+          {currentStyle.photos.map((thumb, id) => (
+            <ThumbNailView
+              changeIndex={changeIndex}
+              changeImage={changeImage}
+              image={thumb.url}
+              index={id}
+              key={thumb.url}
+            />
+          ))}
+        </div>
       </div>
     );
   }

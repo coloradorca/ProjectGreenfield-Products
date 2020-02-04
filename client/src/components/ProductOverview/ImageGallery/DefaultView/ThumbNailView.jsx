@@ -1,22 +1,32 @@
 import React from 'react';
 
 function ThumbNailView(props) {
+  const { image } = props;
+  const { changeIndex } = props;
+  const { changeImage } = props;
+  const { index } = props;
+
   const styles = {
-    backgroundImage: `url(${props.image})`,
+    backgroundImage: `url(${image})`,
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
   };
   return (
-    <div
-      role="button"
-      className="thumbnailImage"
-      style={styles}
-      onKeyPress={(e) => props.displayCurrent(e, props.image)}
-      onClick={(e) => props.displayCurrent(e, props.image)}
-      tabIndex={0}
-      aria-hidden="true"
-    />
+    <div className="allThumbs">
+      <div
+        className="thumbnailImage"
+        role="button"
+        style={styles}
+        onKeyPress={() => changeImage(image)}
+        onClick={function() {
+          changeIndex(index);
+          changeImage(image);
+        }}
+        tabIndex={0}
+        aria-label="yes"
+      />
+    </div>
   );
 }
 

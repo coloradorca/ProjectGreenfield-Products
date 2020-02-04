@@ -1,6 +1,4 @@
-// /* eslint-disable react/destructuring-assignment */
 import React from 'react';
-import styles from '../sampleData/styles';
 import RightArrow from './DefaultView/rightArrow.jsx';
 import LeftArrow from './DefaultView/leftArrow.jsx';
 import DisplayExpanded from './DisplayExpanded.jsx';
@@ -10,62 +8,78 @@ class ModalDisplay extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      photos: this.props.gallery.photos,
-      currentIndex: 0,
-      translateValue: 0,
-      currentImage: undefined,
+      photos: 'this.props.gallery',
+      currentIndex: 'this.props.currentIndex',
+      currentImage: 'this.props.currentImage',
     };
     this.goToPreviousSlide = this.goToPreviousSlide.bind(this);
     this.goToNextSlide = this.goToNextSlide.bind(this);
-    this.slideWidth = this.slideWidth.bind(this);
   }
 
-  slideWidth() {
-    return document.querySelector('.displayImage').clientWidth;
+  componentDidMount() {
+    const { gallery } = this.props;
+    const { currentImage } = this.props;
+    const { currentIndex } = this.props;
+    this.setState({
+      photos: gallery,
+      currentIndex,
+      currentImage,
+    });
   }
 
   goToPreviousSlide() {
-    if (this.state.currentIndex !== 0) {
-      this.setState((prevState) => ({
-        currentIndex: prevState.currentIndex - 1,
-        translateValue: prevState.translateValue + this.slideWidth(),
-        currentImage: undefined,
-      }));
+    const { currentIndex } = this.props;
+    if (currentIndex !== 0) {
+      this.setState(
+        (prevState) => ({
+          currentIndex: prevState.currentIndex - 1,
+        }),
+        function() {
+          const { photos } = this.state;
+          const { currentIndex } = this.state;
+          this.setState({
+            currentImage: photos[currentIndex].url,
+          });
+        },
+      );
     }
   }
 
   goToNextSlide() {
-    if (this.state.currentIndex === this.state.photos.length - 1) {
-      return this.setState({
+    const { currentIndex } = this.props;
+    const { photos } = this.state;
+    if (currentIndex === photos.length - 1) {
+      this.setState({
         currentIndex: 0,
-        translateValue: 0,
       });
     }
-    return this.setState((prevState) => ({
-      currentIndex: prevState.currentIndex + 1,
-      translateValue: prevState.translateValue + -this.slideWidth(),
-      currentImage: undefined,
-    }));
+    this.setState(
+      (prevState) => ({
+        currentIndex: prevState.currentIndex + 1,
+      }),
+      function() {
+        const { photos } = this.state;
+        const { currentIndex } = this.state;
+        this.setState({
+          currentImage: photos[currentIndex].url,
+        });
+      },
+    );
   }
 
   render() {
+    const { currentImage } = this.state;
+    const { currentIndex } = this.state;
+    const { photos } = this.state;
     return (
       <div className="DefaultView">
-        <div
-          className="slideWrap"
-          style={{
-            transform: `translateX(${this.state.translateValue}px)`,
-            transition: 'transform ease-out 0.45s',
-          }}
-        >
-          {this.state.photos.map((image, i) => (
-            <DisplayExpanded key={i} image={image.url} />
-          ))}
+        <div className="slideWrap">
+          <DisplayExpanded currentImage={currentImage} />
         </div>
-        {this.state.currentIndex !== 0 && (
+        {currentIndex !== 0 && (
           <LeftArrow goToPreviousSlide={this.goToPreviousSlide} />
         )}
-        {this.state.currentIndex !== this.state.photos.length - 1 && (
+        {currentIndex !== photos.length - 1 && (
           <RightArrow goToNextSlide={this.goToNextSlide} />
         )}
       </div>
