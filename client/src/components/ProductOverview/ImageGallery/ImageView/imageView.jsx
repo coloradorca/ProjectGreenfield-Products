@@ -1,9 +1,10 @@
 import React from 'react';
 import Modal from 'react-responsive-modal';
-import DefaultView from '../DefaultView/DefaultView.jsx';
 import ModalDisplay from '../ModalDisplay.jsx';
+import DisplayImage from '../displayImage/displayImage.jsx';
 
 import './imageView.scss';
+import '../DefaultView/DefaultView.scss';
 
 class ImageView extends React.Component {
   constructor(props) {
@@ -24,26 +25,37 @@ class ImageView extends React.Component {
   }
 
   render() {
-    // console.log(this.props.gallery);
+    const { currentIndex } = this.props;
+    const { currentStyle } = this.props;
+    const { currentImage } = this.props;
+    const { changeImage } = this.props;
+    const { changeIndex } = this.props;
+    const { changeStyle } = this.props;
     const { open } = this.state;
+
     return (
       <div className="modalContainer">
-        <Modal
-          className="modal"
-          open={open}
-          onClose={this.onCloseModal}
-          contentLabel="Example Modal"
-          center
-        >
+        <Modal className="modal" open={open} onClose={this.onCloseModal}>
           <div className="DefaultViewModal">
-            <ModalDisplay gallery={this.props.gallery} />
+            <ModalDisplay
+              currentIndex={currentIndex}
+              gallery={currentStyle.photos}
+              currentImage={currentImage}
+            />
           </div>
         </Modal>
-        <DefaultView
-          changeImage={this.props.changeImage}
-          images={this.props.gallery}
-          openModal={this.onOpenModal}
-        />
+        <div className="DefaultView">
+          <div className="slideWrap">
+            <DisplayImage
+              changeIndex={changeIndex}
+              openModal={this.onOpenModal}
+              currentImage={currentImage}
+              currentStyle={currentStyle}
+              changeImage={changeImage}
+              changeStyle={changeStyle}
+            />
+          </div>
+        </div>
       </div>
     );
   }

@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Headers from './Header/headers.jsx';
-import DefaultView from './ImageGallery/DefaultView/DefaultView.jsx';
 import ImageView from './ImageGallery/ImageView/imageView.jsx';
 import Share from './ProductDetail/ShareOnSocials/Share.jsx';
 import StyleSelector from './StyleSelector/styleSelector.jsx';
@@ -21,11 +20,15 @@ class ProductOverview extends React.Component {
     super();
     this.state = {
       styles: styles[0].results,
-      productList: productList,
-      details: details,
+      productList,
+      details,
       currentStyle: styles[0].results[0],
+      currentImage: styles[0].results[0].photos[0].url,
+      currentIndex: 0,
     };
     this.changeStyle = this.changeStyle.bind(this);
+    this.changeImage = this.changeImage.bind(this);
+    this.changeIndex = this.changeIndex.bind(this);
   }
 
   changeStyle(newStyle) {
@@ -34,38 +37,61 @@ class ProductOverview extends React.Component {
     });
   }
 
+  changeImage(newUrl) {
+    this.setState({
+      currentImage: newUrl,
+    });
+  }
+
+  changeIndex(num) {
+    this.setState({
+      currentIndex: num,
+    });
+  }
+
   render() {
-    // console.log(this.state.currentStyle);
+    const { currentIndex } = this.state;
+    const { currentImage } = this.state;
+    const { currentStyle } = this.state;
+    const { productList } = this.state;
+    const { styles } = this.state;
+    const { details } = this.state;
+
     return (
       <div className="ProductOverview">
         <div className="headers">{/* <Headers /> */}</div>
 
         <div className="leftContainer">
           <div id="ImageView" className="ImageView">
-            <ImageView gallery={this.state.currentStyle} />
+            <ImageView
+              currentIndex={currentIndex}
+              changeStyle={this.changeStyle}
+              changeImage={this.changeImage}
+              currentStyle={currentStyle}
+              currentImage={currentImage}
+              changeIndex={this.changeIndex}
+            />
           </div>
         </div>
         <div className="rightContainer">
           <div className="ProductDetail">
-            <ProductDetail
-              currentStyle={this.state.currentStyle}
-              data={this.state.productList[0]}
-            />
+            <ProductDetail currentStyle={currentStyle} data={productList[0]} />
           </div>
           <div className="StyleSelector">
             <StyleSelector
+              changeImage={this.changeImage}
               changeStyle={this.changeStyle}
-              styles={this.state.styles}
+              styles={styles}
             />
           </div>
           <br />
           <div className="AddToCart">
-            <AddToCart data={this.state.styles[0]} />
+            <AddToCart data={styles[0]} />
           </div>
         </div>
         <div className="bottomContainer">
           <div className="prodcutDescription">
-            <ProductDescription data={this.state.details[0]} />
+            <ProductDescription data={details[0]} />
           </div>
           <div className="share">
             <Share />

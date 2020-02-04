@@ -49,8 +49,8 @@ class AddToCart extends React.Component {
           <button className="dropbtn">Quantity</button>
           <div className="dropdown-content">{this.createQuantity()}</div>
         </div>
-        <div className="addToCartButton">
-          <button> Add To Cart</button>
+        <div className="dropdown">
+          <button className="dropbtn addToCartButton"> Add To Cart</button>
         </div>
       </div>
     );

@@ -1,6 +1,5 @@
 import React from 'react';
 import CircleImage from './CircleImage.jsx';
-import styles from '../sampleData/styles';
 
 import './styleSelector.scss';
 
@@ -37,6 +36,7 @@ class StyleSelector extends React.Component {
           {this.state.images.map((element, i) => {
             return (
               <CircleImage
+                changeImage={this.props.changeImage}
                 updateStyle={this.updateStyle}
                 changeStyle={this.props.changeStyle}
                 updateSelected={this.updateSelected}
