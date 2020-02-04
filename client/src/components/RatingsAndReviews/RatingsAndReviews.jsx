@@ -9,35 +9,37 @@ import ReviewBreakdown from './Graph/ReviewBreakdown.jsx';
 import exampleData from '../../../../sampleData/RAR/reviewsList.json';
 import './RAR.scss';
 
-const url = ' http://3.134.102.30';
+const url = 'http://3.134.102.30/reviews';
 
 class RatingsAndReviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       product: 2,
-      data: {},
+      data: exampleData.results,
     };
     this.newReview = this.newReview.bind(this);
   }
 
-  async componendDidMount() {
-    const { product } = this.state;
-    const getProduct = await axios.get(`${url}/products/${product}`);
-    this.setState({
-      data: getProduct.data,
-    });
-    // if (this.state.data.length === 0) {
-    //   this.setState({
-    //     showReviewList: false,
-    //   });
-    // }
-  }
+  // componentDidMount() {
+  //   // const { product } = this.state;
+  //   axios.get(`${url}/${this.state.product}/list`).then((res) => {
+  //     const getReviews = res.data;
+  //     this.setState({
+  //       data: { getReviews },
+  //     });
+  //   });
+  //   if (this.state.data.length === 0) {
+  //     this.setState({
+  //       showReviewList: false,
+  //     });
+  //   }
+  // }
 
-  async newReview(e) {
-    e.preventDefault();
+  newReview(e) {
+    // e.preventDefault();
     const { product } = this.state;
-    const postReview = await axios.post(`${url}/reviews/${product}`);
+    const postReview = axios.post(`${url}/reviews/${product}`);
     this.setState((prevState) => {
       return {
         data: [...prevState.data, postReview],
@@ -52,13 +54,17 @@ class RatingsAndReviews extends React.Component {
         <br />
         <br />
         <div className="rar">
-          {/* <ReviewBreakdown data={this.state.data} className="reviewColumn" /> */}
+          <ReviewBreakdown
+            data={this.state.data}
+            productId={this.state.product}
+            className="reviewColumn"
+          />
           <ReviewList
             data={this.state.data}
             productId={this.state.product}
             className="reviewColumn"
             showReviewList={this.state.showReviewList}
-            newReview={this.newReview()}
+            newReview={this.newReview}
           />
           <br />
         </div>

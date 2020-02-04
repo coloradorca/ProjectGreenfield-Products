@@ -7,6 +7,7 @@ import axios from 'axios';
 import ReviewTile from './ReviewTile.jsx';
 import NewReview from './NewReview.jsx';
 const url = 'http://3.134.102.30/reviews';
+
 class ReviewList extends React.Component {
   constructor(props) {
     super(props);
@@ -17,19 +18,13 @@ class ReviewList extends React.Component {
       data: [],
       selectedValue: 'Newest',
     };
-    // this.openNewReview = this.openNewReview.bind(this);
-    // this.closeNewReview = this.closeNewReview.bind(this);
     this.moreReviews = this.moreReviews.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    // this.addToData = this.addToData.bind(this);
   }
 
-  async componentDidMount() {
-    const { productId } = this.props;
-    const getReviews = await axios.get(`${url}/${productId}/list`);
-    this.setState({
-      data: getReviews.data,
-    });
-    const listArr = this.state.data.results.slice(
+  componentDidMount() {
+    const listArr = this.props.data.slice(
       this.state.reviewSplitNum,
       this.state.reviewSplitNum + 2,
     );
@@ -61,7 +56,7 @@ class ReviewList extends React.Component {
 
   moreReviews(e) {
     e.preventDefault();
-    const addArr = this.state.data.results.slice(
+    const addArr = this.props.data.slice(
       this.state.reviewSplitNum,
       this.state.reviewSplitNum + 2,
     );
@@ -71,53 +66,12 @@ class ReviewList extends React.Component {
     });
   }
 
-  // openNewReview() {
-  //   this.setState({
-  //     showNewReview: true,
-  //   });
-  // }
-
-  // closeNewReview() {
-  //   this.setState({
-  //     showNewReview: false,
-  //   });
-  // }
-
   sortList() {
-    if (this.state.selectedValue === 'Newest') {
-      //sort by newest date
-      let newArr = this.state.data.sort((a, b) => {
-        return a.date - b.date;
-      });
-      return this.setState(
-        {
-          data: newArr,
-        },
-        () => {
-          console.log(this.state.sortedArr);
-        },
-      );
-    } else if (this.state.selectedValue === 'Helpful') {
-      //sort by the most helpful => helpfulness
-      let helpArr = this.state.data.sort((a, b) => {
-        return b.helpfulness - a.helpfulness;
-      });
-      console.log(helpArr);
-      return this.setState(
-        {
-          data: helpArr,
-        },
-        () => {
-          console.log(this.state.sortedArr);
-        },
-      );
-    }
-    // else if (this.state.selectedValue === 'Relevant') {
-    //   //sort by the most relevent
-    // }
+    //use the api call to change the order of the list
   }
 
   render() {
+    // this.addToData();
     if (this.props.showReviewList === false) {
       return null;
     }

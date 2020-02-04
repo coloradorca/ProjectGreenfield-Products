@@ -21,6 +21,7 @@ class AverageStar extends React.Component {
   }
 
   getAverage() {
+    // console.log(this.props.data);
     const arr = [];
     this.props.data.map((review) => {
       return arr.push(review.rating);

@@ -11,17 +11,25 @@ import React from 'react';
 import AverageStar from '../Stars/AverageStar.jsx';
 import SideGraph from './SideGraph.jsx';
 
+// const url = 'http://3.134.102.30/reviews';
+
 class ReviewBreakdown extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      reviewArr: [],
+      five: 0,
+      four: 0,
+      three: 0,
+      two: 0,
+      one: 0,
+      recommend: 0,
     };
     // this.makeData = this.makeData.bind(this);
+    this.renderRec = this.renderRec.bind(this);
   }
 
   componentDidMount() {
-    console.log('hi');
+    this.renderRec();
     let totalReviews = 0;
     let totalFive = 0;
     let totalFour = 0;
@@ -44,69 +52,46 @@ class ReviewBreakdown extends React.Component {
       totalReviews += 1;
       return totalReviews;
     });
-    const emptyArr = [];
-    const fiveArr = emptyArr.concat(totalFive);
-    const fourArr = fiveArr.concat(totalFour);
-    const threeArr = fourArr.concat(totalThree);
-    const twoArr = threeArr.concat(totalTwo);
-    const oneArr = twoArr.concat(totalOne);
-    const finalArr = oneArr.concat(totalReviews);
-    this.setState(
-      {
-        reviewArr: finalArr,
-      },
-      () => {
-        return console.log(this.state.reviewArr);
-      },
-    );
+    const fivePercent = (totalFive / totalReviews) * 100;
+    const fourPercent = (totalFour / totalReviews) * 100;
+    const threePercent = (totalThree / totalReviews) * 100;
+    const twoPercent = (totalTwo / totalReviews) * 100;
+    const onePercent = (totalOne / totalReviews) * 100;
+    this.setState({
+      five: fivePercent,
+      four: fourPercent,
+      three: threePercent,
+      two: twoPercent,
+      one: onePercent,
+    });
   }
 
-  // makeData() {
-  //   let totalReviews = 0;
-  //   let totalFive = 0;
-  //   let totalFour = 0;
-  //   let totalThree = 0;
-  //   let totalTwo = 0;
-  //   let totalOne = 0;
-
-  //   this.props.data.map((review) => {
-  //     if (review.rating === 5) {
-  //       totalFive += 1;
-  //     } else if (review.rating === 4) {
-  //       totalFour += 1;
-  //     } else if (review.rating === 3) {
-  //       totalThree += 1;
-  //     } else if (review.rating === 2) {
-  //       totalTwo += 1;
-  //     } else if (review.rating === 1) {
-  //       totalOne += 1;
-  //     }
-  //     // eslint-disable-next-line no-return-assign
-  //     totalReviews += 1;
-  //     return totalReviews;
-  //   });
-  //   const emptyArr = [];
-  //   const fiveArr = emptyArr.concat(totalFive);
-  //   const fourArr = fiveArr.concat(totalFour);
-  //   const threeArr = fourArr.concat(totalThree);
-  //   const twoArr = threeArr.concat(totalTwo);
-  //   const oneArr = twoArr.concat(totalOne);
-  //   const finalArr = oneArr.concat(totalReviews);
-  //   return this.setState(
-  //     {
-  //       reviewArr: finalArr,
-  //     },
-  //     () => console.log(this.state.reviewArr),
-  //   );
-  // }
+  renderRec() {
+    let recc = 0;
+    this.props.data.map((review) => {
+      if (review.recommend === 1) {
+        recc += 1;
+      }
+    });
+    const recPercent = (recc / this.props.data.length) * 100;
+    this.setState({
+      recommend: recPercent,
+    });
+  }
 
   render() {
+    console.log(this.state);
     return (
-      // star rating
       <div className="breakdownSection">
         <AverageStar data={this.props.data} />
         <div>{this.state.recommend}% of viewers reccomend this product</div>
-        {/* <SideGraph reviewArr={this.state.reviewArr} /> */}
+        <SideGraph
+          fivePercent={this.state.five}
+          fourPercent={this.state.four}
+          threePercent={this.state.three}
+          twoPercent={this.state.two}
+          onePercent={this.state.one}
+        />
       </div>
     );
   }
