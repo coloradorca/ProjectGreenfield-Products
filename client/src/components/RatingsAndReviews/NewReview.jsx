@@ -125,7 +125,7 @@ class NewReview extends React.Component {
               <br />
               <input type="email" name="newEmail" maxLength="60" required />
               <br />
-              <input type="submit" />
+              <input type="submit" onClick={(e) => this.props.newReview} />
             </form>
           </ReactModal>
         </div>

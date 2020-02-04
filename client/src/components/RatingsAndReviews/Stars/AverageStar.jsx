@@ -30,7 +30,7 @@ class AverageStar extends React.Component {
       sum += review.rating;
       return sum;
     });
-    const average = Math.floor(sum / arr.length);
+    const average = Math.round(sum / arr.length);
     this.setState({
       averageRating: average,
     });
@@ -47,6 +47,25 @@ class AverageStar extends React.Component {
           editing={false}
           starCount={5}
           value={this.state.averageRating}
+          renderStarIcon={(index, value) => {
+            return (
+              <span>
+                <i className={index <= value ? 'fas fa-star' : 'far fa-star'} />
+              </span>
+            );
+          }}
+          renderStarIconHalf={() => {
+            return (
+              <span>
+                <span style={{ position: 'absolute' }}>
+                  <i className="far fa-star" />
+                </span>
+                <span>
+                  <i className="fas fa-star-half" />
+                </span>
+              </span>
+            );
+          }}
         />
         <div>{this.state.averageRating}</div>
       </div>

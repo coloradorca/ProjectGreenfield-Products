@@ -3,6 +3,7 @@
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import TileStar from './Stars/TileStar.jsx';
+import HelpfulClick from './HelpfulClick.jsx';
 
 class ReviewTile extends React.Component {
   constructor(props) {
@@ -48,13 +49,10 @@ class ReviewTile extends React.Component {
         {/* // response to review */}
         <div className="sellerResponse">{this.props.review.response}</div>
         {/* // rating helpfulness */}
-        <div className="helpTile">
-          Helpful? Yes
-          <input type="radio" className="yesHelp" />
-          <div className="helpfulnessRating">
-            {this.props.review.helpfulness}
-          </div>
-        </div>
+        <HelpfulClick
+          reviewId={this.props.reviewId}
+          helpfulness={this.props.review.helpfulness}
+        />
         <div className="tileLineBreak" />
         <br />
       </div>

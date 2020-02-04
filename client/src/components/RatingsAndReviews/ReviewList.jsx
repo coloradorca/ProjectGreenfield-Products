@@ -3,9 +3,10 @@
 // the review List and functionality of the review list goes here
 // imprts review tile
 import React from 'react';
+import axios from 'axios';
 import ReviewTile from './ReviewTile.jsx';
 import NewReview from './NewReview.jsx';
-
+const url = 'http://3.134.102.30/reviews';
 class ReviewList extends React.Component {
   constructor(props) {
     super(props);
@@ -13,7 +14,7 @@ class ReviewList extends React.Component {
       // showNewReview: false,
       reviewShown: [],
       reviewSplitNum: 0,
-      data: this.props.data,
+      data: [],
       selectedValue: 'Newest',
     };
     // this.openNewReview = this.openNewReview.bind(this);
@@ -22,8 +23,13 @@ class ReviewList extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  componentDidMount() {
-    const listArr = this.state.data.slice(
+  async componentDidMount() {
+    const { productId } = this.props;
+    const getReviews = await axios.get(`${url}/${productId}/list`);
+    this.setState({
+      data: getReviews.data,
+    });
+    const listArr = this.state.data.results.slice(
       this.state.reviewSplitNum,
       this.state.reviewSplitNum + 2,
     );
@@ -55,7 +61,7 @@ class ReviewList extends React.Component {
 
   moreReviews(e) {
     e.preventDefault();
-    const addArr = this.state.data.slice(
+    const addArr = this.state.data.results.slice(
       this.state.reviewSplitNum,
       this.state.reviewSplitNum + 2,
     );
@@ -129,7 +135,7 @@ class ReviewList extends React.Component {
         </select>
         <br />
         {this.state.reviewShown.map((review) => {
-          return <ReviewTile review={review} />;
+          return <ReviewTile review={review} reviewId={review.review_id} />;
         })}
         <button
           className="moreReviews"
@@ -148,8 +154,9 @@ class ReviewList extends React.Component {
           Add a Review +
         </button> */}
         <NewReview
-        // showNewReview={this.state.showNewReview}
-        // closeNewReview={this.closeNewReview}
+          newReview={this.props.newReview}
+          // showNewReview={this.state.showNewReview}
+          // closeNewReview={this.closeNewReview}
         />
       </div>
     );
