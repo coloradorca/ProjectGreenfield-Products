@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { createLogger } from 'redux-logger';
@@ -20,3 +21,7 @@ render(
   </Provider>,
   document.getElementById('app'),
 );
+
+// exactpath ="/"
+
+// path ='/:id'
