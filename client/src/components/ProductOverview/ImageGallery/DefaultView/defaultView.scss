@@ -65,6 +65,17 @@
   // overflow-y: scroll;
 }
 
+.selectThumbnail {
+  height: 80px;
+  width: 80px;
+  border: 15px solid orange;
+  margin: 5px;
+  cursor: pointer;
+  -webkit-background-clip: padding;
+  border-radius: 6px;
+  // overflow-y: scroll;
+}
+
 .imageViewButton {
   float: right;
   margin: 40px;

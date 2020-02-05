@@ -5,15 +5,28 @@ import ThumbNailView from '../DefaultView/ThumbNailView.jsx';
 class DisplayImage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      checkedThumb: undefined,
+    };
+    this.indicateSelected = this.indicateSelected.bind(this);
+  }
+
+  indicateSelected(num) {
+    this.setState({
+      checkedThumb: num,
+    });
   }
 
   render() {
-    const { changeIndex } = this.props;
-    const { changeImage } = this.props;
-    const { currentImage } = this.props;
-    const { openModal } = this.props;
-    const { currentStyle } = this.props;
+    const {
+      changeIndex,
+      changeImage,
+      currentImage,
+      openModal,
+      currentStyle,
+    } = this.props;
+
+    const { checkedThumb } = this.state;
 
     const styles = {
       backgroundImage: `url(${currentImage})`,
@@ -35,6 +48,8 @@ class DisplayImage extends React.Component {
         <div className="thumbnails">
           {currentStyle.photos.map((thumb, id) => (
             <ThumbNailView
+              indicateSelected={this.indicateSelected}
+              checkedThumb={checkedThumb}
               changeIndex={changeIndex}
               changeImage={changeImage}
               image={thumb.url}

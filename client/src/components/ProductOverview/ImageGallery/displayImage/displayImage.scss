@@ -12,11 +12,15 @@
   background-image: none;
 }
 .displayImageModal {
-  cursor: zoom-out;
+  cursor: pointer;
   background-image: none;
 }
 
 .displayImage {
   // cursor: none;
   background-image: none;
+}
+
+image {
+  cursor: pointer;
 }

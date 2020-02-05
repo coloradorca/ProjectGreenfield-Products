@@ -24,8 +24,9 @@ class AddToCart extends React.Component {
   }
 
   createQuantity() {
+    const { numberOfSizeSelected } = this.state;
     const quantity = [];
-    for (let i = 0; i <= this.state.numberOfSizeSelected; i++) {
+    for (let i = 0; i <= numberOfSizeSelected; i += 1) {
       quantity.push(<a key={i}>{i}</a>);
     }
     return quantity;
