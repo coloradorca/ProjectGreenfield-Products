@@ -16,7 +16,6 @@ class HelpfulClick extends React.Component {
 
   async markHelpful(e) {
     const { reviewId } = this.props;
-    e.preventDefault();
     const markHelpful = await axios.put(`${url}/${reviewId}`);
     this.setState((prevState) => {
       return {
@@ -28,7 +27,7 @@ class HelpfulClick extends React.Component {
   render() {
     const { helpfulness } = this.state;
     return (
-      <div className="helpTile">
+      <div>
         Helpful? Yes
         <input
           type="radio"

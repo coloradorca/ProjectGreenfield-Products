@@ -88,10 +88,28 @@
   font-weight: bold;
   word-break: break-all;
 }
-
 .helpTile {
-  display: inline-flex;
+  display: inline;
 }
+
+.modal {
+  height: 25px;
+  width: 25px;
+  background-color: red;
+  border-radius: 50%;
+}
+
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+}
+
+// .bottomLine {
+//   display: inline-flex;
+// }
 
 .tileLineBreak {
   border: 1px solid black;

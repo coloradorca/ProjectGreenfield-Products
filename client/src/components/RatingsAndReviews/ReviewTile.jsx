@@ -4,6 +4,7 @@
 import React from 'react';
 import TileStar from './Stars/TileStar.jsx';
 import HelpfulClick from './HelpfulClick.jsx';
+import ReportReview from './ReportReview.jsx';
 
 class ReviewTile extends React.Component {
   constructor(props) {
@@ -49,11 +50,16 @@ class ReviewTile extends React.Component {
         {/* // response to review */}
         <div className="sellerResponse">{this.props.review.response}</div>
         {/* // rating helpfulness */}
-        <HelpfulClick
-          reviewId={this.props.reviewId}
-          helpfulness={this.props.review.helpfulness}
-        />
+        <div className="bottomLine">
+          <HelpfulClick
+            className="helpTile"
+            reviewId={this.props.reviewId}
+            helpfulness={this.props.review.helpfulness}
+          />
+          <ReportReview />
+        </div>
         <div className="tileLineBreak" />
+
         <br />
       </div>
     );
