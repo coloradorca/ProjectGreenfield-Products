@@ -78,7 +78,7 @@ class ProductOverview extends React.Component {
         </div>
         <div className="rightContainer">
           <div className="ProductDetail">
-            <ProductDetail currentStyle={currentStyle} data={productList[0]} />
+            <ProductDetail currentStyle={currentStyle} data={productList[1]} />
           </div>
           <div className="StyleSelector">
             <StyleSelector

@@ -10,6 +10,8 @@ import {
   MagnifierZoom,
 } from 'react-image-magnifiers';
 
+import Magnifier from 'react-magnifier';
+
 class DisplayExpanded extends React.Component {
   constructor(props) {
     super(props);

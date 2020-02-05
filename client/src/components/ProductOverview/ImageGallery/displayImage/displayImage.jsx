@@ -7,7 +7,6 @@ class DisplayImage extends React.Component {
     super(props);
     this.state = {
       checkedThumb: undefined,
-      index: undefined,
       start: 0,
       end: 3,
     };
@@ -35,39 +34,22 @@ class DisplayImage extends React.Component {
   decreaseIndex() {
     const { currentStyle } = this.props;
     const { end, start } = this.state;
-    this.setState(
-      (prevState) => ({
-        start: prevState.start - 1,
-        end: prevState.end - 1,
-      }),
-      function() {
-        const { end, start } = this.state;
-        this.setState({
-          index: currentStyle.photos.slice(start, end),
-        });
-      },
-    );
+    this.setState((prevState) => ({
+      start: prevState.start - 1,
+      end: prevState.end - 1,
+    }));
   }
 
   increaseIndex() {
     const { currentStyle } = this.props;
     const { end, start } = this.state;
-    this.setState(
-      (prevState) => ({
-        end: prevState.end + 1,
-        start: prevState.start + 1,
-      }),
-      function() {
-        const { end, start } = this.state;
-        this.setState({
-          index: currentStyle.photos.slice(start, end),
-        });
-      },
-    );
+    this.setState((prevState) => ({
+      end: prevState.end + 1,
+      start: prevState.start + 1,
+    }));
   }
 
   render() {
-    console.log(this.state.index);
     const {
       changeIndex,
       changeImage,
@@ -98,7 +80,7 @@ class DisplayImage extends React.Component {
             <i className="fa fa-arrows-alt" size={70} aria-hidden="true" />
           </div>
           <div className="thumbnailContainer">
-            {start && (
+            {start !== 0 && (
               <div
                 role="button"
                 tabIndex={0}
@@ -110,7 +92,7 @@ class DisplayImage extends React.Component {
               </div>
             )}
             <div className="thumbnails">
-              {index.map((thumb, id) => (
+              {currentStyle.photos.map((thumb, id) => (
                 <ThumbNailView
                   indicateSelected={this.indicateSelected}
                   checkedThumb={checkedThumb}
@@ -119,6 +101,8 @@ class DisplayImage extends React.Component {
                   image={thumb.url}
                   index={id}
                   key={thumb.url}
+                  start={start}
+                  end={end}
                 />
               ))}
             </div>
