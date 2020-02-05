@@ -2,6 +2,8 @@ import React from 'react';
 import './displayImage.scss';
 import ThumbNailView from '../DefaultView/ThumbNailView.jsx';
 
+import '../DefaultView/DefaultView.scss';
+
 class DisplayImage extends React.Component {
   constructor(props) {
     super(props);
@@ -106,7 +108,7 @@ class DisplayImage extends React.Component {
                 />
               ))}
             </div>
-            {end !== length && (
+            {end === length && (
               <div
                 role="button"
                 tabIndex={0}
