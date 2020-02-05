@@ -8,10 +8,11 @@
 // in the top left corner of module
 
 import React from 'react';
+import axios from 'axios';
 import AverageStar from '../Stars/AverageStar.jsx';
 import SideGraph from './SideGraph.jsx';
 
-// const url = 'http://3.134.102.30/reviews';
+const url = 'http://3.134.102.30/reviews';
 
 class ReviewBreakdown extends React.Component {
   constructor(props) {
@@ -23,12 +24,27 @@ class ReviewBreakdown extends React.Component {
       two: 0,
       one: 0,
       recommend: 0,
+      data: [],
     };
     // this.makeData = this.makeData.bind(this);
     this.renderRec = this.renderRec.bind(this);
+    this.renderBreakdown = this.renderBreakdown.bind(this);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    const { productId } = this.props;
+    try {
+      const getReviews = await axios.get(`${url}/${productId}/list`);
+      this.setState({
+        data: getReviews.data,
+      });
+      this.renderBreakdown();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  renderBreakdown() {
     this.renderRec();
     let totalReviews = 0;
     let totalFive = 0;
@@ -36,7 +52,8 @@ class ReviewBreakdown extends React.Component {
     let totalThree = 0;
     let totalTwo = 0;
     let totalOne = 0;
-    this.props.data.map((review) => {
+    this.state.data.results.map((review) => {
+      console.log(review);
       if (review.rating === 5) {
         totalFive += 1;
       } else if (review.rating === 4) {
@@ -68,22 +85,21 @@ class ReviewBreakdown extends React.Component {
 
   renderRec() {
     let recc = 0;
-    this.props.data.map((review) => {
+    this.state.data.results.map((review) => {
       if (review.recommend === 1) {
         recc += 1;
       }
     });
-    const recPercent = (recc / this.props.data.length) * 100;
+    const recPercent = (recc / this.state.data.results.length) * 100;
     this.setState({
       recommend: recPercent,
     });
   }
 
   render() {
-    console.log(this.state);
     return (
       <div className="breakdownSection">
-        <AverageStar data={this.props.data} />
+        <AverageStar data={this.state.data} />
         <div>{this.state.recommend}% of viewers reccomend this product</div>
         <SideGraph
           fivePercent={this.state.five}

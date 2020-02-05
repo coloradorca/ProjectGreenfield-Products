@@ -16,18 +16,20 @@ class AverageStar extends React.Component {
     this.getAverage = this.getAverage.bind(this);
   }
 
-  componentDidMount() {
-    return this.getAverage();
+  componentDidUpdate(prevProps) {
+    if (this.props.data !== prevProps.data) {
+      return this.getAverage();
+    }
   }
 
   getAverage() {
     // console.log(this.props.data);
     const arr = [];
-    this.props.data.map((review) => {
+    this.props.data.results.map((review) => {
       return arr.push(review.rating);
     });
     let sum = 0;
-    this.props.data.map((review) => {
+    this.props.data.results.map((review) => {
       sum += review.rating;
       return sum;
     });

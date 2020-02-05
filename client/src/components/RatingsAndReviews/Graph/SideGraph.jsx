@@ -7,35 +7,70 @@ import React from 'react';
 class SideGraph extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      fivePercent: this.props.fivePercent,
+      fourPercent: this.props.fourPercent,
+      threePercent: this.props.threePercent,
+      twoPercent: this.props.twoPercent,
+      onePercent: this.props.onePercent,
+    };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.fivePercent !== prevProps.fivePercent) {
+      this.setState({
+        fivePercent: this.props.fivePercent,
+      });
+    }
+    if (this.props.fourPercent !== prevProps.fourPercent) {
+      this.setState({
+        fourPercent: this.props.fourPercent,
+      });
+    }
+    if (this.props.threePercent !== prevProps.threePercent) {
+      this.setState({
+        threePercent: this.props.threePercent,
+      });
+    }
+    if (this.props.twoPercent !== prevProps.twoPercent) {
+      this.setState({
+        twoPercent: this.props.twoPercent,
+      });
+    }
+    if (this.props.onePercent !== prevProps.onePercent) {
+      this.setState({
+        onePercent: this.props.onePercent,
+      });
+    }
   }
 
   render() {
     const breakBarFive = {
-      width: `${this.props.fivePercent}%`,
+      width: `${this.state.fivePercent}%`,
       height: '18px',
       backgroundColor: 'green',
     };
 
     const breakBarFour = {
-      width: `${this.props.fourPercent}%`,
+      width: `${this.state.fourPercent}%`,
       height: '18px',
       backgroundColor: 'green',
     };
 
     const breakBarThree = {
-      width: `${this.props.threePercent}%`,
+      width: `${this.state.threePercent}%`,
       height: '18px',
       backgroundColor: 'green',
     };
 
     const breakBarTwo = {
-      width: `${this.props.twoPercent}%`,
+      width: `${this.state.twoPercent}%`,
       height: '18px',
       backgroundColor: 'green',
     };
 
     const breakBarOne = {
-      width: `${this.props.onePercent}%`,
+      width: `${this.state.onePercent}%`,
       height: '18px',
       backgroundColor: 'green',
     };

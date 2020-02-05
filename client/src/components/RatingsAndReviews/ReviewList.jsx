@@ -20,18 +20,22 @@ class ReviewList extends React.Component {
     };
     this.moreReviews = this.moreReviews.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.newReview = this.newReview.bind(this);
+    this.loadList = this.loadList.bind(this);
     // this.addToData = this.addToData.bind(this);
   }
 
-  componentDidMount() {
-    const listArr = this.props.data.slice(
-      this.state.reviewSplitNum,
-      this.state.reviewSplitNum + 2,
-    );
-    this.setState({
-      reviewShown: this.state.reviewShown.concat(listArr),
-      reviewSplitNum: this.state.reviewSplitNum + 2,
-    });
+  async componentDidMount() {
+    const { productId } = this.props;
+    try {
+      const getReviews = await axios.get(`${url}/${productId}/list`);
+      this.setState({
+        data: getReviews.data,
+      });
+      this.loadList();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   // componentDidUpdate() {
@@ -41,6 +45,17 @@ class ReviewList extends React.Component {
   //     reviewSplitNum: this.state.reviewSplitNum + 2,
   //   });
   // }
+
+  loadList() {
+    const listArr = this.state.data.results.slice(
+      this.state.reviewSplitNum,
+      this.state.reviewSplitNum + 2,
+    );
+    this.setState({
+      reviewShown: this.state.reviewShown.concat(listArr),
+      reviewSplitNum: this.state.reviewSplitNum + 2,
+    });
+  }
 
   handleChange(e) {
     this.setState(
@@ -56,7 +71,7 @@ class ReviewList extends React.Component {
 
   moreReviews(e) {
     e.preventDefault();
-    const addArr = this.props.data.slice(
+    const addArr = this.state.data.results.slice(
       this.state.reviewSplitNum,
       this.state.reviewSplitNum + 2,
     );
@@ -66,11 +81,23 @@ class ReviewList extends React.Component {
     });
   }
 
+  newReview(e) {
+    // e.preventDefault();
+    const { product } = this.state;
+    const postReview = axios.post(`${url}/reviews/${product}`);
+    this.setState((prevState) => {
+      return {
+        data: [...prevState.data, postReview],
+      };
+    });
+  }
+
   sortList() {
     //use the api call to change the order of the list
   }
 
   render() {
+    console.log(this.state.data);
     // this.addToData();
     if (this.props.showReviewList === false) {
       return null;
@@ -108,7 +135,7 @@ class ReviewList extends React.Component {
           Add a Review +
         </button> */}
         <NewReview
-          newReview={this.props.newReview}
+          newReview={this.newReview}
           // showNewReview={this.state.showNewReview}
           // closeNewReview={this.closeNewReview}
         />
