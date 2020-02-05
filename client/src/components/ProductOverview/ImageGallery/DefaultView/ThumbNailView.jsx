@@ -1,10 +1,14 @@
 import React from 'react';
 
 function ThumbNailView(props) {
-  const { image } = props;
-  const { changeIndex } = props;
-  const { changeImage } = props;
-  const { index } = props;
+  const {
+    image,
+    changeIndex,
+    changeImage,
+    index,
+    checkedThumb,
+    indicateSelected,
+  } = props;
 
   const styles = {
     backgroundImage: `url(${image})`,
@@ -15,11 +19,14 @@ function ThumbNailView(props) {
   return (
     <div className="allThumbs">
       <div
-        className="thumbnailImage"
+        className={
+          index === checkedThumb ? 'selectThumbnail' : 'thumbnailImage'
+        }
         role="button"
         style={styles}
         onKeyPress={() => changeImage(image)}
         onClick={function() {
+          indicateSelected(index);
           changeIndex(index);
           changeImage(image);
         }}
