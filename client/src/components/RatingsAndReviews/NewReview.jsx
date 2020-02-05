@@ -52,10 +52,18 @@ class NewReview extends React.Component {
     this.setState({
       charCountDown: countdown,
     });
-    console.log(this.state.charCountDown);
+    this.fileAlert = this.fileAlert.bind(this);
+  }
+
+  fileAlert(e) {
+    if (e.files.length > 5) {
+      alert('Only 5 Files Accepted');
+      e.preventDefault();
+    }
   }
 
   render() {
+    const { newReview } = this.props;
     const { modalIsOpen, value } = this.state;
     return (
       // these go in the form brackert action = '/thewebsitehere' (similar to fetching) method = 'post'
@@ -115,7 +123,7 @@ class NewReview extends React.Component {
               <br />
               Submit your photos here
               <br />
-              <input type="file" name="newPhotos" accept="image/*" />
+              <input type="file" name="newPhotos" accept="image/*" multiple />
               <br />
               Your Name * mandatory & will be shared
               <br />
@@ -125,7 +133,13 @@ class NewReview extends React.Component {
               <br />
               <input type="email" name="newEmail" maxLength="60" required />
               <br />
-              <input type="submit" onClick={(e) => this.props.newReview} />
+              <input
+                type="submit"
+                onClick={(e) => {
+                  this.fileAlert();
+                  this.props.newReview();
+                }}
+              />
             </form>
           </ReactModal>
         </div>
