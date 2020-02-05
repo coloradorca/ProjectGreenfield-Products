@@ -5,7 +5,6 @@ import './addToCart.scss';
 class AddToCart extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       cart: [],
       allsizes: '',

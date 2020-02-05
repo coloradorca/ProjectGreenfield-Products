@@ -1,31 +1,29 @@
+/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable prettier/prettier */
 import React from 'react';
 
 import './ProductDetail.scss';
 
 function ProductDetail(props) {
-  // console.log(props.currentStyle.sale_price);
-  let origPrice = props.currentStyle.original_price;
-  const salePrice = props.currentStyle.sale_price;
+  const { data, currentStyle } = props;
+  const origPrice = currentStyle.original_price;
+  const salePrice = currentStyle.sale_price;
   let price;
   if (salePrice > 0) {
-    // price = props.currentStyle.sale_price;
-    price = props.currentStyle.sale_price;
+    price = salePrice;
   } else {
-    price = props.currentStyle.original_price;
+    price = origPrice;
   }
 
   return (
     <div className="ProductDetail">
-      <div className="productCategory">{props.data.category}</div>
-      <div className="productName">{props.data.name}</div>
-
-      {/* if the sale price is not equal to 0, show the sale price with the original price struck thru, otherwise, display sale price
-      <strike></strike> */}
+      <div className="productCategory">{data.category}</div>
+      <div className="productName">{data.name}</div>
       <div className="productPrice">
-        {props.currentStyle.sale_price > 0 && (
-          <strike>$ {props.currentStyle.original_price}</strike>
+        {currentStyle.sale_price > 0 && (
+          <strike>${currentStyle.original_price}</strike>
         )}{' '}
-        $ {price}
+        ${price}
       </div>
     </div>
   );

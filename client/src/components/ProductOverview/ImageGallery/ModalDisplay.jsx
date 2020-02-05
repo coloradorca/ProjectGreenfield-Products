@@ -1,8 +1,9 @@
+/* eslint-disable no-shadow */
 import React from 'react';
 import RightArrow from './DefaultView/rightArrow.jsx';
 import LeftArrow from './DefaultView/leftArrow.jsx';
 import DisplayExpanded from './DisplayExpanded.jsx';
-import './DefaultView/DefaultView.scss';
+// import './DefaultView/DefaultView.scss';
 
 class ModalDisplay extends React.Component {
   constructor(props) {
