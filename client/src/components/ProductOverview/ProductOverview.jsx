@@ -13,23 +13,51 @@ import ProductDetail from './ProductDetail/ProductDetail.jsx';
 import productList from './sampleData/productList.js';
 import details from './sampleData/details.js';
 import styles from './sampleData/styles.js';
+import axios from 'axios';
 
 import './PO.scss';
+
+const url = ' http://3.134.102.30';
 
 class ProductOverview extends React.Component {
   constructor() {
     super();
     this.state = {
-      styles: styles[0].results,
+      productId: 3,
+      // styles: styles[0].results,
+      styles: undefined,
       productList,
-      details,
+      // details,
       currentStyle: styles[0].results[0],
       currentImage: styles[0].results[0].photos[0].url,
       currentIndex: 0,
+      placeholder: undefined,
     };
     this.changeStyle = this.changeStyle.bind(this);
     this.changeImage = this.changeImage.bind(this);
     this.changeIndex = this.changeIndex.bind(this);
+  }
+  async componentDidMount() {
+    const { productId } = this.state;
+    //set the state of with product Id passed down from app
+    const getStyles = await axios.get(`${url}/products/${productId}/styles`);
+    const getList = await axios.get(`${url}/products/${productId}`);
+    this.setState(
+      {
+        styles: getStyles.data.results,
+        currentStyle: getStyles.data.results[0],
+        currentImage: getStyles.data.results[0].photos.url,
+        productList: getList.data,
+        placeholder: getList.data,
+      },
+      () =>
+        console.log(
+          'PO details',
+          this.state.details,
+          'PO place holder',
+          this.state.placeholder,
+        ),
+    );
   }
 
   changeStyle(newStyle) {
@@ -57,51 +85,57 @@ class ProductOverview extends React.Component {
       currentStyle,
       productList,
       styles,
-      details,
+      // details,
     } = this.state;
 
-    return (
-      <div className="ProductOverview">
-        <div className="headers">{/* <Headers /> */}</div>
+    if (styles) {
+      return (
+        <div className="ProductOverview">
+          <div className="headers">
+            <Headers />
+          </div>
 
-        <div className="leftContainer">
-          <div id="ImageView" className="ImageView">
-            <ImageView
-              currentIndex={currentIndex}
-              changeStyle={this.changeStyle}
-              changeImage={this.changeImage}
-              currentStyle={currentStyle}
-              currentImage={currentStyle.photos[currentIndex].url}
-              changeIndex={this.changeIndex}
-            />
+          <div className="leftContainer">
+            <div id="ImageView" className="ImageView">
+              <ImageView
+                currentIndex={currentIndex}
+                changeStyle={this.changeStyle}
+                changeImage={this.changeImage}
+                currentStyle={currentStyle}
+                currentImage={currentStyle.photos[currentIndex].url}
+                changeIndex={this.changeIndex}
+              />
+            </div>
+          </div>
+          <div className="rightContainer">
+            <div className="ProductDetail">
+              <ProductDetail currentStyle={currentStyle} data={productList} />
+            </div>
+            <div className="StyleSelector">
+              <StyleSelector
+                changeImage={this.changeImage}
+                changeStyle={this.changeStyle}
+                styles={styles}
+              />
+            </div>
+            <br />
+            <div className="AddToCart">
+              <AddToCart data={styles[0]} />
+            </div>
+          </div>
+          <div className="bottomContainer">
+            <div className="prodcutDescription">
+              <ProductDescription data={productList} />
+            </div>
+            <div className="share">
+              <Share />
+            </div>
           </div>
         </div>
-        <div className="rightContainer">
-          <div className="ProductDetail">
-            <ProductDetail currentStyle={currentStyle} data={productList[0]} />
-          </div>
-          <div className="StyleSelector">
-            <StyleSelector
-              changeImage={this.changeImage}
-              changeStyle={this.changeStyle}
-              styles={styles}
-            />
-          </div>
-          <br />
-          <div className="AddToCart">
-            <AddToCart data={styles[0]} />
-          </div>
-        </div>
-        <div className="bottomContainer">
-          <div className="prodcutDescription">
-            <ProductDescription data={details[0]} />
-          </div>
-          <div className="share">
-            <Share />
-          </div>
-        </div>
-      </div>
-    );
+      );
+    } else {
+      return null;
+    }
   }
 }
 

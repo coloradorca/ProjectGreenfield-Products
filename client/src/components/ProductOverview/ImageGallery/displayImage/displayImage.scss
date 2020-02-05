@@ -1,8 +1,3 @@
-.thumbnails {
-  // overflow-y: scroll;
-  padding-top: 120px;
-}
-
 .magnified {
   cursor: zoom-out;
   background-image: none;
@@ -22,4 +17,5 @@ img {
 }
 
 .thumbnailContainer {
+  padding-top: 120px;
 }

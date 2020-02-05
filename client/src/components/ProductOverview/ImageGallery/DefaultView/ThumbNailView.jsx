@@ -8,6 +8,8 @@ function ThumbNailView(props) {
     index,
     checkedThumb,
     indicateSelected,
+    start,
+    end,
   } = props;
 
   const styles = {
@@ -15,7 +17,9 @@ function ThumbNailView(props) {
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
+    display: `${index >= start && index < end ? 'block' : 'none'}`,
   };
+
   return (
     <div className="allThumbs">
       <div

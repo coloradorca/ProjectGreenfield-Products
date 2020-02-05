@@ -49,11 +49,9 @@
 }
 
 .downArrowButton {
-  //  position: absolute;
-  top: 50%;
-  left: 25px;
-  z-index: 999;
-  color: #fff;
+}
+
+.upArrowButton {
 }
 
 .fa-arrow-right:before,
@@ -62,8 +60,8 @@
 }
 
 .thumbnailImage {
-  height: 80px;
-  width: 80px;
+  height: 70px;
+  width: 70px;
   border: 10px solid rgba(0, 0, 0, 0.3);
   margin: 5px;
   cursor: pointer;
