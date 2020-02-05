@@ -46,6 +46,7 @@ class DisplayExpanded extends React.Component {
     let styled = {
       // backgroundImage: `${(magnified) =>
       //   magnified ? 'url'(currentImage) : 'none'}`,
+      // backgroundSize: `${(magnified) => (magnified ? 'contain' : 'cover')}`,
       backgroundImage: `url(${currentImage})`,
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',

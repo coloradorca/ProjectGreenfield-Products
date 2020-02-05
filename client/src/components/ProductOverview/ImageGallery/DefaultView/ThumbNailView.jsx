@@ -9,9 +9,6 @@ function ThumbNailView(props) {
     checkedThumb,
     indicateSelected,
   } = props;
-  // const { changeIndex } = props;
-  // const { changeImage } = props;
-  // const { index } = props;
 
   const styles = {
     backgroundImage: `url(${image})`,
@@ -25,7 +22,6 @@ function ThumbNailView(props) {
         className={
           index === checkedThumb ? 'selectThumbnail' : 'thumbnailImage'
         }
-        // className={index === checkedCircle ? 'CircleActive' : 'CircleImage'}
         role="button"
         style={styles}
         onKeyPress={() => changeImage(image)}
