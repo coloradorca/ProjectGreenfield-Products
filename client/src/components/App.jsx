@@ -10,15 +10,18 @@ import '../App.scss';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      productId: 2,
+    };
   }
 
   render() {
+    const { productId } = this.state;
     return (
       <div className="mains">
-        <ProductOverview />
-        <RatingsAndReviews />
-        <QuestionsAndAnswers />
+        <ProductOverview productId={productId} />
+        <QuestionsAndAnswers productId={productId} />
+        <RatingsAndReviews productId={productId} />
       </div>
     );
   }
