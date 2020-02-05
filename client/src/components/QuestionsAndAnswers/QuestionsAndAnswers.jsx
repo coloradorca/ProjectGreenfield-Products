@@ -5,14 +5,11 @@ import './QA.scss';
 
 const url = ' http://3.134.102.30';
 
-// const goodIds = [2, 5, 6, 7, 8, 9, 10];
-// const rando = Math.ceil(Math.random() * goodIds.length);
-
 class QuestionsAndAnswers extends Component {
   constructor() {
     super();
     this.state = {
-      productId: 8, // goodIds[rando]
+      productId: 5, // goodIds[rando]
       productDetails: {},
     };
   }
@@ -27,7 +24,7 @@ class QuestionsAndAnswers extends Component {
     const { productId, productDetails } = this.state;
     return (
       <div className="questionsAndAnswersBox">
-        <h3>Questions And Answers</h3>
+        <span className="questionsAndAnswersHeading">QUESTIONS & ANSWERS</span>
         <QuestionList productId={productId} productDetails={productDetails} />
       </div>
     );
