@@ -3,13 +3,14 @@ import React from 'react';
 import './DefaultView.scss';
 
 function LeftArrow(props) {
+  const { goToPreviousSlide } = props;
   return (
     <div
+      className="backArrow arrow"
       role="button"
       tabIndex={0}
-      className="backArrow arrow"
-      onKeyDown={props.goToPreviousSlide}
-      onClick={props.goToPreviousSlide}
+      onKeyDown={goToPreviousSlide}
+      onClick={goToPreviousSlide}
     >
       <i className="fa fa-arrow-left fa-2x" />
     </div>
