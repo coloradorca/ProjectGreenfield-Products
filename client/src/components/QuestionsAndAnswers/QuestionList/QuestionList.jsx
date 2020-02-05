@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux'
 import axios from 'axios';
 import Question from '../Question/Question.jsx';
 import AddQuestion from '../AddQuestion/AddQuestion.jsx';
@@ -31,7 +30,7 @@ export default class QuestionList extends Component {
     } catch (error) {
       console.error(error);
     }
-    console.log(productId, this.state);
+    console.log('got these questions', productId, this.state);
   }
 
   handleChange = (event) => {
@@ -60,7 +59,7 @@ export default class QuestionList extends Component {
     const { productDetails } = this.props;
     const renderQuestions = search.length >= 3 ? someQuestions : allQuestions;
 
-    if (allQuestions.length <= 2) {
+    if (allQuestions.length === 0) {
       return (
         <div>
           <br />
