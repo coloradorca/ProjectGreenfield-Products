@@ -9,32 +9,30 @@ import ReviewBreakdown from './Graph/ReviewBreakdown.jsx';
 import exampleData from '../../../../sampleData/RAR/reviewsList.json';
 import './RAR.scss';
 
-const url = 'http://3.134.102.30/reviews';
+const url = 'http://3.134.102.30/';
 
 class RatingsAndReviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product: 2,
+      productId: 2,
       data: exampleData.results,
     };
     this.newReview = this.newReview.bind(this);
   }
 
-  // componentDidMount() {
-  //   // const { product } = this.state;
-  //   axios.get(`${url}/${this.state.product}/list`).then((res) => {
-  //     const getReviews = res.data;
-  //     this.setState({
-  //       data: { getReviews },
-  //     });
-  //   });
-  //   if (this.state.data.length === 0) {
-  //     this.setState({
-  //       showReviewList: false,
-  //     });
-  //   }
-  // }
+  async componentDidMount() {
+    const { productId } = this.state;
+    const getProductDetails = await axios.get(`${url}/products/${productId}`);
+    this.setState({
+      data: getProductDetails.data,
+    });
+    // if (this.state.data.length === 0) {
+    //   this.setState({
+    //     showReviewList: false,
+    //   });
+    // }
+  }
 
   newReview(e) {
     // e.preventDefault();
@@ -56,12 +54,12 @@ class RatingsAndReviews extends React.Component {
         <div className="rar">
           <ReviewBreakdown
             data={this.state.data}
-            productId={this.state.product}
+            productId={this.state.productId}
             className="reviewColumn"
           />
           <ReviewList
             data={this.state.data}
-            productId={this.state.product}
+            productId={this.state.productId}
             className="reviewColumn"
             showReviewList={this.state.showReviewList}
             newReview={this.newReview}

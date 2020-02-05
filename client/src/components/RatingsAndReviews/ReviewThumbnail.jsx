@@ -10,15 +10,15 @@ class ReviewThumbnail extends React.Component {
   render() {
     const { image } = this.props;
     const imageStyle = {
-      backgroundImage: `url(${image})`,
+      backgroundImage: `url(${this.props.image})`,
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'center',
     };
-
+    console.log({ image });
     return (
-      <div>
-        <span className="reviewTileImages" style={imageStyle} />
+      <div className="reviewThumbnail">
+        <div className="reviewTileImages" style={imageStyle} />
       </div>
     );
   }

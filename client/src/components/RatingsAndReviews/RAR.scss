@@ -88,6 +88,21 @@
   font-weight: bold;
   word-break: break-all;
 }
+
+.thumbnailTile {
+  display: inline-flex;
+}
+
+.reviewThumbnail {
+  height: 80px;
+  width: 80px;
+  border: 10px solid rgba(0, 0, 0, 0.3);
+  margin: 5px;
+  cursor: pointer;
+  -webkit-background-clip: padding;
+  border-radius: 6px;
+}
+
 .helpTile {
   display: inline;
 }
