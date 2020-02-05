@@ -1,10 +1,6 @@
-// .slideWrap {
-//   transform: translateX(200px);
-//   transition: 'transform ease-out 0.45s';
-// }
-
 .thumbnails {
-  overflow-y: scroll;
+  // overflow-y: scroll;
+  padding-top: 120px;
 }
 
 .magnified {
@@ -12,11 +8,18 @@
   background-image: none;
 }
 .displayImageModal {
-  cursor: zoom-out;
+  cursor: pointer;
   background-image: none;
 }
 
 .displayImage {
   // cursor: none;
   background-image: none;
+}
+
+img {
+  cursor: pointer;
+}
+
+.thumbnailContainer {
 }

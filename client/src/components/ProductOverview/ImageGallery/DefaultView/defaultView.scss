@@ -11,7 +11,6 @@
   position: relative;
   height: 100%;
   width: 100%;
-  // overflow-y: scroll;
 }
 
 .displayImage {
@@ -49,6 +48,14 @@
   color: #fff;
 }
 
+.downArrowButton {
+  //  position: absolute;
+  top: 50%;
+  left: 25px;
+  z-index: 999;
+  color: #fff;
+}
+
 .fa-arrow-right:before,
 .fa-arrow-left:before {
   color: #222;
@@ -62,7 +69,16 @@
   cursor: pointer;
   -webkit-background-clip: padding;
   border-radius: 6px;
-  // overflow-y: scroll;
+}
+
+.selectThumbnail {
+  height: 80px;
+  width: 80px;
+  border: 15px solid orange;
+  margin: 5px;
+  cursor: pointer;
+  -webkit-background-clip: padding;
+  border-radius: 6px;
 }
 
 .imageViewButton {
@@ -73,5 +89,11 @@
 
 .fa-arrows-alt {
   font-size: 50px;
-  color: blue;
+  color: orange;
+}
+
+.fa-arrow-up,
+.fa-arrow-down {
+  color: orange;
+  font-size: 50px;
 }

@@ -55,7 +55,6 @@ export default class AddAnswer extends Component {
             onRequestClose={this.closeModal}
             className="Modal"
             overlayClassName="Overlay"
-            // style={customStyles}
             contentLabel="Add Answer Modal"
           >
             <div>

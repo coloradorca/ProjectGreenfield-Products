@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Moment from 'react-moment';
 import axios from 'axios';
 import Name from './Name.jsx';
+import Image from '../AnswerImage/Image.jsx';
 import './Answer.scss';
 
 const url = 'http://3.134.102.30/qa/answer';
@@ -50,8 +51,9 @@ export default class Answer extends Component {
     const { reported, helpfulness } = this.state;
 
     return (
-      <div className="answer">
-        {`A: ${answer.body} `}
+      <div>
+        <span className="answer">{`A: ${answer.body} `}</span>
+        <Image photos={answer.photos} />
         <div className="user">
           <span>{'by: '}</span>
           <Name name={answer.answerer_name} />

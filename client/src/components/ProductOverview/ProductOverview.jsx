@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 
 import Headers from './Header/headers.jsx';
@@ -8,7 +9,7 @@ import AddToCart from './AddToCart/addToCart.jsx';
 import ProductDescription from './ProductDescription/ProductDescription.jsx';
 import ProductDetail from './ProductDetail/ProductDetail.jsx';
 
-//sample data import
+// sample data import
 import productList from './sampleData/productList.js';
 import details from './sampleData/details.js';
 import styles from './sampleData/styles.js';
@@ -50,12 +51,14 @@ class ProductOverview extends React.Component {
   }
 
   render() {
-    const { currentIndex } = this.state;
-    const { currentImage } = this.state;
-    const { currentStyle } = this.state;
-    const { productList } = this.state;
-    const { styles } = this.state;
-    const { details } = this.state;
+    const {
+      currentIndex,
+      currentImage,
+      currentStyle,
+      productList,
+      styles,
+      details,
+    } = this.state;
 
     return (
       <div className="ProductOverview">
@@ -68,7 +71,7 @@ class ProductOverview extends React.Component {
               changeStyle={this.changeStyle}
               changeImage={this.changeImage}
               currentStyle={currentStyle}
-              currentImage={currentImage}
+              currentImage={currentStyle.photos[currentIndex].url}
               changeIndex={this.changeIndex}
             />
           </div>
