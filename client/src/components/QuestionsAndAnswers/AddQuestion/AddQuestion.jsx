@@ -2,6 +2,9 @@
 import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 import './AddQuestion.scss';
+import axios from 'axios';
+
+// const url = 'http://3.134.102.30/qa';
 
 ReactModal.setAppElement(document.getElementById('app'));
 
@@ -25,13 +28,13 @@ export default class AddQuestion extends Component {
   handleSubmit = (event) => {
     const { value } = this.state;
     console.log(`A question was submitted: ${value}`);
+    axios.post(); // /qa/:product_id
     event.preventDefault();
   };
 
   handleChange = (event) => {
     const { value } = this.state;
     console.log(value);
-    // make api call to submit as a question here
     this.setState({ value: event.target.value });
   };
 
