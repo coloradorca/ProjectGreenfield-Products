@@ -51,8 +51,8 @@ class ReviewTile extends React.Component {
         {/* // response to review */}
         <div className="thumbnailTile">
           {this.props.review.photos.map((picture) => {
-            // console.log(picture.url);
-            return <ReviewThumbnail image={picture.url} />;
+            // console.log(picture);
+            return <ReviewThumbnail image={picture} />;
           })}
         </div>
         <div className="sellerResponse">{this.props.review.response}</div>

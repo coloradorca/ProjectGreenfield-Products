@@ -21,18 +21,18 @@ class RatingsAndReviews extends React.Component {
     this.newReview = this.newReview.bind(this);
   }
 
-  async componentDidMount() {
-    const { productId } = this.state;
-    const getProductDetails = await axios.get(`${url}/products/${productId}`);
-    this.setState({
-      data: getProductDetails.data,
-    });
-    // if (this.state.data.length === 0) {
-    //   this.setState({
-    //     showReviewList: false,
-    //   });
-    // }
-  }
+  // async componentDidMount() {
+  //   const { productId } = this.state;
+  //   const getProductDetails = await axios.get(`${url}/products/${productId}`);
+  //   this.setState({
+  //     data: getProductDetails.data,
+  //   });
+  // if (this.state.data.length === 0) {
+  //   this.setState({
+  //     showReviewList: false,
+  //   });
+  // }
+  // }
 
   newReview(e) {
     // e.preventDefault();
