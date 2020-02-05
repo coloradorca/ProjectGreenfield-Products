@@ -7,6 +7,7 @@
 // opens up modal window named wite your review about product name
 
 import React from 'react';
+import ReactModal from 'react-modal';
 import ReviewChar from './ReviewChar.jsx';
 import NewReviewStars from './Stars/NewReviewStars.jsx';
 
@@ -15,11 +16,26 @@ class NewReview extends React.Component {
     super(props);
     this.state = {
       charCountDown: 50,
+      modalIsOpen: false,
     };
-    const modalState = this.props.showNewReview
-      ? 'modal display-on'
-      : 'modal display-off';
+    // const modalState = this.props.showNewReview
+    //   ? 'modal display-on'
+    //   : 'modal display-off';
     this.handleChange = this.handleChange.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+  }
+
+  openModal() {
+    this.setState({
+      modalIsOpen: true,
+    });
+  }
+
+  closeModal() {
+    this.setState({
+      modalIsOpen: false,
+    });
   }
 
   handleChange(e) {
@@ -36,59 +52,98 @@ class NewReview extends React.Component {
     this.setState({
       charCountDown: countdown,
     });
-    console.log(this.state.charCountDown);
+    this.fileAlert = this.fileAlert.bind(this);
+  }
+
+  fileAlert(e) {
+    if (e.files.length > 5) {
+      alert('Only 5 Files Accepted');
+      e.preventDefault();
+    }
   }
 
   render() {
-    if (!this.props.showNewReview) {
-      return null;
-    }
+    const { newReview } = this.props;
+    const { modalIsOpen, value } = this.state;
     return (
       // these go in the form brackert action = '/thewebsitehere' (similar to fetching) method = 'post'
-      <div className={this.modalState}>
-        <form className="newReview">
-          What would you rate this item?* mandatory
-          <NewReviewStars />
-          Do you recommend this product?* mandatory
-          <div name="newRecommend" required>
-            <input type="radio" name="yesRecommend" /> Yes
-            <input type="radio" name="noRecommend" /> No
-            <br />
-          </div>
-          <ReviewChar />
-          Review Summary
-          <br />
-          <input type="text" name="newSummary" maxLength="60" />
-          <br />
-          Your Review* - mandatory
-          <br />
-          <textArea
-            name="newBody"
-            rows="10"
-            cols="40"
-            placeholder="Why did you like the product or not?"
-            minLength="50"
-            maxLength="1000"
-            onChange={(e) => this.handleChange(e)}
-            required
-          />
-          <div>{this.state.charCountDown}</div>
-          <br />
-          Submit your photos here
-          <br />
-          <input type="file" name="newPhotos" accept="image/*" />
-          <br />
-          Your Name * mandatory & will be shared
-          <br />
-          <input type="text" name="newName" maxLength="60" required />
-          <br />
-          Your email * mandatory will not be shared
-          <br />
-          <input type="email" name="newEmail" maxLength="60" required />
-          <br />
-          <input type="submit" onClick={() => this.props.closeNewReview} />
-        </form>
-      </div>
+      <span>
+        <button
+          type="button"
+          className="addReview"
+          onClick={() => this.openModal()}
+        >
+          New Review +
+        </button>
+        <div>
+          <ReactModal
+            isOpen={modalIsOpen}
+            onAfterOpen={this.afterOpenModal}
+            onRequestClose={this.closeModal}
+            className="newReviewModal"
+            overlayClassName="OverlayModal"
+            contentLabel="Add Review Modal"
+          >
+            <div>
+              <button
+                type="button"
+                className="closeReview"
+                onClick={() => this.closeModal()}
+              >
+                X
+              </button>
+            </div>
+            <form className="newReview">
+              What would you rate this item?* mandatory
+              <NewReviewStars />
+              Do you recommend this product?* mandatory
+              <div name="newRecommend" required>
+                <input type="radio" name="yesRecommend" /> Yes
+                <input type="radio" name="noRecommend" /> No
+                <br />
+              </div>
+              <ReviewChar />
+              Review Summary
+              <br />
+              <input type="text" name="newSummary" maxLength="60" />
+              <br />
+              Your Review* - mandatory
+              <br />
+              <textArea
+                name="newBody"
+                rows="10"
+                cols="40"
+                placeholder="Why did you like the product or not?"
+                minLength="50"
+                maxLength="1000"
+                onChange={(e) => this.handleChange(e)}
+                required
+              />
+              <div>{this.state.charCountDown}</div>
+              <br />
+              Submit your photos here
+              <br />
+              <input type="file" name="newPhotos" accept="image/*" multiple />
+              <br />
+              Your Name * mandatory & will be shared
+              <br />
+              <input type="text" name="newName" maxLength="60" required />
+              <br />
+              Your email * mandatory will not be shared
+              <br />
+              <input type="email" name="newEmail" maxLength="60" required />
+              <br />
+              <input
+                type="submit"
+                onClick={(e) => {
+                  this.fileAlert();
+                  this.props.newReview();
+                }}
+              />
+            </form>
+          </ReactModal>
+        </div>
+      </span>
     );
   }
 }

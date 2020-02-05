@@ -2,28 +2,35 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable class-methods-use-this */
 import React from 'react';
+import axios from 'axios';
 import ReviewList from './ReviewList.jsx';
 import NewReview from './NewReview.jsx';
-// import SideGraph from './SideGraph.jsx';
-import ReviewBreakdown from './ReviewBreakdown.jsx';
+import ReviewBreakdown from './Graph/ReviewBreakdown.jsx';
 import exampleData from '../../../../sampleData/RAR/reviewsList.json';
 import './RAR.scss';
+
+const url = 'http://3.134.102.30';
 
 class RatingsAndReviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: exampleData.results,
-      showReviewList: true,
+      productId: 2,
+      productDetails: {},
     };
   }
 
-  componendDidMount() {
-    if (this.state.data.length === 0) {
-      this.setState({
-        showReviewList: false,
-      });
-    }
+  async componentDidMount() {
+    const { productId } = this.state;
+    const getProductDetails = await axios.get(`${url}/products/${productId}`);
+    this.setState({
+      productDetails: getProductDetails.data,
+    });
+    // if (this.state.data.length === 0) {
+    //   this.setState({
+    //     showReviewList: false,
+    //   });
+    // }
   }
 
   render() {
@@ -33,10 +40,14 @@ class RatingsAndReviews extends React.Component {
         <br />
         <br />
         <div className="rar">
-          {/* <SideGraph data={this.state.data} /> */}
-          <ReviewBreakdown data={this.state.data} className="reviewColumn" />
-          <ReviewList
+          <ReviewBreakdown
             data={this.state.data}
+            productId={this.state.productId}
+            className="reviewColumn"
+          />
+          <ReviewList
+            productDetails={this.state.productDetails}
+            productId={this.state.productId}
             className="reviewColumn"
             showReviewList={this.state.showReviewList}
           />
