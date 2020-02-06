@@ -16,7 +16,7 @@ class ReviewList extends React.Component {
       reviewShown: [],
       reviewSplitNum: 0,
       data: [],
-      selectedValue: 'Newest',
+      selectedValue: 'newest',
     };
     this.moreReviews = this.moreReviews.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -27,7 +27,11 @@ class ReviewList extends React.Component {
   async componentDidMount() {
     const { productId } = this.props;
     try {
-      const getReviews = await axios.get(`${url}/${productId}/list`);
+      const getReviews = await axios.get(`${url}/${productId}/list?`, {
+        params: {
+          sort: this.state.selectedValue,
+        },
+      });
       this.setState({
         data: getReviews.data,
       });
@@ -94,9 +98,9 @@ class ReviewList extends React.Component {
           value={this.state.selectedValue}
           onChange={this.handleChange}
         >
-          <option value="Newest">Newest</option>
-          <option value="Helpful">Helpful</option>
-          <option value="Relevant">Relevant</option>
+          <option value="newest">Newest</option>
+          <option value="helpful">Helpful</option>
+          <option value="relevant">Relevant</option>
         </select>
         <br />
         {this.state.reviewShown.map((review) => {
