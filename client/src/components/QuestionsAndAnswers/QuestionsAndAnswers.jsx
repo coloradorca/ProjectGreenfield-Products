@@ -22,7 +22,7 @@ class QuestionsAndAnswers extends Component {
   render() {
     const { productDetails } = this.state;
     const { productId } = this.props;
-    console.log(productId);
+
     return (
       <div className="questionsAndAnswersBox">
         <span className="questionsAndAnswersHeading">QUESTIONS & ANSWERS</span>
