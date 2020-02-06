@@ -30,7 +30,7 @@ export default class QuestionList extends Component {
     } catch (error) {
       console.error(error);
     }
-    console.log('got these questions', productId, this.state);
+    console.log(productId, this.state);
   }
 
   handleChange = (event) => {

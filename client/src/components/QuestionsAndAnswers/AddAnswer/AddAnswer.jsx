@@ -11,6 +11,8 @@ export default class AddAnswer extends Component {
     this.state = {
       modalIsOpen: false,
       value: '',
+      name: '',
+      email: '',
     };
   }
 
@@ -23,7 +25,7 @@ export default class AddAnswer extends Component {
   };
 
   handleSubmit = (event) => {
-    const { value } = this.state;
+    const { value, name, email } = this.state;
     console.log(`An answer was submitted: ${value}`);
     event.preventDefault();
   };
@@ -63,7 +65,7 @@ export default class AddAnswer extends Component {
                 className="closeModalButton"
                 onClick={this.closeModal}
               >
-                X
+                close
                 <br />
               </button>
             </div>
@@ -87,7 +89,7 @@ export default class AddAnswer extends Component {
                     maxLength="1000"
                     value={value}
                     onChange={this.handleChange}
-                    required
+                    // required
                   />
                   <br />
                   <label>
@@ -97,7 +99,7 @@ export default class AddAnswer extends Component {
                       placeholder="Example: jack543!"
                       size="20"
                       maxLength="60"
-                      required
+                      // required
                     />
                     <div className="disclaimer">
                       <em>
@@ -114,7 +116,7 @@ export default class AddAnswer extends Component {
                       placeholder="Example: jack@email.com"
                       size="25"
                       maxLength="60"
-                      required
+                      // required
                     />
                     <div className="disclaimer">
                       <em>
@@ -122,7 +124,27 @@ export default class AddAnswer extends Component {
                       </em>
                     </div>
                   </label>
-                  <input type="submit" value="Submit" />
+                  <label>
+                    {/* Add photo urls here:
+                    <input
+                      type="url"
+                      placeholder="https://example.com"
+                      pattern="https://.*"
+                      size="30"
+                    /> */}
+                    <input
+                      type="file"
+                      id="avatar"
+                      name="avatar"
+                      accept="image/png, image/jpeg"
+                    />
+                  </label>
+                  <br />
+                  <input
+                    className="submitModalButton"
+                    type="submit"
+                    value="Submit"
+                  />
                 </form>
               </div>
             </div>
