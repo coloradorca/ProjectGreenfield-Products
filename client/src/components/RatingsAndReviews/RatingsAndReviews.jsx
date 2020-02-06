@@ -21,7 +21,6 @@ class RatingsAndReviews extends React.Component {
   }
 
   async componentDidMount() {
-    console.log(this.state.productId);
     const { productId } = this.props;
     const getProductDetails = await axios.get(`${url}/products/${productId}`);
     this.setState({
@@ -39,7 +38,6 @@ class RatingsAndReviews extends React.Component {
   }
 
   render() {
-    console.log(this.state.productId);
     return (
       <div className="ratingsComp">
         Ratings and Reviews

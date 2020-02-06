@@ -68,7 +68,6 @@ class ReviewBreakdown extends React.Component {
     let totalTwo = 0;
     let totalOne = 0;
     this.state.data.results.map((review) => {
-      console.log(review);
       if (review.rating === 5) {
         totalFive += 1;
       } else if (review.rating === 4) {

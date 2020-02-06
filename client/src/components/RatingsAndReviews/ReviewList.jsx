@@ -18,11 +18,11 @@ class ReviewList extends React.Component {
       reviewSplitNum: 0,
       data: [],
       selectedValue: 'newest',
+      i: 2,
     };
     this.moreReviews = this.moreReviews.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.loadList = this.loadList.bind(this);
-    // this.addToData = this.addToData.bind(this);
+    // this.loadList = this.loadList.bind(this);
   }
 
   async componentDidMount() {
@@ -35,9 +35,9 @@ class ReviewList extends React.Component {
         },
       });
       this.setState({
-        data: getReviews.data,
+        data: getReviews.data.results,
       });
-      this.loadList();
+      // this.loadList();
     } catch (error) {
       console.log(error);
     }
@@ -55,6 +55,9 @@ class ReviewList extends React.Component {
         },
       );
     }
+    if (prevState.selectedValue !== this.state.selectedValue) {
+      this.componentDidMount();
+    }
   }
 
   loadList() {
@@ -69,25 +72,18 @@ class ReviewList extends React.Component {
   }
 
   handleChange(e) {
-    this.setState(
-      {
-        selectedValue: e.target.value,
-      },
-      () => {
-        return this.componentDidMount();
-      },
-    );
+    this.setState({
+      selectedValue: e.target.value,
+    });
   }
 
   moreReviews(e) {
     e.preventDefault();
-    const addArr = this.state.data.results.slice(
-      this.state.reviewSplitNum,
-      this.state.reviewSplitNum + 2,
-    );
-    this.setState({
-      reviewShown: this.state.reviewShown.concat(addArr),
-      reviewSplitNum: this.state.reviewSplitNum + 2,
+    // want to change i to increase by 2
+    this.setState((prevState) => {
+      return {
+        i: prevState.i + 2,
+      };
     });
   }
 
@@ -109,7 +105,7 @@ class ReviewList extends React.Component {
           <option value="relevant">Relevant</option>
         </select>
         <br />
-        {this.state.reviewShown.map((review) => {
+        {this.state.data.slice(0, this.state.i).map((review) => {
           return <ReviewTile review={review} reviewId={review.review_id} />;
         })}
         <button
