@@ -20,7 +20,6 @@ class ReviewList extends React.Component {
     };
     this.moreReviews = this.moreReviews.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.newReview = this.newReview.bind(this);
     this.loadList = this.loadList.bind(this);
     // this.addToData = this.addToData.bind(this);
   }
@@ -78,17 +77,6 @@ class ReviewList extends React.Component {
     this.setState({
       reviewShown: this.state.reviewShown.concat(addArr),
       reviewSplitNum: this.state.reviewSplitNum + 2,
-    });
-  }
-
-  newReview(e) {
-    // e.preventDefault();
-    const { product } = this.state;
-    const postReview = axios.post(`${url}/reviews/${product}`);
-    this.setState((prevState) => {
-      return {
-        data: [...prevState.data, postReview],
-      };
     });
   }
 

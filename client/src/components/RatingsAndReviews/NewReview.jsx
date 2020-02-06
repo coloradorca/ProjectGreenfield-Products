@@ -10,6 +10,7 @@ import React from 'react';
 import ReactModal from 'react-modal';
 import ReviewChar from './ReviewChar.jsx';
 import NewReviewStars from './Stars/NewReviewStars.jsx';
+const url = 'http://3.134.102.30/reviews';
 
 class NewReview extends React.Component {
   constructor(props) {
@@ -17,6 +18,14 @@ class NewReview extends React.Component {
     this.state = {
       charCountDown: 50,
       modalIsOpen: false,
+      rating: 0,
+      summary: '',
+      body: '',
+      recommend: false,
+      name: '',
+      email: '',
+      photos: [],
+      characteristics: {},
     };
     // const modalState = this.props.showNewReview
     //   ? 'modal display-on'
@@ -24,6 +33,30 @@ class NewReview extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  onSubmit(e) {
+    // e.preventDefault();
+    const { product } = this.state;
+    const postReview = axios.post(`${url}/reviews/${product}`);
+  }
+
+  onChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  setStarRating(rate) {
+    this.setState({
+      rating: rate,
+    });
+  }
+
+  setCharRating(rate) {
+    this.setState({
+      characteristics: rate,
+    });
   }
 
   openModal() {
@@ -95,22 +128,22 @@ class NewReview extends React.Component {
             </div>
             <form className="newReview">
               What would you rate this item?* mandatory
-              <NewReviewStars />
+              <NewReviewStars setStarRating={this.setStarRating} />
               Do you recommend this product?* mandatory
-              <div name="newRecommend" required>
+              <div name="recommend" required>
                 <input type="radio" name="yesRecommend" /> Yes
                 <input type="radio" name="noRecommend" /> No
                 <br />
               </div>
-              <ReviewChar />
+              <ReviewChar setCharRating={this.setCharRating} />
               Review Summary
               <br />
-              <input type="text" name="newSummary" maxLength="60" />
+              <input type="text" name="summary" maxLength="60" />
               <br />
               Your Review* - mandatory
               <br />
               <textArea
-                name="newBody"
+                name="body"
                 rows="10"
                 cols="40"
                 placeholder="Why did you like the product or not?"
@@ -123,15 +156,15 @@ class NewReview extends React.Component {
               <br />
               Submit your photos here
               <br />
-              <input type="file" name="newPhotos" accept="image/*" multiple />
+              <input type="file" name="photos" accept="image/*" multiple />
               <br />
               Your Name * mandatory & will be shared
               <br />
-              <input type="text" name="newName" maxLength="60" required />
+              <input type="text" name="name" maxLength="60" required />
               <br />
               Your email * mandatory will not be shared
               <br />
-              <input type="email" name="newEmail" maxLength="60" required />
+              <input type="email" name="email" maxLength="60" required />
               <br />
               <input
                 type="submit"
