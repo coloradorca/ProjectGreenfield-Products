@@ -8,28 +8,27 @@ import StyleSelector from './StyleSelector/styleSelector.jsx';
 import AddToCart from './AddToCart/addToCart.jsx';
 import ProductDescription from './ProductDescription/ProductDescription.jsx';
 import ProductDetail from './ProductDetail/ProductDetail.jsx';
+import axios from 'axios';
 
 // sample data import
-import productList from './sampleData/productList.js';
-import details from './sampleData/details.js';
-import styles from './sampleData/styles.js';
-import axios from 'axios';
+// import productList from './sampleData/productList.js';
+// import details from './sampleData/details.js';
+// import styles from './sampleData/styles.js';
 
 import './PO.scss';
 
 const url = ' http://3.134.102.30';
 
 class ProductOverview extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
     this.state = {
-      productId: 3,
-      // styles: styles[0].results,
+      productId: this.props.productId,
       styles: undefined,
-      productList,
-      // details,
-      currentStyle: styles[0].results[0],
-      currentImage: styles[0].results[0].photos[0].url,
+      productList: undefined,
+      currentStyle: undefined,
+      currentImage: undefined,
       currentIndex: 0,
       placeholder: undefined,
     };
@@ -38,26 +37,26 @@ class ProductOverview extends React.Component {
     this.changeIndex = this.changeIndex.bind(this);
   }
   async componentDidMount() {
-    const { productId } = this.state;
-    //set the state of with product Id passed down from app
+    const { productId } = this.props;
     const getStyles = await axios.get(`${url}/products/${productId}/styles`);
     const getList = await axios.get(`${url}/products/${productId}`);
-    this.setState(
-      {
-        styles: getStyles.data.results,
-        currentStyle: getStyles.data.results[0],
-        currentImage: getStyles.data.results[0].photos.url,
-        productList: getList.data,
-        placeholder: getList.data,
-      },
-      () =>
-        console.log(
-          'PO details',
-          this.state.details,
-          'PO place holder',
-          this.state.placeholder,
-        ),
-    );
+    this.setState({
+      productId: productId,
+      styles: getStyles.data.results,
+      currentStyle: getStyles.data.results[0],
+      currentImage: getStyles.data.results[0].photos.url,
+      productList: getList.data,
+      placeholder: getList.data,
+    });
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.productId !== this.props.productId) {
+      this.setState({
+        productId: this.props.productId,
+      });
+      this.componentDidMount();
+    }
   }
 
   changeStyle(newStyle) {
@@ -85,14 +84,15 @@ class ProductOverview extends React.Component {
       currentStyle,
       productList,
       styles,
-      // details,
     } = this.state;
+
+    const { changeProduct } = this.props;
 
     if (styles) {
       return (
         <div className="ProductOverview">
           <div className="headers">
-            <Headers />
+            <Headers changeProduct={changeProduct} />
           </div>
 
           <div className="leftContainer">

@@ -2,7 +2,7 @@ import React from 'react';
 import './displayImage.scss';
 import ThumbNailView from '../DefaultView/ThumbNailView.jsx';
 
-import '../DefaultView/DefaultView.scss';
+import '../DefaultView/defaultView.scss';
 
 class DisplayImage extends React.Component {
   constructor(props) {
@@ -82,7 +82,7 @@ class DisplayImage extends React.Component {
             <i className="fa fa-arrows-alt" size={70} aria-hidden="true" />
           </div>
           <div className="thumbnailContainer">
-            {start !== 0 && (
+            {start > 0 && (
               <div
                 role="button"
                 tabIndex={0}
@@ -108,7 +108,7 @@ class DisplayImage extends React.Component {
                 />
               ))}
             </div>
-            {end === length && (
+            {end !== length && (
               <div
                 role="button"
                 tabIndex={0}

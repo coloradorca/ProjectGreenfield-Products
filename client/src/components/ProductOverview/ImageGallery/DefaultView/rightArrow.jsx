@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './defaultView.scss';
+
 function RightArrow(props) {
   const { goToNextSlide } = props;
   return (
