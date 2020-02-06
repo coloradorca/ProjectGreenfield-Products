@@ -25,15 +25,15 @@ class StyleSelector extends React.Component {
   }
 
   updateStyle(e, styleImage) {
-    const { images } = this.state;
+    const { styles } = this.props;
     const { changeStyle } = this.props;
     e.preventDefault();
-    for (let i = 0; i < images.length; i += 1) {
-      if (images[i].photos[0].url === styleImage) {
-        changeStyle(images[i]);
+    for (let i = 0; i < styles.length; i += 1) {
+      if (styles[i].photos[0].url === styleImage) {
+        changeStyle(styles[i]);
 
         this.setState({
-          selected: images[i].name,
+          selected: styles[i].name,
         });
       }
     }
@@ -47,14 +47,14 @@ class StyleSelector extends React.Component {
 
   render() {
     const { checkedCircle, selected, images } = this.state;
-    const { changeStyle, changeImage } = this.props;
+    const { changeStyle, changeImage, styles } = this.props;
     if (images) {
       return (
         <div className="styleSelectorContainer">
           <div className="styleSelectorText">Style > {selected}</div>
           <br />
           <div className="smallImages">
-            {images.map((element, i) => {
+            {styles.map((element, i) => {
               return (
                 <CircleImage
                   indicateSelected={this.indicateSelected}

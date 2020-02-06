@@ -1,7 +1,11 @@
+// margin-top, margin-right, margin-bottom, and margin-left
 .questionButton {
   margin: 20px 50px 20px 0;
+  // margin: 2% 5% 2% 0;
   font-size: 16px;
+  // font-size: 100%;
   height: 65px;
+  // height: 200%;
   width: 250px;
   border-radius: 10px;
   border: solid;
@@ -10,18 +14,27 @@
   cursor: pointer;
 }
 
+.questionList {
+  border: solid;
+  border-color: black;
+  display: block;
+  overflow: scroll;
+  max-height: 400px;
+}
+// margin-top, margin-right, margin-bottom, and margin-left
 .questionListQuestion {
-  margin: 5px 0 0 0;
+  margin: 5px 5% 5px 10px;
 }
 
-.red {
-  background: red;
+#searchBar {
+  font-size: large;
+  margin: 10px 0 10px 0;
+  padding: 5px;
+  border: solid;
 }
 
-.green {
-  background: green;
-}
-
-.yellow {
-  background: yellow;
+input:focus {
+  outline-color: rgb(44, 159, 197);
+  outline-width: medium;
+  outline-style: solid;
 }

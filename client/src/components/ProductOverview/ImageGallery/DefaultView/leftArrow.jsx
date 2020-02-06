@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './defaultView.scss';
+
 function LeftArrow(props) {
   const { goToPreviousSlide } = props;
   return (

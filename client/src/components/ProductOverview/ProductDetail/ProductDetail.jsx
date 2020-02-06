@@ -14,7 +14,6 @@ function ProductDetail(props) {
   } else {
     price = origPrice;
   }
-  console.log(data);
   return (
     <div className="ProductDetail">
       <div className="productCategory">{data.category}</div>

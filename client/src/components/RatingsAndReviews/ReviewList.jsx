@@ -3,34 +3,39 @@
 // the review List and functionality of the review list goes here
 // imprts review tile
 import React from 'react';
+import axios from 'axios';
 import ReviewTile from './ReviewTile.jsx';
 import NewReview from './NewReview.jsx';
+const url = 'http://3.134.102.30/reviews';
 
 class ReviewList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showNewReview: false,
+      // showNewReview: false,
       reviewShown: [],
       reviewSplitNum: 0,
-      data: this.props.data,
+      data: [],
       selectedValue: 'Newest',
     };
-    this.openNewReview = this.openNewReview.bind(this);
-    this.closeNewReview = this.closeNewReview.bind(this);
     this.moreReviews = this.moreReviews.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.newReview = this.newReview.bind(this);
+    this.loadList = this.loadList.bind(this);
+    // this.addToData = this.addToData.bind(this);
   }
 
-  componentDidMount() {
-    const listArr = this.state.data.slice(
-      this.state.reviewSplitNum,
-      this.state.reviewSplitNum + 2,
-    );
-    this.setState({
-      reviewShown: this.state.reviewShown.concat(listArr),
-      reviewSplitNum: this.state.reviewSplitNum + 2,
-    });
+  async componentDidMount() {
+    const { productId } = this.props;
+    try {
+      const getReviews = await axios.get(`${url}/${productId}/list`);
+      this.setState({
+        data: getReviews.data,
+      });
+      this.loadList();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   // componentDidUpdate() {
@@ -40,6 +45,17 @@ class ReviewList extends React.Component {
   //     reviewSplitNum: this.state.reviewSplitNum + 2,
   //   });
   // }
+
+  loadList() {
+    const listArr = this.state.data.results.slice(
+      this.state.reviewSplitNum,
+      this.state.reviewSplitNum + 2,
+    );
+    this.setState({
+      reviewShown: this.state.reviewShown.concat(listArr),
+      reviewSplitNum: this.state.reviewSplitNum + 2,
+    });
+  }
 
   handleChange(e) {
     this.setState(
@@ -55,7 +71,7 @@ class ReviewList extends React.Component {
 
   moreReviews(e) {
     e.preventDefault();
-    const addArr = this.state.data.slice(
+    const addArr = this.state.data.results.slice(
       this.state.reviewSplitNum,
       this.state.reviewSplitNum + 2,
     );
@@ -65,53 +81,24 @@ class ReviewList extends React.Component {
     });
   }
 
-  openNewReview() {
-    this.setState({
-      showNewReview: true,
-    });
-  }
-
-  closeNewReview() {
-    this.setState({
-      showNewReview: false,
+  newReview(e) {
+    // e.preventDefault();
+    const { product } = this.state;
+    const postReview = axios.post(`${url}/reviews/${product}`);
+    this.setState((prevState) => {
+      return {
+        data: [...prevState.data, postReview],
+      };
     });
   }
 
   sortList() {
-    if (this.state.selectedValue === 'Newest') {
-      //sort by newest date
-      let newArr = this.state.data.sort((a, b) => {
-        return a.date - b.date;
-      });
-      return this.setState(
-        {
-          data: newArr,
-        },
-        () => {
-          console.log(this.state.sortedArr);
-        },
-      );
-    } else if (this.state.selectedValue === 'Helpful') {
-      //sort by the most helpful => helpfulness
-      let helpArr = this.state.data.sort((a, b) => {
-        return b.helpfulness - a.helpfulness;
-      });
-      console.log(helpArr);
-      return this.setState(
-        {
-          data: helpArr,
-        },
-        () => {
-          console.log(this.state.sortedArr);
-        },
-      );
-    }
-    // else if (this.state.selectedValue === 'Relevant') {
-    //   //sort by the most relevent
-    // }
+    //use the api call to change the order of the list
   }
 
   render() {
+    console.log(this.state.data);
+    // this.addToData();
     if (this.props.showReviewList === false) {
       return null;
     }
@@ -129,7 +116,7 @@ class ReviewList extends React.Component {
         </select>
         <br />
         {this.state.reviewShown.map((review) => {
-          return <ReviewTile review={review} />;
+          return <ReviewTile review={review} reviewId={review.review_id} />;
         })}
         <button
           className="moreReviews"
@@ -139,17 +126,18 @@ class ReviewList extends React.Component {
         >
           More Reviews
         </button>
-        <button
+        {/* <button
           className="addReview"
           onClick={() => {
             return this.openNewReview();
           }}
         >
           Add a Review +
-        </button>
+        </button> */}
         <NewReview
-          showNewReview={this.state.showNewReview}
-          closeNewReview={this.closeNewReview}
+          newReview={this.newReview}
+          // showNewReview={this.state.showNewReview}
+          // closeNewReview={this.closeNewReview}
         />
       </div>
     );

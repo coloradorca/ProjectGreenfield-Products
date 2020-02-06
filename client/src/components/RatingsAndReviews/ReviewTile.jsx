@@ -3,6 +3,9 @@
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import TileStar from './Stars/TileStar.jsx';
+import HelpfulClick from './HelpfulClick.jsx';
+import ReportReview from './ReportReview.jsx';
+import ReviewThumbnail from './ReviewThumbnail.jsx';
 
 class ReviewTile extends React.Component {
   constructor(props) {
@@ -46,16 +49,24 @@ class ReviewTile extends React.Component {
         <div className="productRecommend">{this.props.review.recommend}</div>
         {/* // reviewer name */}
         {/* // response to review */}
+        <div className="thumbnailTile">
+          {this.props.review.photos.map((picture) => {
+            // console.log(picture);
+            return <ReviewThumbnail image={picture} />;
+          })}
+        </div>
         <div className="sellerResponse">{this.props.review.response}</div>
         {/* // rating helpfulness */}
-        <div className="helpTile">
-          Helpful? Yes
-          <input type="radio" className="yesHelp" />
-          <div className="helpfulnessRating">
-            {this.props.review.helpfulness}
-          </div>
+        <div className="bottomLine">
+          <HelpfulClick
+            className="helpTile"
+            reviewId={this.props.reviewId}
+            helpfulness={this.props.review.helpfulness}
+          />
+          <ReportReview />
         </div>
         <div className="tileLineBreak" />
+
         <br />
       </div>
     );
