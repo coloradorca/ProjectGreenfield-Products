@@ -48,14 +48,16 @@ class NewReview extends React.Component {
     const { product } = this.props;
 
     axios.post(`${url}/${product}`, {
-      rating: this.state.rating,
-      summary: this.state.summary,
-      body: this.state.body,
-      recommend: this.state.recommend,
-      name: this.state.name,
-      email: this.state.email,
-      photos: this.state.photos,
-      characteristics: this.state.characteristics,
+      body: {
+        rating: this.state.rating,
+        summary: this.state.summary,
+        body: this.state.body,
+        recommend: this.state.recommend,
+        name: this.state.name,
+        email: this.state.email,
+        photos: this.state.photos,
+        characteristics: this.state.characteristics,
+      },
     });
   }
 
