@@ -19,9 +19,9 @@ class App extends React.Component {
     const { productId } = this.state;
     return (
       <div className="mains">
-        <ProductOverview productId={productId} />
+        {/* <ProductOverview productId={productId} /> */}
         <QuestionsAndAnswers productId={productId} />
-        <RatingsAndReviews productId={productId} />
+        {/* <RatingsAndReviews productId={productId} /> */}
       </div>
     );
   }

@@ -67,7 +67,7 @@ export default class AddQuestion extends Component {
                 className="closeModalButton"
                 onClick={this.closeModal}
               >
-                X
+                close
                 <br />
               </button>
             </div>

@@ -35,22 +35,6 @@
   background: rgba(0, 0, 0, 0.6);
 }
 
-.closeModalButton {
-  margin: 0;
-  padding: 5px;
-  float: left;
-  width: 20px;
-  line-height: 20px;
-  text-align: center;
-  cursor: pointer;
-  border-radius: 1rem;
-  background-color: coral;
-}
-
-.closeModalButton:hover {
-  background-color: red;
-}
-
 textarea:focus {
   outline-color: lightblue;
   outline-width: medium;
@@ -65,4 +49,66 @@ textarea:focus {
   font-size: 10px;
   color: grey;
   opacity: 90%;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
+
+.closeModalButton {
+  margin: 5px;
+  padding: 5px;
+  position: absolute;
+  top: 2.4%;
+  left: 3.4%;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 1.5rem;
+  background: none;
+  border: 0;
+  box-sizing: border-box;
+  color: transparent;
+  background-color: #ff0051;
+  cursor: pointer;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 10px;
+  line-height: auto;
+  outline: none;
+  overflow: hidden;
+  text-transform: uppercase;
+  transform: translate(-50%, -50%);
+  transition: all 0.2s ease-in;
+  width: auto;
+}
+
+.closeModalButton::before,
+.closeModalButton::after {
+  background-color: white;
+  content: '';
+  display: block;
+  height: 1px;
+  left: 0;
+  position: absolute;
+  transform-origin: center left;
+  transition: all 0.2s ease-in;
+  width: 141.4214px;
+  z-index: -1;
+}
+
+.closeModalButton::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.closeModalButton::after {
+  bottom: 0;
+  transform: rotate(-45deg);
+}
+
+.closeModalButton:hover {
+  color: #8a2387;
+}
+
+.closeModalButton:hover::before,
+.closeModalButton:hover::after {
+  height: 50px;
+  transform: rotate(0deg);
 }
