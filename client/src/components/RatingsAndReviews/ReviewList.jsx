@@ -13,6 +13,7 @@ class ReviewList extends React.Component {
     super(props);
     this.state = {
       // showNewReview: false,
+      productId: this.props.productId,
       reviewShown: [],
       reviewSplitNum: 0,
       data: [],
@@ -25,7 +26,8 @@ class ReviewList extends React.Component {
   }
 
   async componentDidMount() {
-    const { productId } = this.props;
+    const { productId } = this.state;
+    console.log(this.props.productId);
     try {
       const getReviews = await axios.get(`${url}/${productId}/list?`, {
         params: {
@@ -41,13 +43,24 @@ class ReviewList extends React.Component {
     }
   }
 
-  // componentDidUpdate() {
-  //   const sortArr = this.state.data.slice(0, 2);
-  //   this.setState({
-  //     reviewShown: this.state.reviewShown.concat(sortArr),
-  //     reviewSplitNum: this.state.reviewSplitNum + 2,
-  //   });
-  // }
+  componentDidUpdate(prevProps, prevState) {
+    // console.log(this.state.selectedValue);
+    console.log(prevProps.productId);
+    console.log(this.props);
+    if (prevProps.productId !== this.props.productId) {
+      this.setState(
+        {
+          productId: this.props.productId,
+        },
+        () => {
+          return this.componentDidMount();
+        },
+      );
+    }
+    if (prevState.selectedValue !== this.state.selectedValue) {
+      this.componentDidMount();
+    }
+  }
 
   loadList() {
     const listArr = this.state.data.results.slice(
@@ -69,7 +82,6 @@ class ReviewList extends React.Component {
         console.log(this.state.selectedValue);
       },
     );
-    this.sortList();
   }
 
   moreReviews(e) {
@@ -85,7 +97,7 @@ class ReviewList extends React.Component {
   }
 
   render() {
-    console.log(this.state.data);
+    console.log(this.state.productId);
     // this.addToData();
     if (this.props.showReviewList === false) {
       return null;

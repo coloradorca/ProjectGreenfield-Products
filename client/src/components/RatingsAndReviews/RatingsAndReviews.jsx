@@ -15,24 +15,31 @@ class RatingsAndReviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      productId: this.props.productId,
       productDetails: {},
     };
   }
 
   async componentDidMount() {
+    console.log(this.state.productId);
     const { productId } = this.props;
     const getProductDetails = await axios.get(`${url}/products/${productId}`);
     this.setState({
       productDetails: getProductDetails.data,
     });
-    // if (this.state.data.length === 0) {
-    //   this.setState({
-    //     showReviewList: false,
-    //   });
-    // }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.productId !== this.props.productId) {
+      this.setState({
+        productId: this.props.productId,
+      });
+      this.componentDidMount();
+    }
   }
 
   render() {
+    console.log(this.state.productId);
     return (
       <div className="ratingsComp">
         Ratings and Reviews
@@ -41,12 +48,12 @@ class RatingsAndReviews extends React.Component {
         <div className="rar">
           <ReviewBreakdown
             data={this.state.data}
-            productId={this.props.productId}
+            productId={this.state.productId}
             className="reviewColumn"
           />
           <ReviewList
             productDetails={this.state.productDetails}
-            productId={this.props.productId}
+            productId={this.state.productId}
             className="reviewColumn"
             showReviewList={this.state.showReviewList}
           />
