@@ -18,6 +18,7 @@ class ReviewBreakdown extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      productId: this.props.productId,
       five: 0,
       four: 0,
       three: 0,
@@ -32,7 +33,7 @@ class ReviewBreakdown extends React.Component {
   }
 
   async componentDidMount() {
-    const { productId } = this.props;
+    const { productId } = this.state;
     try {
       const getReviews = await axios.get(`${url}/${productId}/list`);
       this.setState({
@@ -41,6 +42,20 @@ class ReviewBreakdown extends React.Component {
       this.renderBreakdown();
     } catch (error) {
       console.log(error);
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // console.log(this.state.selectedValue);
+    if (prevProps.productId !== this.props.productId) {
+      this.setState(
+        {
+          productId: this.props.productId,
+        },
+        () => {
+          return this.componentDidMount();
+        },
+      );
     }
   }
 

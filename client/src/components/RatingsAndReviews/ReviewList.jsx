@@ -27,7 +27,7 @@ class ReviewList extends React.Component {
 
   async componentDidMount() {
     const { productId } = this.state;
-    console.log(this.props.productId);
+    console.log(this.state.selectedValue);
     try {
       const getReviews = await axios.get(`${url}/${productId}/list?`, {
         params: {
@@ -45,8 +45,6 @@ class ReviewList extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     // console.log(this.state.selectedValue);
-    console.log(prevProps.productId);
-    console.log(this.props);
     if (prevProps.productId !== this.props.productId) {
       this.setState(
         {
@@ -56,9 +54,6 @@ class ReviewList extends React.Component {
           return this.componentDidMount();
         },
       );
-    }
-    if (prevState.selectedValue !== this.state.selectedValue) {
-      this.componentDidMount();
     }
   }
 
@@ -79,7 +74,7 @@ class ReviewList extends React.Component {
         selectedValue: e.target.value,
       },
       () => {
-        console.log(this.state.selectedValue);
+        return this.componentDidMount();
       },
     );
   }
@@ -97,7 +92,6 @@ class ReviewList extends React.Component {
   }
 
   render() {
-    console.log(this.state.productId);
     // this.addToData();
     if (this.props.showReviewList === false) {
       return null;
