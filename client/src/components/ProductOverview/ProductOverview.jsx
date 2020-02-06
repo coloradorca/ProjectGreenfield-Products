@@ -24,7 +24,7 @@ class ProductOverview extends React.Component {
     super(props);
 
     this.state = {
-      productId: this.props.productId,
+      productId: undefined,
       styles: undefined,
       productList: undefined,
       currentStyle: undefined,
@@ -108,6 +108,7 @@ class ProductOverview extends React.Component {
             </div>
           </div>
           <div className="rightContainer">
+            <div className="starReveiws">Star Review Component</div>
             <div className="ProductDetail">
               <ProductDetail currentStyle={currentStyle} data={productList} />
             </div>
