@@ -7,9 +7,11 @@
 // opens up modal window named wite your review about product name
 
 import React from 'react';
+import axios from 'axios';
 import ReactModal from 'react-modal';
 import ReviewChar from './ReviewChar.jsx';
 import NewReviewStars from './Stars/NewReviewStars.jsx';
+
 const url = 'http://3.134.102.30/reviews';
 
 class NewReview extends React.Component {
@@ -30,24 +32,34 @@ class NewReview extends React.Component {
     // const modalState = this.props.showNewReview
     //   ? 'modal display-on'
     //   : 'modal display-off';
+    this.fileAlert = this.fileAlert.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.onRadioChange = this.onRadioChange.bind(this);
   }
 
   onSubmit(e) {
-    // e.preventDefault();
-    const { product } = this.state;
+    e.preventDefault();
     const postReview = axios.post(`${url}/reviews/${product}`);
   }
 
-  onChange = (e) => {
+  onRadioChange(e) {
+    console.log(this.state.recommend);
+    this.setState({
+      recommend: e.target.value,
+    });
+  }
+
+  onChange(e) {
+    console.log(e.target.value);
     this.setState({ [e.target.name]: e.target.value });
-  };
+  }
 
   setStarRating(rate) {
+    console.log('star rate work');
     this.setState({
       rating: rate,
     });
@@ -73,19 +85,13 @@ class NewReview extends React.Component {
 
   handleChange(e) {
     let countdown = this.state.charCountDown - 1;
-    // eventTarget.addEventListener('keydown', (event) => {
-    //   if (event.isComposing || event.keyCode === 8) {
-    //     let countdown = this.state.charCountDown + 1;
-    //   }
-    //   return countdown;
-    // });
     if (countdown <= 0) {
       countdown = 'Minimum reached';
     }
     this.setState({
       charCountDown: countdown,
     });
-    this.fileAlert = this.fileAlert.bind(this);
+    this.onChange(e);
   }
 
   fileAlert(e) {
@@ -126,19 +132,38 @@ class NewReview extends React.Component {
                 X
               </button>
             </div>
-            <form className="newReview">
+            <form className="newReview" onSubmit={this.onSubmit}>
               What would you rate this item?* mandatory
               <NewReviewStars setStarRating={this.setStarRating} />
               Do you recommend this product?* mandatory
               <div name="recommend" required>
-                <input type="radio" name="yesRecommend" /> Yes
-                <input type="radio" name="noRecommend" /> No
+                <input
+                  type="radio"
+                  name="yes"
+                  value="true"
+                  checked={this.state.recommend === true}
+                  onChange={this.onRadioChange}
+                />{' '}
+                Yes
+                <input
+                  type="radio"
+                  name="no"
+                  value="no"
+                  checked={this.state.recommend === false}
+                  onChange={this.onRadioChange}
+                />{' '}
+                No
                 <br />
               </div>
               <ReviewChar setCharRating={this.setCharRating} />
               Review Summary
               <br />
-              <input type="text" name="summary" maxLength="60" />
+              <input
+                type="text"
+                name="summary"
+                maxLength="60"
+                onChange={this.onChange}
+              />
               <br />
               Your Review* - mandatory
               <br />
@@ -156,21 +181,38 @@ class NewReview extends React.Component {
               <br />
               Submit your photos here
               <br />
-              <input type="file" name="photos" accept="image/*" multiple />
+              <input
+                type="file"
+                name="photos"
+                accept="image/*"
+                onChange={this.onChange}
+                multiple
+              />
               <br />
               Your Name * mandatory & will be shared
               <br />
-              <input type="text" name="name" maxLength="60" required />
+              <input
+                type="text"
+                name="name"
+                maxLength="60"
+                onChange={this.onChange}
+                required
+              />
               <br />
               Your email * mandatory will not be shared
               <br />
-              <input type="email" name="email" maxLength="60" required />
+              <input
+                type="email"
+                name="email"
+                maxLength="60"
+                onChange={this.onChange}
+                required
+              />
               <br />
               <input
                 type="submit"
                 onClick={(e) => {
                   this.fileAlert();
-                  this.props.newReview();
                 }}
               />
             </form>

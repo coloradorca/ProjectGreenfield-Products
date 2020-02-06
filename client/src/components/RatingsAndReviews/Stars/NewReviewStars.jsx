@@ -28,6 +28,7 @@ class NewReviewStar extends React.Component {
     this.setState({
       rating: nextValue,
     });
+    this.props.setStarRating(nextValue);
   }
 
   render() {
