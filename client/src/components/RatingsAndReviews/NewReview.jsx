@@ -39,11 +39,24 @@ class NewReview extends React.Component {
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onRadioChange = this.onRadioChange.bind(this);
+    this.setStarRating = this.setStarRating.bind(this);
+    this.setCharRating = this.setCharRating.bind(this);
   }
 
   onSubmit(e) {
     e.preventDefault();
-    const postReview = axios.post(`${url}/reviews/${product}`);
+    const { product } = this.props;
+
+    axios.post(`${url}/${product}`, {
+      rating: this.state.rating,
+      summary: this.state.summary,
+      body: this.state.body,
+      recommend: this.state.recommend,
+      name: this.state.name,
+      email: this.state.email,
+      photos: this.state.photos,
+      characteristics: this.state.characteristics,
+    });
   }
 
   onRadioChange(e) {
@@ -209,12 +222,7 @@ class NewReview extends React.Component {
                 required
               />
               <br />
-              <input
-                type="submit"
-                onClick={(e) => {
-                  this.fileAlert();
-                }}
-              />
+              <input type="submit" />
             </form>
           </ReactModal>
         </div>

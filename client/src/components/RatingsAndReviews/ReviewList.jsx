@@ -80,10 +80,6 @@ class ReviewList extends React.Component {
     });
   }
 
-  sortList() {
-    //use the api call to change the order of the list
-  }
-
   render() {
     console.log(this.state.data);
     // this.addToData();
@@ -124,6 +120,7 @@ class ReviewList extends React.Component {
         </button> */}
         <NewReview
           newReview={this.newReview}
+          product={this.props.productId}
           // showNewReview={this.state.showNewReview}
           // closeNewReview={this.closeNewReview}
         />
