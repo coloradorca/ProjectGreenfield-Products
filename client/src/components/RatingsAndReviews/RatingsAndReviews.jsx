@@ -15,13 +15,12 @@ class RatingsAndReviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: 2,
       productDetails: {},
     };
   }
 
   async componentDidMount() {
-    const { productId } = this.state;
+    const { productId } = this.props;
     const getProductDetails = await axios.get(`${url}/products/${productId}`);
     this.setState({
       productDetails: getProductDetails.data,
@@ -42,12 +41,12 @@ class RatingsAndReviews extends React.Component {
         <div className="rar">
           <ReviewBreakdown
             data={this.state.data}
-            productId={this.state.productId}
+            productId={this.props.productId}
             className="reviewColumn"
           />
           <ReviewList
             productDetails={this.state.productDetails}
-            productId={this.state.productId}
+            productId={this.props.productId}
             className="reviewColumn"
             showReviewList={this.state.showReviewList}
           />
