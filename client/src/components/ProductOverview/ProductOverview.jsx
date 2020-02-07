@@ -45,19 +45,16 @@ class ProductOverview extends React.Component {
     const getStyles = await axios.get(`${url}/products/${productId}/styles`);
     const getList = await axios.get(`${url}/products/${productId}`);
     const ratings = await axios.get(`${url}/reviews/${productId}/list`);
-    this.setState(
-      {
-        productId: productId,
-        styles: getStyles.data.results,
-        currentStyle: getStyles.data.results[0],
-        currentImage: getStyles.data.results[0].photos.url,
-        productList: getList.data,
-        placeholder: getList.data,
-        rating: ratings.data,
-        numReviews: ratings.data.results.length,
-      },
-      () => console.log(ratings.data.results),
-    );
+    this.setState({
+      productId: productId,
+      styles: getStyles.data.results,
+      currentStyle: getStyles.data.results[0],
+      currentImage: getStyles.data.results[0].photos.url,
+      productList: getList.data,
+      placeholder: getList.data,
+      rating: ratings.data,
+      numReviews: ratings.data.results.length,
+    });
   }
 
   componentDidUpdate(prevProps) {
@@ -96,6 +93,7 @@ class ProductOverview extends React.Component {
       styles,
       rating,
       numReviews,
+      productId,
     } = this.state;
 
     const { changeProduct } = this.props;
@@ -121,7 +119,11 @@ class ProductOverview extends React.Component {
           </div>
           <div className="rightContainer">
             <div className="starReviews">
-              <AverageStar reviewLength={numReviews} data={rating} />
+              <AverageStar
+                productId={productId}
+                reviewLength={numReviews}
+                data={rating}
+              />
             </div>
             <div className="ProductDetail">
               <ProductDetail currentStyle={currentStyle} data={productList} />

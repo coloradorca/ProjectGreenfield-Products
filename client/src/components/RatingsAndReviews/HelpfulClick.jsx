@@ -27,7 +27,7 @@ class HelpfulClick extends React.Component {
   render() {
     const { helpfulness } = this.state;
     return (
-      <div>
+      <div className="helpTile">
         Helpful? Yes
         <input
           type="radio"

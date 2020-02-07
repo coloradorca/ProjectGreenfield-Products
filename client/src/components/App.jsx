@@ -11,15 +11,14 @@ class App extends React.Component {
     this.state = {
       productId: 55,
     };
-    this.changeProduct = this.changeProduct.bind(this);
   }
 
-  changeProduct(e, newId) {
+  changeProduct = (e, newId) => {
     e.preventDefault();
     this.setState({
       productId: newId,
     });
-  }
+  };
 
   render() {
     const { productId } = this.state;

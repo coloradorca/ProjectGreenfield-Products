@@ -26,7 +26,7 @@ class ReportReview extends React.Component {
   render() {
     const { show } = this.state;
     return (
-      <div>
+      <div className="reportTile">
         Report
         <input type="radio" onClick={() => this.markReport()} />
         <RedDot show={show} />

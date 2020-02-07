@@ -44,33 +44,38 @@ class AverageStar extends React.Component {
 
   render() {
     return (
-      <div>
-        <StarRatingComponent
-          name="tileStar"
-          editing={false}
-          starCount={5}
-          value={this.state.averageRating}
-          renderStarIcon={(index, value) => {
-            return (
-              <span>
-                <i className={index <= value ? 'fas fa-star' : 'far fa-star'} />
-              </span>
-            );
-          }}
-          renderStarIconHalf={() => {
-            return (
-              <span>
-                <span style={{ position: 'absolute' }}>
-                  <i className="far fa-star" />
-                </span>
+      <div className="starBreak">
+        <div className="avgStars">
+          <StarRatingComponent
+            name="tileStar"
+            editing={false}
+            starCount={5}
+            value={this.state.averageRating}
+            renderStarIcon={(index, value) => {
+              return (
                 <span>
-                  <i className="fas fa-star-half" />
+                  <i
+                    id="reviewAvg"
+                    className={index <= value ? 'fas fa-star' : 'far fa-star'}
+                  />
                 </span>
-              </span>
-            );
-          }}
-        />
-        <div>{this.state.averageRating}</div>
+              );
+            }}
+            renderStarIconHalf={() => {
+              return (
+                <span>
+                  <span style={{ position: 'absolute' }}>
+                    <i id="reviewAvg" className="far fa-star" />
+                  </span>
+                  <span>
+                    <i id="reviewAvg" className="fas fa-star-half" />
+                  </span>
+                </span>
+              );
+            }}
+          />
+        </div>
+        <div className="avgReview">{this.state.averageRating}</div>
       </div>
     );
   }

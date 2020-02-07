@@ -64,8 +64,6 @@ class AddToCart extends React.Component {
     const { data } = this.props;
     return (
       <div className="cart">
-        Add to Cart
-        <br />
         <div className="dropdown">
           Size:
           <button type="button" className="dropbtn">

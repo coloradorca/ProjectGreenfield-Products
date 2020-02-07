@@ -1,8 +1,9 @@
 $font-stack: Helvetica, sans-serif;
-$primary-color: green;
+$primary-color: orange;
 
 .mains {
-  font: 100% $font-stack;
+  font-family: 'interstate', Verdana, sans-serif;
+  // font: 100% $font-stack;
   color: $primary-color;
   margin-left: 8%;
   margin-right: 8%;
