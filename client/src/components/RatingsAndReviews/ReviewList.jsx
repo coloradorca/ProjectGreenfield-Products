@@ -60,16 +60,16 @@ class ReviewList extends React.Component {
     }
   }
 
-  loadList() {
-    const listArr = this.state.data.results.slice(
-      this.state.reviewSplitNum,
-      this.state.reviewSplitNum + 2,
-    );
-    this.setState({
-      reviewShown: this.state.reviewShown.concat(listArr),
-      reviewSplitNum: this.state.reviewSplitNum + 2,
-    });
-  }
+  // loadList() {
+  //   const listArr = this.state.data.results.slice(
+  //     this.state.reviewSplitNum,
+  //     this.state.reviewSplitNum + 2,
+  //   );
+  //   this.setState({
+  //     reviewShown: this.state.reviewShown.concat(listArr),
+  //     reviewSplitNum: this.state.reviewSplitNum + 2,
+  //   });
+  // }
 
   handleChange(e) {
     this.setState({
@@ -93,7 +93,7 @@ class ReviewList extends React.Component {
       return null;
     }
     return (
-      <div>
+      <div className="reviewList">
         Number of Reviews sorted by
         <select
           className="reviewFilters"

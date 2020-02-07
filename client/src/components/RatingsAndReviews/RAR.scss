@@ -3,11 +3,20 @@
   font-size: 20px;
 }
 .rar {
-  display: flex;
+  display: inline-grid;
+  grid-template-columns: 15% 20% 20% 20% 20%;
+  grid-gap: 10px;
+  padding: 10px;
 }
 
-.reviewColumn {
-  flex: 50%;
+.graph {
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+.list {
+  grid-column-start: 2;
+  grid-column-end: 6;
 }
 
 .breakdownSection {
@@ -17,6 +26,23 @@
   max-width: 100%;
   padding: 2%;
   float: left;
+}
+
+.starBreak {
+  display: inline;
+}
+
+.avgStars {
+  display: inline;
+}
+
+#reviewAvg {
+  font-size: 16px;
+  margin-left: 100%;
+}
+
+.avgReview {
+  font-size: 36px;
 }
 
 .breakdownSide {

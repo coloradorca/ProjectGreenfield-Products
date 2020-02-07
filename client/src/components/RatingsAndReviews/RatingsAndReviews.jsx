@@ -44,17 +44,19 @@ class RatingsAndReviews extends React.Component {
         <br />
         <br />
         <div className="rar">
-          <ReviewBreakdown
-            data={this.state.data}
-            productId={this.state.productId}
-            className="reviewColumn"
-          />
-          <ReviewList
-            productDetails={this.state.productDetails}
-            productId={this.state.productId}
-            className="reviewColumn"
-            showReviewList={this.state.showReviewList}
-          />
+          <div className="graph">
+            <ReviewBreakdown
+              data={this.state.data}
+              productId={this.state.productId}
+            />
+          </div>
+          <div className="list">
+            <ReviewList
+              productDetails={this.state.productDetails}
+              productId={this.state.productId}
+              showReviewList={this.state.showReviewList}
+            />
+          </div>
           <br />
         </div>
       </div>
