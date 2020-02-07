@@ -160,10 +160,6 @@ img {
   image-rendering: pixelated;
 }
 
-.helpTile {
-  display: inline;
-}
-
 .modal {
   height: 25px;
   width: 25px;
@@ -179,9 +175,21 @@ img {
   display: none;
 }
 
-// .bottomLine {
-//   display: inline-flex;
-// }
+.bottomLine {
+  display: inline-flex;
+}
+
+.helpTile {
+  display: inline-flex;
+}
+
+.helpfulnessRating {
+  margin-left: 5px;
+}
+
+.reportTile {
+  margin-left: 25px;
+}
 
 .tileLineBreak {
   border: 1px solid black;
