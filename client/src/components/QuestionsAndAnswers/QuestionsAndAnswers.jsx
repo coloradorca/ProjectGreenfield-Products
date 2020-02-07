@@ -43,6 +43,7 @@ class QuestionsAndAnswers extends Component {
       <div className="questionsAndAnswersBox">
         <span className="questionsAndAnswersHeading">QUESTIONS & ANSWERS</span>
         <QuestionList productId={productId} productDetails={productDetails} />
+        {/* couldn't productId={productDetails.id} ? */}
       </div>
     );
   }

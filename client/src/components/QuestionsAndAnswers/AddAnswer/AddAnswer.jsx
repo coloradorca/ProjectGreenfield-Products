@@ -30,7 +30,7 @@ export default class AddAnswer extends Component {
   };
 
   handleSubmit = () => {
-    const { value, name, email, photo, photos } = this.state;
+    const { value, name, email, photos } = this.state;
     const { question } = this.props;
     console.log(
       `value: ${typeof value} & name: ${typeof name} & email: ${typeof email}`,
@@ -50,13 +50,8 @@ export default class AddAnswer extends Component {
         console.log(error);
       })
       .then(() => {
-        this.refreshPage();
+        this.closeModal();
       });
-  };
-
-  refreshPage = () => {
-    // componentShouldUpdate?
-    window.location.reload(false);
   };
 
   addPhoto = () => {
@@ -109,7 +104,6 @@ export default class AddAnswer extends Component {
         <div>
           <ReactModal
             isOpen={modalIsOpen}
-            onAfterOpen={this.afterOpenModal}
             onRequestClose={this.closeModal}
             className="Modal"
             overlayClassName="Overlay"
@@ -132,11 +126,7 @@ export default class AddAnswer extends Component {
                 <p>{question.question_body}</p>
               </span>
               <div className="addAnswerForm">
-                {/* <form
-                  className="addAnswerForm"
-                  // </div>onSubmit={() => this.handleSubmit()}
-                  onSubmit={this.handleSubmit}
-                > */}
+                {/* <form className="addAnswerForm" onSubmit={this.handleSubmit} > */}
                 <label>*Your Answer</label>
                 <br />
                 <textarea
