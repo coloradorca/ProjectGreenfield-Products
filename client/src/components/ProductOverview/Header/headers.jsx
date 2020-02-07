@@ -10,11 +10,7 @@ class Headers extends React.Component {
     };
   }
 
-<<<<<<< HEAD
   changeValue = (e) => {
-=======
-  changeValue(e) {
->>>>>>> 351f25810397f014eacb81710dd4b8be1a17d595
     e.preventDefault();
     this.setState({
       product: e.target.value,
