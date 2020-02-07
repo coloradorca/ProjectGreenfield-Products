@@ -81,6 +81,7 @@ class ReviewTile extends React.Component {
         </div>
         <div className="sellerResponse">{this.state.response}</div>
         {/* // rating helpfulness */}
+        <br />
         <div className="bottomLine">
           <HelpfulClick
             reviewId={this.props.reviewId}

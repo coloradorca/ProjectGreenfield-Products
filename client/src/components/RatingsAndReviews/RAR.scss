@@ -191,14 +191,49 @@ img {
 
 .helpTile {
   display: inline-flex;
+  font-size: 16px;
 }
 
 .helpfulnessRating {
-  margin-left: 5px;
+  margin-left: 8px;
+  font-size: 16px;
+}
+
+.yesHelp {
+  font-size: 16px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  display: inline;
+  margin-left: 10px;
+  margin-bottom: 4.5px;
+  padding: 0;
+}
+
+.yesHelp:hover,
+.yesHelp:focus {
+  text-decoration: none;
 }
 
 .reportTile {
   margin-left: 25px;
+}
+
+.reviewReport {
+  font-size: 16px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  display: inline;
+  margin-bottom: 10px;
+  padding: 0;
+}
+
+.reviewReport:hover,
+.reviewReport:focus {
+  text-decoration: none;
 }
 
 .tileLineBreak {

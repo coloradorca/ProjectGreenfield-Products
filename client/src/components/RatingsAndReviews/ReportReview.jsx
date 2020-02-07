@@ -11,15 +11,16 @@ class ReportReview extends React.Component {
     super(props);
     this.state = {
       show: false,
+      report: 'Report',
     };
     this.markReport = this.markReport.bind(this);
   }
 
-  async markReport() {
+  markReport() {
     const { reviewId } = this.props;
-    const report = await axios.put(`${url}/${reviewId}`);
+    axios.put(`${url}/${reviewId}`);
     this.setState({
-      show: true,
+      report: 'Reported',
     });
   }
 
@@ -27,9 +28,13 @@ class ReportReview extends React.Component {
     const { show } = this.state;
     return (
       <div className="reportTile">
-        Report
-        <input type="radio" onClick={() => this.markReport()} />
-        <RedDot show={show} />
+        <button
+          type="button"
+          className="reviewReport"
+          onClick={() => this.markReport()}
+        >
+          {this.state.report}
+        </button>
       </div>
     );
   }
