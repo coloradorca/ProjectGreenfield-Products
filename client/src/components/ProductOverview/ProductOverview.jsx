@@ -1,5 +1,6 @@
 /* eslint-disable */
 import React from 'react';
+import axios from 'axios';
 
 import Headers from './Header/headers.jsx';
 import ImageView from './ImageGallery/ImageView/imageView.jsx';
@@ -8,7 +9,8 @@ import StyleSelector from './StyleSelector/styleSelector.jsx';
 import AddToCart from './AddToCart/addToCart.jsx';
 import ProductDescription from './ProductDescription/ProductDescription.jsx';
 import ProductDetail from './ProductDetail/ProductDetail.jsx';
-import axios from 'axios';
+// import AverageStar from '../RatingsAndReviews/Stars/AverageStar.jsx';
+import AverageStar from './ProductDetail/AvgStar.jsx';
 
 // sample data import
 // import productList from './sampleData/productList.js';
@@ -31,6 +33,8 @@ class ProductOverview extends React.Component {
       currentImage: undefined,
       currentIndex: 0,
       placeholder: undefined,
+      rating: undefined,
+      numReviews: undefined,
     };
     this.changeStyle = this.changeStyle.bind(this);
     this.changeImage = this.changeImage.bind(this);
@@ -40,14 +44,20 @@ class ProductOverview extends React.Component {
     const { productId } = this.props;
     const getStyles = await axios.get(`${url}/products/${productId}/styles`);
     const getList = await axios.get(`${url}/products/${productId}`);
-    this.setState({
-      productId: productId,
-      styles: getStyles.data.results,
-      currentStyle: getStyles.data.results[0],
-      currentImage: getStyles.data.results[0].photos.url,
-      productList: getList.data,
-      placeholder: getList.data,
-    });
+    const ratings = await axios.get(`${url}/reviews/${productId}/list`);
+    this.setState(
+      {
+        productId: productId,
+        styles: getStyles.data.results,
+        currentStyle: getStyles.data.results[0],
+        currentImage: getStyles.data.results[0].photos.url,
+        productList: getList.data,
+        placeholder: getList.data,
+        rating: ratings.data,
+        numReviews: ratings.data.results.length,
+      },
+      () => console.log(ratings.data.results),
+    );
   }
 
   componentDidUpdate(prevProps) {
@@ -84,6 +94,8 @@ class ProductOverview extends React.Component {
       currentStyle,
       productList,
       styles,
+      rating,
+      numReviews,
     } = this.state;
 
     const { changeProduct } = this.props;
@@ -108,7 +120,9 @@ class ProductOverview extends React.Component {
             </div>
           </div>
           <div className="rightContainer">
-            <div className="starReveiws">Star Review Component</div>
+            <div className="starReviews">
+              <AverageStar reviewLength={numReviews} data={rating} />
+            </div>
             <div className="ProductDetail">
               <ProductDetail currentStyle={currentStyle} data={productList} />
             </div>

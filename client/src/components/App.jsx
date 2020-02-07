@@ -12,7 +12,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: 5,
+      productId: 8,
     };
     this.changeProduct = this.changeProduct.bind(this);
   }
