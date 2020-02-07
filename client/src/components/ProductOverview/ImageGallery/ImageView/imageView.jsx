@@ -35,7 +35,12 @@ class ImageView extends React.Component {
 
     return (
       <div className="modalContainer">
-        <Modal className="modal" open={open} onClose={this.onCloseModal}>
+        <Modal
+          closeIconSize={50}
+          className="modal"
+          open={open}
+          onClose={this.onCloseModal}
+        >
           <div className="DefaultViewModal">
             <ModalDisplay
               currentIndex={currentIndex}

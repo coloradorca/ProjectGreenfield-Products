@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 
 import './addToCart.scss';
@@ -9,10 +10,12 @@ class AddToCart extends React.Component {
       cart: [],
       allsizes: '',
       size: 'Select a Size',
+      amount: 'Quantity',
       numberOfSizeSelected: 15,
     };
     this.createQuantity = this.createQuantity.bind(this);
     this.selectSize = this.selectSize.bind(this);
+    this.changeAmount = this.changeAmount.bind(this);
   }
 
   componentDidMount() {
@@ -26,7 +29,11 @@ class AddToCart extends React.Component {
     const { numberOfSizeSelected } = this.state;
     const quantity = [];
     for (let i = 0; i <= numberOfSizeSelected; i += 1) {
-      quantity.push(<a key={i}>{i}</a>);
+      quantity.push(
+        <a onClick={(e) => this.changeAmount(e, i)} key={i}>
+          {i}
+        </a>,
+      );
     }
     return quantity;
   }
@@ -45,28 +52,58 @@ class AddToCart extends React.Component {
     }
   }
 
+  changeAmount(e, num) {
+    console.log(num);
+    this.setState({
+      amount: num,
+    });
+  }
+
   render() {
-    const { size } = this.state;
+    const { size, amount } = this.state;
+    const { data } = this.props;
     return (
       <div className="cart">
         Add to Cart
         <br />
         <div className="dropdown">
-          <button className="dropbtn">{size}</button>
+          Size:
+          <button type="button" className="dropbtn">
+            {size}
+          </button>
           <div className="dropdown-content">
-            {Object.keys(this.props.data.skus).map((el, i) => (
-              <a onClick={(e) => this.selectSize(el)} key={i}>
+            {Object.keys(data.skus).map((el, i) => (
+              <a
+                onKeyPress={(e) => this.selectSize(el)}
+                onClick={(e) => this.selectSize(el)}
+                key={el}
+                role="button"
+                tabIndex="0"
+              >
                 {el}
               </a>
             ))}
           </div>
         </div>
         <div className="dropdown">
-          <button className="dropbtn">Quantity</button>
+          Quantity:
+          <button type="button" className="dropbtn">
+            {' '}
+            {amount}
+          </button>
           <div className="dropdown-content">{this.createQuantity()}</div>
         </div>
         <div className="dropdown">
-          <button className="dropbtn addToCartButton"> Add To Cart</button>
+          <button
+            type="button"
+            onClick={() =>
+              alert(`${amount} of size ${size} added to the cart `)
+            }
+            className="dropbtn addToCartButton"
+          >
+            {' '}
+            Add To Cart
+          </button>
         </div>
       </div>
     );

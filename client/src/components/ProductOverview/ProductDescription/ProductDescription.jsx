@@ -7,14 +7,20 @@ function ProductDescription(props) {
   const { data } = props;
   return (
     <div className="PDOverview">
-      <div className="productSlogan">{data.slogan}</div>
-      <div className="productDescription">{data.description}</div>
-      <div className="features">
-        {data.features.map((el, i) => (
-          <div key={el.feature}>
-            <span>{el.feature}</span> : <span>{el.value}</span>
-          </div>
-        ))}
+      <div className="leftcontainer">
+        <div className="productSlogan">{data.slogan}</div>
+        <div className="productDescription">{data.description}</div>
+      </div>
+      <div className="rightcontainer">
+        <div className="features">
+          {data.features.map((el, i) => (
+            <ul id="feature" key={el.feature}>
+              <li>
+                {el.feature} : {el.value}
+              </li>
+            </ul>
+          ))}
+        </div>
       </div>
     </div>
   );
