@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
 import axios from 'axios';
 import Answer from '../Answer/Answer.jsx';
 import './AnswerList.scss';
@@ -20,12 +19,25 @@ export default class AnswerList extends Component {
     const { qId } = this.props;
     try {
       // `${url}/qa/${qId}/answers?count=10` <--if we wanted to specify count
-      const getAnswers = await axios.get(`${url}/qa/${qId}/answers`);
+      const getAnswers = await axios.get(`${url}/qa/${qId}/answers?count=10`);
       this.setState({ answers: getAnswers.data.results });
     } catch (error) {
       console.error(error);
     }
   }
+
+  // componentDidUpdate(prevProps) {
+  //   if (prevProps.qId !== this.props.productId) {
+  //     this.setState(
+  //       {
+  //         qId: this.props.productId,
+  //       },
+  //       () => {
+  //         return this.componentDidMount();
+  //       },
+  //     );
+  //   }
+  // }
 
   handleClick = () => {
     // this.setState((previous) => ({ showing: previous.showing + 2 })); <-- if we wanted to increment 2 at a time
@@ -71,9 +83,3 @@ export default class AnswerList extends Component {
     );
   }
 }
-
-// const mapStateToProps = (state) => ({});
-
-// const mapDispatchToProps = {};
-
-// export default connect(mapStateToProps, mapDispatchToProps)(AnswerList);

@@ -4,7 +4,7 @@ import ReactModal from 'react-modal';
 import './AddQuestion.scss';
 import axios from 'axios';
 
-// const url = 'http://3.134.102.30/qa';
+const url = 'http://3.134.102.30/qa';
 
 ReactModal.setAppElement(document.getElementById('app'));
 
@@ -14,6 +14,8 @@ export default class AddQuestion extends Component {
     this.state = {
       modalIsOpen: false,
       value: '',
+      name: '',
+      email: '',
     };
   }
 
@@ -25,21 +27,50 @@ export default class AddQuestion extends Component {
     this.setState({ modalIsOpen: false });
   };
 
-  handleSubmit = (event) => {
-    const { value } = this.state;
-    console.log(`A question was submitted: ${value}`);
-    axios.post(); // /qa/:product_id
-    event.preventDefault();
+  handleSubmit = () => {
+    const { value, name, email } = this.state;
+    const { productDetails } = this.props;
+    console.log(
+      `id: ${productDetails.id} & value: ${value} & name: ${name} & email: ${email}`,
+    );
+    axios
+      .post(`${url}/${productDetails.id}`, {
+        body: value,
+        name,
+        email,
+      })
+      .then((response) => {
+        console.log(response);
+        alert('Thank you! Your question has been submitted');
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .then(() => {
+        this.closeModal();
+      });
   };
 
-  handleChange = (event) => {
+  handleValueChange = (event) => {
     const { value } = this.state;
     console.log(value);
     this.setState({ value: event.target.value });
   };
 
+  handleNameChange = (event) => {
+    const { name } = this.state;
+    console.log(name);
+    this.setState({ name: event.target.value });
+  };
+
+  handleEmailChange = (event) => {
+    const { email } = this.state;
+    console.log(email);
+    this.setState({ email: event.target.value });
+  };
+
   render() {
-    const { modalIsOpen, value } = this.state;
+    const { modalIsOpen, value, name, email } = this.state;
     const { productDetails } = this.props;
 
     return (
@@ -58,7 +89,6 @@ export default class AddQuestion extends Component {
             onRequestClose={this.closeModal}
             className="Modal"
             overlayClassName="Overlay"
-            // style={customStyles}
             contentLabel="Add Question Modal"
           >
             <div>
@@ -74,57 +104,67 @@ export default class AddQuestion extends Component {
             <div>
               <h4 className="questionModalHeading">Ask your Question</h4>
               <span>{`About the ${productDetails.name}`}</span>
-              <div>
-                <form
-                  className="addAnswerForm"
-                  onSubmit={() => this.handleSubmit()}
-                >
-                  <label>*Your Question</label>
-                  <br />
-                  <textarea
-                    placeholder="Why did you like the product or not?"
-                    rows="5"
-                    cols="50"
-                    maxLength="1000"
-                    value={value}
-                    onChange={this.handleChange}
+              <div className="addAnswerForm">
+                {/* <form className="addAnswerForm" onSubmit={this.handleSubmit}> */}
+                <label>*Your Question</label>
+                <br />
+                <textarea
+                  placeholder="Why did you like the product or not?"
+                  rows="5"
+                  cols="50"
+                  maxLength="1000"
+                  value={value}
+                  onChange={this.handleValueChange}
+                  required
+                />
+                <br />
+                <label>
+                  *What is your nickname?
+                  <input
+                    type="text"
+                    placeholder="Example: jackson11!"
+                    size="20"
+                    maxLength="60"
+                    value={name}
+                    onChange={this.handleNameChange}
                     required
                   />
-                  <br />
-                  <label>
-                    *What is your nickname?
-                    <input
-                      type="text"
-                      placeholder="Example: jackson11!"
-                      size="20"
-                      maxLength="60"
-                      required
-                    />
-                    <div className="disclaimer">
-                      <em>
-                        For privacy reasons, do not use your full name or email
-                        address
-                      </em>
-                    </div>
-                  </label>
-                  <label>
-                    *Your email:
-                    <input
-                      type="email"
-                      pattern=".+.com"
-                      placeholder="Example: jack@email.com"
-                      size="25"
-                      maxLength="60"
-                      required
-                    />
-                    <div className="disclaimer">
-                      <em>
-                        For authentication reasons, you will not be emailed
-                      </em>
-                    </div>
-                  </label>
-                  <input type="submit" value="Submit" />
-                </form>
+                  <div className="disclaimer">
+                    <em>
+                      For privacy reasons, do not use your full name or email
+                      address
+                    </em>
+                  </div>
+                </label>
+                <label>
+                  *Your email:
+                  <input
+                    type="email"
+                    pattern=".+.com"
+                    placeholder="Example: jack@email.com"
+                    size="25"
+                    maxLength="60"
+                    value={email}
+                    onChange={this.handleEmailChange}
+                    required
+                  />
+                  <div className="disclaimer">
+                    <em>For authentication reasons, you will not be emailed</em>
+                  </div>
+                </label>
+                <button
+                  type="button"
+                  className="submitModalButton"
+                  onClick={this.handleSubmit}
+                >
+                  Submit
+                </button>
+                {/* <input
+                  className="submitModalButton"
+                  type="submit"
+                  value="Submit"
+                /> */}
+                {/* </form> */}
               </div>
             </div>
           </ReactModal>
