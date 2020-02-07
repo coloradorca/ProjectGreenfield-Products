@@ -17,7 +17,9 @@ function ProductDetail(props) {
   return (
     <div className="ProductDetail">
       <div className="productCategory">{data.category}</div>
-      <div className="productName">{data.name}</div>
+      <div className="productName">
+        <strong>{data.name}</strong>
+      </div>
       <div className="productPrice">
         {currentStyle.sale_price > 0 && (
           <strike>${currentStyle.original_price}</strike>
