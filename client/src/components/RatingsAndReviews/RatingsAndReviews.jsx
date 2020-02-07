@@ -15,22 +15,26 @@ class RatingsAndReviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: 2,
+      productId: this.props.productId,
       productDetails: {},
     };
   }
 
   async componentDidMount() {
-    const { productId } = this.state;
+    const { productId } = this.props;
     const getProductDetails = await axios.get(`${url}/products/${productId}`);
     this.setState({
       productDetails: getProductDetails.data,
     });
-    // if (this.state.data.length === 0) {
-    //   this.setState({
-    //     showReviewList: false,
-    //   });
-    // }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.productId !== this.props.productId) {
+      this.setState({
+        productId: this.props.productId,
+      });
+      this.componentDidMount();
+    }
   }
 
   render() {

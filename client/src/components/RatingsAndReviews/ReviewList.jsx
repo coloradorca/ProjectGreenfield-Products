@@ -13,38 +13,52 @@ class ReviewList extends React.Component {
     super(props);
     this.state = {
       // showNewReview: false,
+      productId: this.props.productId,
       reviewShown: [],
       reviewSplitNum: 0,
       data: [],
-      selectedValue: 'Newest',
+      selectedValue: 'newest',
+      i: 2,
     };
     this.moreReviews = this.moreReviews.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.newReview = this.newReview.bind(this);
-    this.loadList = this.loadList.bind(this);
-    // this.addToData = this.addToData.bind(this);
+    // this.loadList = this.loadList.bind(this);
   }
 
   async componentDidMount() {
-    const { productId } = this.props;
+    const { productId } = this.state;
+    console.log(this.state.selectedValue);
     try {
-      const getReviews = await axios.get(`${url}/${productId}/list`);
-      this.setState({
-        data: getReviews.data,
+      const getReviews = await axios.get(`${url}/${productId}/list?`, {
+        params: {
+          sort: this.state.selectedValue,
+        },
       });
-      this.loadList();
+      this.setState({
+        data: getReviews.data.results,
+      });
+      // this.loadList();
     } catch (error) {
       console.log(error);
     }
   }
 
-  // componentDidUpdate() {
-  //   const sortArr = this.state.data.slice(0, 2);
-  //   this.setState({
-  //     reviewShown: this.state.reviewShown.concat(sortArr),
-  //     reviewSplitNum: this.state.reviewSplitNum + 2,
-  //   });
-  // }
+  componentDidUpdate(prevProps, prevState) {
+    // console.log(this.state.selectedValue);
+    if (prevProps.productId !== this.props.productId) {
+      this.setState(
+        {
+          productId: this.props.productId,
+        },
+        () => {
+          return this.componentDidMount();
+        },
+      );
+    }
+    if (prevState.selectedValue !== this.state.selectedValue) {
+      this.componentDidMount();
+    }
+  }
 
   loadList() {
     const listArr = this.state.data.results.slice(
@@ -58,46 +72,22 @@ class ReviewList extends React.Component {
   }
 
   handleChange(e) {
-    this.setState(
-      {
-        selectedValue: e.target.value,
-      },
-      () => {
-        console.log(this.state.selectedValue);
-      },
-    );
-    this.sortList();
+    this.setState({
+      selectedValue: e.target.value,
+    });
   }
 
   moreReviews(e) {
     e.preventDefault();
-    const addArr = this.state.data.results.slice(
-      this.state.reviewSplitNum,
-      this.state.reviewSplitNum + 2,
-    );
-    this.setState({
-      reviewShown: this.state.reviewShown.concat(addArr),
-      reviewSplitNum: this.state.reviewSplitNum + 2,
-    });
-  }
-
-  newReview(e) {
-    // e.preventDefault();
-    const { product } = this.state;
-    const postReview = axios.post(`${url}/reviews/${product}`);
+    // want to change i to increase by 2
     this.setState((prevState) => {
       return {
-        data: [...prevState.data, postReview],
+        i: prevState.i + 2,
       };
     });
   }
 
-  sortList() {
-    //use the api call to change the order of the list
-  }
-
   render() {
-    console.log(this.state.data);
     // this.addToData();
     if (this.props.showReviewList === false) {
       return null;
@@ -110,12 +100,12 @@ class ReviewList extends React.Component {
           value={this.state.selectedValue}
           onChange={this.handleChange}
         >
-          <option value="Newest">Newest</option>
-          <option value="Helpful">Helpful</option>
-          <option value="Relevant">Relevant</option>
+          <option value="newest">Newest</option>
+          <option value="helpful">Helpful</option>
+          <option value="relevant">Relevant</option>
         </select>
         <br />
-        {this.state.reviewShown.map((review) => {
+        {this.state.data.slice(0, this.state.i).map((review) => {
           return <ReviewTile review={review} reviewId={review.review_id} />;
         })}
         <button
@@ -136,6 +126,7 @@ class ReviewList extends React.Component {
         </button> */}
         <NewReview
           newReview={this.newReview}
+          product={this.props.productId}
           // showNewReview={this.state.showNewReview}
           // closeNewReview={this.closeNewReview}
         />

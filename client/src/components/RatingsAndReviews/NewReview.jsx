@@ -7,9 +7,12 @@
 // opens up modal window named wite your review about product name
 
 import React from 'react';
+import axios from 'axios';
 import ReactModal from 'react-modal';
 import ReviewChar from './ReviewChar.jsx';
 import NewReviewStars from './Stars/NewReviewStars.jsx';
+
+const url = 'http://3.134.102.30/reviews';
 
 class NewReview extends React.Component {
   constructor(props) {
@@ -17,13 +20,70 @@ class NewReview extends React.Component {
     this.state = {
       charCountDown: 50,
       modalIsOpen: false,
+      rating: 0,
+      summary: '',
+      body: '',
+      recommend: false,
+      name: '',
+      email: '',
+      photos: [],
+      characteristics: {},
     };
     // const modalState = this.props.showNewReview
     //   ? 'modal display-on'
     //   : 'modal display-off';
+    this.fileAlert = this.fileAlert.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.onRadioChange = this.onRadioChange.bind(this);
+    this.setStarRating = this.setStarRating.bind(this);
+    this.setCharRating = this.setCharRating.bind(this);
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+    const { product } = this.props;
+
+    axios.post(`${url}/${product}`, {
+      body: {
+        rating: this.state.rating,
+        summary: this.state.summary,
+        body: this.state.body,
+        recommend: this.state.recommend,
+        name: this.state.name,
+        email: this.state.email,
+        photos: this.state.photos,
+        characteristics: this.state.characteristics,
+      },
+    });
+  }
+
+  onRadioChange(e) {
+    console.log(this.state.recommend);
+    this.setState({
+      recommend: e.target.value,
+    });
+  }
+
+  onChange(e) {
+    console.log(e.target.value);
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  setStarRating(rate) {
+    console.log('star rate work');
+    this.setState({
+      rating: rate,
+    });
+  }
+
+  setCharRating(rate) {
+    this.setState({
+      characteristics: rate,
+    });
   }
 
   openModal() {
@@ -40,19 +100,13 @@ class NewReview extends React.Component {
 
   handleChange(e) {
     let countdown = this.state.charCountDown - 1;
-    // eventTarget.addEventListener('keydown', (event) => {
-    //   if (event.isComposing || event.keyCode === 8) {
-    //     let countdown = this.state.charCountDown + 1;
-    //   }
-    //   return countdown;
-    // });
     if (countdown <= 0) {
       countdown = 'Minimum reached';
     }
     this.setState({
       charCountDown: countdown,
     });
-    this.fileAlert = this.fileAlert.bind(this);
+    this.onChange(e);
   }
 
   fileAlert(e) {
@@ -93,24 +147,43 @@ class NewReview extends React.Component {
                 X
               </button>
             </div>
-            <form className="newReview">
+            <form className="newReview" onSubmit={this.onSubmit}>
               What would you rate this item?* mandatory
-              <NewReviewStars />
+              <NewReviewStars setStarRating={this.setStarRating} />
               Do you recommend this product?* mandatory
-              <div name="newRecommend" required>
-                <input type="radio" name="yesRecommend" /> Yes
-                <input type="radio" name="noRecommend" /> No
+              <div name="recommend" required>
+                <input
+                  type="radio"
+                  name="yes"
+                  value="true"
+                  checked={this.state.recommend === true}
+                  onChange={this.onRadioChange}
+                />{' '}
+                Yes
+                <input
+                  type="radio"
+                  name="no"
+                  value="no"
+                  checked={this.state.recommend === false}
+                  onChange={this.onRadioChange}
+                />{' '}
+                No
                 <br />
               </div>
-              <ReviewChar />
+              <ReviewChar setCharRating={this.setCharRating} />
               Review Summary
               <br />
-              <input type="text" name="newSummary" maxLength="60" />
+              <input
+                type="text"
+                name="summary"
+                maxLength="60"
+                onChange={this.onChange}
+              />
               <br />
               Your Review* - mandatory
               <br />
               <textArea
-                name="newBody"
+                name="body"
                 rows="10"
                 cols="40"
                 placeholder="Why did you like the product or not?"
@@ -123,23 +196,35 @@ class NewReview extends React.Component {
               <br />
               Submit your photos here
               <br />
-              <input type="file" name="newPhotos" accept="image/*" multiple />
+              <input
+                type="file"
+                name="photos"
+                accept="image/*"
+                onChange={this.onChange}
+                multiple
+              />
               <br />
               Your Name * mandatory & will be shared
               <br />
-              <input type="text" name="newName" maxLength="60" required />
+              <input
+                type="text"
+                name="name"
+                maxLength="60"
+                onChange={this.onChange}
+                required
+              />
               <br />
               Your email * mandatory will not be shared
               <br />
-              <input type="email" name="newEmail" maxLength="60" required />
-              <br />
               <input
-                type="submit"
-                onClick={(e) => {
-                  this.fileAlert();
-                  this.props.newReview();
-                }}
+                type="email"
+                name="email"
+                maxLength="60"
+                onChange={this.onChange}
+                required
               />
+              <br />
+              <input type="submit" />
             </form>
           </ReactModal>
         </div>
