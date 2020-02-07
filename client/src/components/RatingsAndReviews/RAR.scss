@@ -107,16 +107,26 @@
 .reviewerName {
   grid-column: 7;
   grid-row: 1;
+  font-size: 16px;
 }
 
 .reviewDate {
   grid-column: 8;
   grid-row: 1;
+  font-size: 16px;
 }
 
 .reviewSummary {
   font-weight: bold;
   word-break: break-all;
+}
+
+.productRecommend {
+  display: inline-flex;
+}
+
+.recAnswer {
+  margin-left: 5px;
 }
 
 .thumbnailTile {
