@@ -1,7 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-// import { render } from 'react-dom';
-import { withRouter } from 'react-router-dom';
 import ProductOverview from './ProductOverview/ProductOverview.jsx';
 import RatingsAndReviews from './RatingsAndReviews/RatingsAndReviews.jsx';
 import QuestionsAndAnswers from './QuestionsAndAnswers/QuestionsAndAnswers.jsx';
@@ -12,7 +9,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: 1,
+      productId: 50,
     };
     this.changeProduct = this.changeProduct.bind(this);
   }
@@ -28,15 +25,18 @@ class App extends React.Component {
     const { productId } = this.state;
     return (
       <div className="mains">
-        <ProductOverview
+        {/* <ProductOverview
           changeProduct={this.changeProduct}
           productId={productId}
+        /> */}
+        <QuestionsAndAnswers
+          productId={productId}
+          changeProduct={this.changeProduct}
         />
-        {/* <QuestionsAndAnswers productId={productId} />
-        <RatingsAndReviews productId={productId} /> */}
+        {/* <RatingsAndReviews productId={productId} /> */}
       </div>
     );
   }
 }
 
-export default withRouter(App);
+export default App;

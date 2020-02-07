@@ -21,6 +21,7 @@ export default class QuestionList extends Component {
 
   async componentDidMount() {
     const { productId } = this.props;
+    console.log('pId in QList:', productId);
     try {
       const getQuestions = await axios.get(`${url}/${productId}`);
       this.setState({
@@ -31,6 +32,20 @@ export default class QuestionList extends Component {
       console.error(error);
     }
     console.log(productId, this.state);
+  }
+
+  componentDidUpdate(prevProps) {
+    const { productId } = this.props;
+    if (prevProps.productId !== productId) {
+      this.setState(
+        {
+          productId,
+        },
+        () => {
+          return this.componentDidMount();
+        },
+      );
+    }
   }
 
   handleChange = (event) => {

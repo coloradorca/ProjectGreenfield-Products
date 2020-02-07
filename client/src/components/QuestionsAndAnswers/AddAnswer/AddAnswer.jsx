@@ -1,7 +1,10 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { Component } from 'react';
 import ReactModal from 'react-modal';
+import axios from 'axios';
 import './AddAnswer.scss';
+
+const url = 'http://3.134.102.30/qa';
 
 ReactModal.setAppElement(document.getElementById('app'));
 
@@ -13,6 +16,8 @@ export default class AddAnswer extends Component {
       value: '',
       name: '',
       email: '',
+      photo: '',
+      photos: [],
     };
   }
 
@@ -24,21 +29,72 @@ export default class AddAnswer extends Component {
     this.setState({ modalIsOpen: false });
   };
 
-  handleSubmit = (event) => {
-    const { value, name, email } = this.state;
-    console.log(`An answer was submitted: ${value}`);
-    event.preventDefault();
+  handleSubmit = () => {
+    const { value, name, email, photo, photos } = this.state;
+    const { question } = this.props;
+    console.log(
+      `value: ${typeof value} & name: ${typeof name} & email: ${typeof email}`,
+    );
+    axios
+      .post(`${url}/${question.question_id}/answers`, {
+        body: value,
+        name,
+        email,
+        photos,
+      })
+      .then((response) => {
+        console.log(response);
+        alert('Thank you! Your answer has been submitted');
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .then(() => {
+        this.refreshPage();
+      });
   };
 
-  handleChange = (event) => {
+  refreshPage = () => {
+    // componentShouldUpdate?
+    window.location.reload(false);
+  };
+
+  addPhoto = () => {
+    const { photo, photos } = this.state;
+    console.log(photos, photos.length);
+    if (photos.length < 5) {
+      this.setState({ photos: photos.concat([photo]), photo: '' });
+    } else if (photos.length === 5) {
+      alert('Five Photo Maximum');
+    }
+  };
+
+  handleValueChange = (event) => {
     const { value } = this.state;
     console.log(value);
-    // make api call to submit as a question here
     this.setState({ value: event.target.value });
   };
 
+  handleNameChange = (event) => {
+    const { name } = this.state;
+    console.log(name);
+    this.setState({ name: event.target.value });
+  };
+
+  handleEmailChange = (event) => {
+    const { email } = this.state;
+    console.log(email);
+    this.setState({ email: event.target.value });
+  };
+
+  handlePhotoChange = (event) => {
+    const { photo } = this.state;
+    console.log(photo);
+    this.setState({ photo: event.target.value });
+  };
+
   render() {
-    const { modalIsOpen, value } = this.state;
+    const { modalIsOpen, value, email, name, photo, photos } = this.state;
     const { productDetails, question } = this.props;
 
     return (
@@ -75,77 +131,89 @@ export default class AddAnswer extends Component {
               <span>
                 <p>{question.question_body}</p>
               </span>
-              <div>
-                <form
+              <div className="addAnswerForm">
+                {/* <form
                   className="addAnswerForm"
-                  onSubmit={() => this.handleSubmit()}
-                >
-                  <label>*Your Answer</label>
-                  <br />
-                  <textarea
-                    placeholder="Please add your Answer..."
-                    rows="5"
-                    cols="50"
-                    maxLength="1000"
-                    value={value}
-                    onChange={this.handleChange}
-                    // required
-                  />
-                  <br />
-                  <label>
-                    *What is your nickname?
-                    <input
-                      type="text"
-                      placeholder="Example: jack543!"
-                      size="20"
-                      maxLength="60"
-                      // required
-                    />
-                    <div className="disclaimer">
-                      <em>
-                        For privacy reasons, do not use your full name or email
-                        address
-                      </em>
-                    </div>
-                  </label>
-                  <label>
-                    *Your email:
-                    <input
-                      type="email"
-                      pattern=".+.com"
-                      placeholder="Example: jack@email.com"
-                      size="25"
-                      maxLength="60"
-                      // required
-                    />
-                    <div className="disclaimer">
-                      <em>
-                        For authentication reasons, you will not be emailed
-                      </em>
-                    </div>
-                  </label>
-                  <label>
-                    {/* Add photo urls here:
-                    <input
-                      type="url"
-                      placeholder="https://example.com"
-                      pattern="https://.*"
-                      size="30"
-                    /> */}
-                    <input
-                      type="file"
-                      id="avatar"
-                      name="avatar"
-                      accept="image/png, image/jpeg"
-                    />
-                  </label>
-                  <br />
+                  // </div>onSubmit={() => this.handleSubmit()}
+                  onSubmit={this.handleSubmit}
+                > */}
+                <label>*Your Answer</label>
+                <br />
+                <textarea
+                  placeholder="Please add your Answer..."
+                  rows="5"
+                  cols="50"
+                  maxLength="1000"
+                  value={value}
+                  onChange={this.handleValueChange}
+                  required
+                />
+                <br />
+                <label>
+                  *What is your nickname?
                   <input
-                    className="submitModalButton"
-                    type="submit"
-                    value="Submit"
+                    type="text"
+                    placeholder="Example: jack543!"
+                    size="20"
+                    maxLength="60"
+                    value={name}
+                    onChange={this.handleNameChange}
+                    required
                   />
-                </form>
+                  <div className="disclaimer">
+                    <em>
+                      For privacy reasons, do not use your full name or email
+                      address
+                    </em>
+                  </div>
+                </label>
+                <label>
+                  *Your email:
+                  <input
+                    type="email"
+                    pattern=".+.com"
+                    placeholder="Example: jack@email.com"
+                    size="25"
+                    maxLength="60"
+                    value={email}
+                    onChange={this.handleEmailChange}
+                    required
+                  />
+                  <div className="disclaimer">
+                    <em>For authentication reasons, you will not be emailed</em>
+                  </div>
+                </label>
+                <label>
+                  {/* api doesn't take files, cant upload photos, so have to use url text */}
+                  Add photo urls here:
+                  <input
+                    type="url"
+                    id="photoInput"
+                    placeholder="https://example.com"
+                    pattern="https://.*"
+                    size="30"
+                    multiple
+                    value={photo}
+                    onChange={this.handlePhotoChange}
+                  />
+                  <button type="button" onClick={this.addPhoto}>
+                    {`Click to add a photo (${photos.length})`}
+                  </button>
+                </label>
+                <br />
+                <button
+                  type="button"
+                  className="submitModalButton"
+                  onClick={this.handleSubmit}
+                >
+                  Submit
+                </button>
+                {/* <input
+                  className="submitModalButton"
+                  type="submit"
+                  value="Submit"
+                /> */}
+                {/* </form> */}
               </div>
             </div>
           </ReactModal>

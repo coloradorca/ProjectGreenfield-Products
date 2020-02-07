@@ -9,19 +9,35 @@ class QuestionsAndAnswers extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      productId: this.props.productId,
       productDetails: {},
     };
   }
 
   async componentDidMount() {
-    const { productId } = this.props;
+    const { productId } = this.state;
     const getDetails = await axios.get(`${url}/products/${productId}`);
     this.setState({ productDetails: getDetails.data });
   }
 
-  render() {
-    const { productDetails } = this.state;
+  componentDidUpdate(prevProps) {
     const { productId } = this.props;
+    if (prevProps.productId !== productId) {
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState(
+        {
+          productId,
+        },
+        () => {
+          return this.componentDidMount();
+        },
+      );
+    }
+  }
+
+  render() {
+    const { productDetails, productId } = this.state;
+    console.log('productId in QA:', productId);
 
     return (
       <div className="questionsAndAnswersBox">

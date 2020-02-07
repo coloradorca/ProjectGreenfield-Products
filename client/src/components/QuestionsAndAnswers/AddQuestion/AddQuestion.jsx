@@ -26,10 +26,10 @@ export default class AddQuestion extends Component {
   };
 
   handleSubmit = (event) => {
+    event.preventDefault();
     const { value } = this.state;
     console.log(`A question was submitted: ${value}`);
-    axios.post(); // /qa/:product_id
-    event.preventDefault();
+    // axios.post(); // /qa/:product_id
   };
 
   handleChange = (event) => {
@@ -78,6 +78,7 @@ export default class AddQuestion extends Component {
                 <form
                   className="addAnswerForm"
                   onSubmit={() => this.handleSubmit()}
+                  // onSubmit={this.handleSubmit}
                 >
                   <label>*Your Question</label>
                   <br />
