@@ -8,9 +8,12 @@ $primary-color: black;
 }
 .productCategory {
   font-size: medium;
+  text-transform: uppercase;
+  margin-bottom: 5px;
 }
 .productName {
-  font-size: xx-large;
+  font-size: 40px;
+  margin-bottom: 10px;
 }
 .productPrice {
   font-size: large;
@@ -20,4 +23,5 @@ $primary-color: black;
 .linkToScroll {
   color: blue;
   text-decoration: underline;
+  cursor: pointer;
 }
