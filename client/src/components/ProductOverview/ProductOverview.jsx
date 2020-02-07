@@ -93,6 +93,7 @@ class ProductOverview extends React.Component {
       styles,
       rating,
       numReviews,
+      productId,
     } = this.state;
 
     const { changeProduct } = this.props;
@@ -118,7 +119,11 @@ class ProductOverview extends React.Component {
           </div>
           <div className="rightContainer">
             <div className="starReviews">
-              <AverageStar reviewLength={numReviews} data={rating} />
+              <AverageStar
+                productId={productId}
+                reviewLength={numReviews}
+                data={rating}
+              />
             </div>
             <div className="ProductDetail">
               <ProductDetail currentStyle={currentStyle} data={productList} />
