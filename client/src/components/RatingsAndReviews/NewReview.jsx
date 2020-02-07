@@ -144,13 +144,17 @@ class NewReview extends React.Component {
                 className="closeReview"
                 onClick={() => this.closeModal()}
               >
-                X
+                close
               </button>
             </div>
-            <form className="newReview" onSubmit={this.onSubmit}>
-              What would you rate this item?* mandatory
+            {/* <form className="newReview" onSubmit={this.onSubmit}>
+              What would you rate this item?* mandatory */}
+            <div>
+              <h4 className="reviewHeader">Write Your Review</h4>
+              <label>*Your Rating</label>
               <NewReviewStars setStarRating={this.setStarRating} />
-              Do you recommend this product?* mandatory
+              <br />
+              <label>*Do you recommend this product?</label>
               <div name="recommend" required>
                 <input
                   type="radio"
@@ -170,8 +174,10 @@ class NewReview extends React.Component {
                 No
                 <br />
               </div>
+              <br />
               <ReviewChar setCharRating={this.setCharRating} />
-              Review Summary
+              <br />
+              <label>Review Summary</label>
               <br />
               <input
                 type="text"
@@ -180,10 +186,10 @@ class NewReview extends React.Component {
                 onChange={this.onChange}
               />
               <br />
-              Your Review* - mandatory
+              <label>*Your Review</label>
               <br />
               <textArea
-                name="body"
+                className="body"
                 rows="10"
                 cols="40"
                 placeholder="Why did you like the product or not?"
@@ -194,7 +200,7 @@ class NewReview extends React.Component {
               />
               <div>{this.state.charCountDown}</div>
               <br />
-              Submit your photos here
+              <label>Submit your photos here</label>
               <br />
               <input
                 type="file"
@@ -204,7 +210,8 @@ class NewReview extends React.Component {
                 multiple
               />
               <br />
-              Your Name * mandatory & will be shared
+              <br />
+              <label>*Your Name </label>
               <br />
               <input
                 type="text"
@@ -213,8 +220,11 @@ class NewReview extends React.Component {
                 onChange={this.onChange}
                 required
               />
+              <div className="disclaimer">
+                <em>For privacy reasons, do not use your full name</em>
+              </div>
               <br />
-              Your email * mandatory will not be shared
+              <label>*Your email</label>
               <br />
               <input
                 type="email"
@@ -223,9 +233,22 @@ class NewReview extends React.Component {
                 onChange={this.onChange}
                 required
               />
+              <div className="disclaimer">
+                <em>For authentication reasons, you will not be emailed</em>
+              </div>
               <br />
-              <input type="submit" />
-            </form>
+              <button
+                type="button"
+                className="submitReview"
+                onClick={() => {
+                  this.onSubmit();
+                  this.closeModal();
+                }}
+              >
+                Submit
+              </button>
+              {/* </form> */}
+            </div>
           </ReactModal>
         </div>
       </span>
