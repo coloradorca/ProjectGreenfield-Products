@@ -1,5 +1,4 @@
 .styleSelectorContainer {
-  // padding: 20px;
   margin: 40px;
   margin-left: 0px;
   margin-right: 0px;
@@ -20,7 +19,7 @@
   border-radius: 50%;
   flex-direction: row;
   padding: 10px;
-  margin: 10px;
+  margin: 20px;
   cursor: pointer;
 
   &:focus {
@@ -40,20 +39,9 @@
   cursor: pointer;
 }
 
-// figure out how to overlay a checkmark
-
-// .checkmark {
-//   content: '';
-//   background-color: transparent;
-//   position: absolute;
-//   left: -16px;
-//   top: 0px;
-//   width: 5px;
-//   border-bottom: 3px solid #4d7c2a;
-//   height: 11px;
-//   border-right: 3px solid #4d7c2a;
-//   transform: rotate(45deg);
-//   -o-transform: rotate(45deg);
-//   -ms-transform: rotate(45deg);
-//   -webkit-transform: rotate(45deg);
-// }
+.smallImages {
+  display: block;
+  float: center;
+  width: 70%;
+  height: 50%;
+}
