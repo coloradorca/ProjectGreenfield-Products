@@ -1,17 +1,30 @@
 // /* eslint-disable */
 
 import React from 'react';
+import axios from 'axios';
 import StarRatingComponent from 'react-star-rating-component';
+
+import './ProductDetail.scss';
 
 class AverageStar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       averageRating: 4,
-      // reviews: 0,
+      // numReviews: 0,
     };
     this.getAverage = this.getAverage.bind(this);
   }
+
+  // async componentDidMount() {
+  //   const ratings = await axios.get(`${url}/reviews/${productId}/list`);
+  //   this.setState(
+  //     {
+  //       numReviews: ratings.data.results.length,
+  //     },
+  //     () => console.log(ratings.data.results),
+  //   );
+  // }
 
   componentDidUpdate(prevProps) {
     if (this.props.data !== prevProps.data) {
@@ -29,8 +42,8 @@ class AverageStar extends React.Component {
       sum += review.rating;
       return sum;
     });
-    // const average = Math.round(sum / arr.length);
-    const average = Math.round((sum / arr.length) * 2) / 2;
+    const average = Math.round(sum / arr.length);
+    // const average = Math.round((sum / arr.length) * 2) / 2;
     this.setState({
       averageRating: average,
     });
@@ -70,7 +83,7 @@ class AverageStar extends React.Component {
           />
         </div>
         <div className="linkToScroll">
-          <button
+          <a
             type="button"
             onClick={() =>
               document.getElementById('ratingsComp').scrollIntoView(true)
@@ -78,7 +91,7 @@ class AverageStar extends React.Component {
           >
             {' '}
             Read all {reviewLength} Reviews...{' '}
-          </button>
+          </a>
         </div>
       </div>
     );

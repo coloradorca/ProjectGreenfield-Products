@@ -1,7 +1,10 @@
+$primary-color: black;
+
 .ProductDetail {
   padding-top: 40px;
   text-align: center;
   padding-right: 30%;
+  color: black;
 }
 .productCategory {
   font-size: medium;
@@ -12,4 +15,9 @@
 .productPrice {
   font-size: large;
   color: rgb(172, 16, 16);
+}
+
+.linkToScroll {
+  color: blue;
+  text-decoration: underline;
 }
