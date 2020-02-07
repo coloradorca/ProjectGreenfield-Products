@@ -29,11 +29,11 @@ class AverageStar extends React.Component {
     this.getAverage();
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.data !== prevProps.data) {
-      this.getAverage();
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   if (this.props.data !== prevProps.data) {
+  //     this.getAverage();
+  //   }
+  // }
 
   getAverage() {
     const { data } = this.props;

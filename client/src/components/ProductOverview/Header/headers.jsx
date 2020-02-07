@@ -10,10 +10,10 @@ class Headers extends React.Component {
     };
   }
 
-  changeValue = (event) => {
-    event.preventDefault();
+  changeValue = (e) => {
+    e.preventDefault();
     this.setState({
-      product: event.target.value,
+      product: e.target.value,
     });
   };
 
