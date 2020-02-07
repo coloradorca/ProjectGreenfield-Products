@@ -2,8 +2,8 @@
 .ProductOverview {
   display: flex;
   flex-wrap: wrap;
-  margin-left: 5%;
-  margin-right: 5%;
+  // margin-left: 5%;
+  // margin-right: 5%;
 }
 
 .leftContainer {
@@ -25,21 +25,20 @@
 }
 
 .StyleSelector {
-  // flex-wrap: wrap;
-  float: right;
+  // float: right;
   display: flex;
   flex-wrap: wrap;
   height: auto;
   width: auto;
 }
 .prodcutDescription {
-  // background-color: lightgrey;
   background-color: #e9e9e9;
   column-count: 2;
-  border-radius: 20px;
+  border-radius: 15px;
   text-align: center;
-  padding: 10px;
-  // height: 300px;
+  padding: 20px;
+  color: darkgreen;
+  margin-bottom: 50px;
 }
 
 .starReviews {

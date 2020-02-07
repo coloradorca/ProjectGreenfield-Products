@@ -48,12 +48,6 @@
   color: #fff;
 }
 
-.downArrowButton {
-}
-
-.upArrowButton {
-}
-
 .fa-arrow-right:before,
 .fa-arrow-left:before {
   color: orange;
@@ -62,8 +56,8 @@
 .thumbnailImage {
   height: 70px;
   width: 70px;
-  border: 10px solid rgba(0, 0, 0, 0.3);
-  margin: 5px;
+  border: 8px solid rgba(0, 0, 0, 0.3);
+  margin: 10px;
   cursor: pointer;
   -webkit-background-clip: padding;
   border-radius: 6px;
@@ -72,7 +66,7 @@
 .selectThumbnail {
   height: 80px;
   width: 80px;
-  border: 15px solid orange;
+  border: 8px solid orange;
   margin: 5px;
   cursor: pointer;
   -webkit-background-clip: padding;
@@ -90,8 +84,18 @@
   color: orange;
 }
 
-.fa-arrow-up,
-.fa-arrow-down {
+.fa-arrow-up {
+  padding-top: 80px;
   color: orange;
   font-size: 50px;
+  margin-left: 26px;
+  position: absolute;
+}
+
+.fa-arrow-down {
+  // padding-bottom: 100px;
+  color: orange;
+  font-size: 50px;
+  margin-left: 26px;
+  position: absolute;
 }

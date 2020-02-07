@@ -81,18 +81,18 @@ class DisplayImage extends React.Component {
           >
             <i className="fa fa-arrows-alt" size={70} aria-hidden="true" />
           </div>
+          {start > 0 && (
+            <div
+              role="button"
+              tabIndex={0}
+              className="upArrowButton"
+              onKeyDown={this.decreaseIndex}
+              onClick={this.decreaseIndex}
+            >
+              <i className="fa fa-arrow-up" size={90} aria-hidden="true" />
+            </div>
+          )}
           <div className="thumbnailContainer">
-            {start > 0 && (
-              <div
-                role="button"
-                tabIndex={0}
-                className="upArrowButton"
-                onKeyDown={this.decreaseIndex}
-                onClick={this.decreaseIndex}
-              >
-                <i className="fa fa-arrow-up" size={90} aria-hidden="true" />
-              </div>
-            )}
             <div className="thumbnails">
               {currentStyle.photos.map((thumb, id) => (
                 <ThumbNailView
@@ -108,18 +108,18 @@ class DisplayImage extends React.Component {
                 />
               ))}
             </div>
-            {end !== length && (
-              <div
-                role="button"
-                tabIndex={0}
-                className="downArrowButton"
-                onKeyDown={this.increaseIndex}
-                onClick={this.increaseIndex}
-              >
-                <i className="fa fa-arrow-down" size={90} aria-hidden="true" />
-              </div>
-            )}
           </div>
+          {end !== length && (
+            <div
+              role="button"
+              tabIndex={0}
+              className="downArrowButton"
+              onKeyDown={this.increaseIndex}
+              onClick={this.increaseIndex}
+            >
+              <i className="fa fa-arrow-down" size={90} aria-hidden="true" />
+            </div>
+          )}
         </div>
       );
     }

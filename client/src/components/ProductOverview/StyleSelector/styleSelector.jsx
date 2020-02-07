@@ -10,7 +10,7 @@ class StyleSelector extends React.Component {
     this.state = {
       images: '',
       selected: '',
-      checkedCircle: undefined,
+      checkedCircle: 0,
     };
     this.updateStyle = this.updateStyle.bind(this);
     this.indicateSelected = this.indicateSelected.bind(this);
