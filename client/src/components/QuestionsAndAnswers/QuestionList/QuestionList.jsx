@@ -6,8 +6,6 @@ import './QuestionList.scss';
 
 const url = 'http://3.134.102.30/qa';
 
-// QuestionsAndAnswers --> QuestionsList -{filter}-> Question --> AnswerList --> Answer
-
 export default class QuestionList extends Component {
   constructor(props) {
     super(props);
@@ -21,6 +19,7 @@ export default class QuestionList extends Component {
 
   async componentDidMount() {
     const { productId } = this.props;
+    console.log('pId in QList:', productId);
     try {
       const getQuestions = await axios.get(`${url}/${productId}`);
       this.setState({
@@ -31,6 +30,21 @@ export default class QuestionList extends Component {
       console.error(error);
     }
     console.log(productId, this.state);
+  }
+
+  // is this needed? I dont have a productId field...
+  componentDidUpdate(prevProps) {
+    const { productId } = this.props;
+    if (prevProps.productId !== productId) {
+      this.setState(
+        {
+          productId,
+        },
+        () => {
+          return this.componentDidMount();
+        },
+      );
+    }
   }
 
   handleChange = (event) => {
@@ -69,6 +83,8 @@ export default class QuestionList extends Component {
         </div>
       );
     }
+    // linter prefers subsequent if blocks to else ifs and redundant else
+
     if (showing >= allQuestions.length) {
       return (
         <div>
@@ -142,9 +158,3 @@ export default class QuestionList extends Component {
     );
   }
 }
-
-// const mapStateToProps = (state) => ({});
-
-// const mapDispatchToProps = {};
-
-// export default connect(mapStateToProps, mapDispatchToProps)(QuestionList);

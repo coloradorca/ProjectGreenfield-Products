@@ -8,15 +8,18 @@ class Headers extends React.Component {
     this.state = {
       product: 0,
     };
-    this.changeValue = this.changeValue.bind(this);
   }
 
+<<<<<<< HEAD
+  changeValue = (e) => {
+=======
   changeValue(e) {
+>>>>>>> 351f25810397f014eacb81710dd4b8be1a17d595
     e.preventDefault();
     this.setState({
       product: e.target.value,
     });
-  }
+  };
 
   render() {
     const { changeProduct } = this.props;

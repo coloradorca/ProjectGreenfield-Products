@@ -1,7 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-// import { render } from 'react-dom';
-import { withRouter } from 'react-router-dom';
 import ProductOverview from './ProductOverview/ProductOverview.jsx';
 import RatingsAndReviews from './RatingsAndReviews/RatingsAndReviews.jsx';
 import QuestionsAndAnswers from './QuestionsAndAnswers/QuestionsAndAnswers.jsx';
@@ -14,15 +11,14 @@ class App extends React.Component {
     this.state = {
       productId: 1,
     };
-    this.changeProduct = this.changeProduct.bind(this);
   }
 
-  changeProduct(e, newId) {
+  changeProduct = (e, newId) => {
     e.preventDefault();
     this.setState({
       productId: newId,
     });
-  }
+  };
 
   render() {
     const { productId } = this.state;
@@ -39,4 +35,4 @@ class App extends React.Component {
   }
 }
 
-export default withRouter(App);
+export default App;
