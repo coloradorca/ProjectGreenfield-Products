@@ -7,8 +7,8 @@ class AverageStar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // eslint-disable-next-line react/no-unused-state
-      averageRating: '',
+      averageRating: 4,
+      // reviews: 0,
     };
     this.getAverage = this.getAverage.bind(this);
   }
@@ -29,43 +29,62 @@ class AverageStar extends React.Component {
       sum += review.rating;
       return sum;
     });
-    const average = Math.round(sum / arr.length);
+    // const average = Math.round(sum / arr.length);
+    const average = Math.round((sum / arr.length) * 2) / 2;
     this.setState({
       averageRating: average,
     });
   }
 
   render() {
+    const { reviewLength } = this.props;
     return (
-      <div>
-        <StarRatingComponent
-          name="tileStar"
-          editing={false}
-          starCount={5}
-          value={this.state.averageRating}
-          renderStarIcon={(index, value) => {
-            return (
-              <span>
-                <i className={index <= value ? 'fas fa-star' : 'far fa-star'} />
-              </span>
-            );
-          }}
-          renderStarIconHalf={() => {
-            return (
-              <span>
-                <span style={{ position: 'absolute' }}>
-                  <i className="far fa-star" />
-                </span>
+      <div className="ratingAndReviews">
+        <div>
+          <StarRatingComponent
+            name="tileStar"
+            editing={false}
+            starCount={5}
+            value={this.state.averageRating}
+            renderStarIcon={(index, value) => {
+              return (
                 <span>
-                  <i className="fas fa-star-half" />
+                  <i
+                    className={index <= value ? 'fas fa-star' : 'far fa-star'}
+                  />
                 </span>
-              </span>
-            );
-          }}
-        />
+              );
+            }}
+            renderStarIconHalf={() => {
+              return (
+                <span>
+                  <span style={{ position: 'absolute' }}>
+                    <i className="far fa-star" />
+                  </span>
+                  <span>
+                    <i className="fas fa-star-half" />
+                  </span>
+                </span>
+              );
+            }}
+          />
+        </div>
+        <div className="linkToScroll">
+          <button
+            type="button"
+            onClick={() =>
+              document.getElementById('ratingsComp').scrollIntoView(true)
+            }
+          >
+            {' '}
+            Read all {reviewLength} Reviews...{' '}
+          </button>
+        </div>
       </div>
     );
   }
 }
 
 export default AverageStar;
+
+// className = "ratingsComp"

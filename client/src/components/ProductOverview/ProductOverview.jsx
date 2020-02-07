@@ -34,6 +34,7 @@ class ProductOverview extends React.Component {
       currentIndex: 0,
       placeholder: undefined,
       rating: undefined,
+      numReviews: undefined,
     };
     this.changeStyle = this.changeStyle.bind(this);
     this.changeImage = this.changeImage.bind(this);
@@ -53,8 +54,9 @@ class ProductOverview extends React.Component {
         productList: getList.data,
         placeholder: getList.data,
         rating: ratings.data,
+        numReviews: ratings.data.results.length,
       },
-      () => console.log(this.state.rating),
+      () => console.log(ratings.data.results),
     );
   }
 
@@ -93,6 +95,7 @@ class ProductOverview extends React.Component {
       productList,
       styles,
       rating,
+      numReviews,
     } = this.state;
 
     const { changeProduct } = this.props;
@@ -117,9 +120,8 @@ class ProductOverview extends React.Component {
             </div>
           </div>
           <div className="rightContainer">
-            <div className="starReveiws">
-              Star Review Component
-              <AverageStar data={rating} />
+            <div className="starReviews">
+              <AverageStar reviewLength={numReviews} data={rating} />
             </div>
             <div className="ProductDetail">
               <ProductDetail currentStyle={currentStyle} data={productList} />
