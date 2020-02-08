@@ -28,12 +28,14 @@ class HelpfulClick extends React.Component {
     const { helpfulness } = this.state;
     return (
       <div className="helpTile">
-        Helpful? Yes
-        <input
-          type="radio"
+        Helpful?
+        <button
+          type="button"
           className="yesHelp"
           onClick={(e) => this.markHelpful(e)}
-        />
+        >
+          Yes
+        </button>
         <div className="helpfulnessRating">{helpfulness}</div>
       </div>
     );

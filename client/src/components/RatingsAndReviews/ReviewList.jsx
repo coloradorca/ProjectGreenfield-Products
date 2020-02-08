@@ -19,6 +19,7 @@ class ReviewList extends React.Component {
       data: [],
       selectedValue: 'newest',
       i: 2,
+      totalReviews: 0,
     };
     this.moreReviews = this.moreReviews.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -36,6 +37,7 @@ class ReviewList extends React.Component {
       });
       this.setState({
         data: getReviews.data.results,
+        totalReviews: getReviews.data.results.length,
       });
       // this.loadList();
     } catch (error) {
@@ -92,9 +94,10 @@ class ReviewList extends React.Component {
     if (this.props.showReviewList === false) {
       return null;
     }
+    console.log(this.state.totalReviews);
     return (
-      <div className="reviewList">
-        Number of Reviews sorted by
+      <div>
+        {this.state.totalReviews} Reviews sorted by
         <select
           className="reviewFilters"
           value={this.state.selectedValue}
@@ -105,16 +108,18 @@ class ReviewList extends React.Component {
           <option value="relevant">Relevant</option>
         </select>
         <br />
-        {this.state.data.slice(0, this.state.i).map((review) => {
-          return <ReviewTile review={review} reviewId={review.review_id} />;
-        })}
+        <div className="reviewList">
+          {this.state.data.slice(0, this.state.i).map((review) => {
+            return <ReviewTile review={review} reviewId={review.review_id} />;
+          })}
+        </div>
         <button
           className="moreReviews"
           onClick={(e) => {
             this.moreReviews(e);
           }}
         >
-          More Reviews
+          MORE REVIEWS
         </button>
         {/* <button
           className="addReview"

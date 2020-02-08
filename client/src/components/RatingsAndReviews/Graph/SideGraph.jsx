@@ -1,7 +1,5 @@
-/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/destructuring-assignment */
-/* eslint-disable no-useless-constructor */
-/* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 
 class SideGraph extends React.Component {
@@ -17,29 +15,37 @@ class SideGraph extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
+    const {
+      onePercent,
+      twoPercent,
+      threePercent,
+      fourPercent,
+      fivePercent,
+    } = this.props;
+
     if (this.props.fivePercent !== prevProps.fivePercent) {
       this.setState({
-        fivePercent: this.props.fivePercent,
+        fivePercent,
       });
     }
-    if (this.props.fourPercent !== prevProps.fourPercent) {
+    if (fourPercent !== prevProps.fourPercent) {
       this.setState({
-        fourPercent: this.props.fourPercent,
+        fourPercent,
       });
     }
-    if (this.props.threePercent !== prevProps.threePercent) {
+    if (threePercent !== prevProps.threePercent) {
       this.setState({
-        threePercent: this.props.threePercent,
+        threePercent,
       });
     }
-    if (this.props.twoPercent !== prevProps.twoPercent) {
+    if (twoPercent !== prevProps.twoPercent) {
       this.setState({
-        twoPercent: this.props.twoPercent,
+        twoPercent,
       });
     }
-    if (this.props.onePercent !== prevProps.onePercent) {
+    if (onePercent !== prevProps.onePercent) {
       this.setState({
-        onePercent: this.props.onePercent,
+        onePercent,
       });
     }
     return null;
