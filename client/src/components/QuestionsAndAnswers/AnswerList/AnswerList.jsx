@@ -18,7 +18,6 @@ export default class AnswerList extends Component {
   async componentDidMount() {
     const { qId } = this.props;
     try {
-      // `${url}/qa/${qId}/answers?count=10` <--if we wanted to specify count
       const getAnswers = await axios.get(`${url}/qa/${qId}/answers?count=10`);
       this.setState({ answers: getAnswers.data.results });
     } catch (error) {
@@ -26,32 +25,33 @@ export default class AnswerList extends Component {
     }
   }
 
-  // componentDidUpdate(prevProps) {
-  //   if (prevProps.qId !== this.props.productId) {
-  //     this.setState(
-  //       {
-  //         qId: this.props.productId,
-  //       },
-  //       () => {
-  //         return this.componentDidMount();
-  //       },
-  //     );
-  //   }
-  // }
-
   handleClick = () => {
-    // this.setState((previous) => ({ showing: previous.showing + 2 })); <-- if we wanted to increment 2 at a time
     const { status, answers } = this.state;
     if (status === 'LOAD MORE ANSWERS') {
       this.setState({ showing: answers.length, status: 'COLLAPSE ANSWERS' });
     } else {
       this.setState({ showing: 2, status: 'LOAD MORE ANSWERS' });
     }
-    console.log(this.state);
   };
 
   render() {
     const { answers, showing, status } = this.state;
+    const custom = {
+      fontSize: 'x-small',
+      // top-right-bottom-left
+      margin: '2% 0 1% 1%',
+    };
+    if (answers.length === 0) {
+      return (
+        <div className="answerList">
+          <div className="noAnswers">
+            A: Be the first to submit an answer to this question!
+            <br />
+            <div id="dogs">By: Ugly Dogs</div>
+          </div>
+        </div>
+      );
+    }
     if (answers.length > 2) {
       return (
         <div className="answerList">
@@ -61,7 +61,8 @@ export default class AnswerList extends Component {
             </div>
           ))}
           <button
-            className="answerButton"
+            className="questionButton"
+            style={custom}
             type="button"
             onClick={() => {
               this.handleClick();

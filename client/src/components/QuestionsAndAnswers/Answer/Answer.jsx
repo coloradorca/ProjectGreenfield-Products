@@ -55,7 +55,7 @@ export default class Answer extends Component {
         <span className="answer">{`A: ${answer.body} `}</span>
         <Image photos={answer.photos} />
         <div className="user">
-          <span>{'by: '}</span>
+          <span className="answerer">{'by: '}</span>
           <Name name={answer.answerer_name} />
           <span>{', '}</span>
           <span>

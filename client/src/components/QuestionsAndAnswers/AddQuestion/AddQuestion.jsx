@@ -77,7 +77,7 @@ export default class AddQuestion extends Component {
       <span>
         <button
           type="button"
-          className="addQuestionButton"
+          className="questionButton"
           onClick={() => this.openModal()}
         >
           ADD A QUESTION +
@@ -105,7 +105,6 @@ export default class AddQuestion extends Component {
               <h4 className="questionModalHeading">Ask your Question</h4>
               <span>{`About the ${productDetails.name}`}</span>
               <div className="addAnswerForm">
-                {/* <form className="addAnswerForm" onSubmit={this.handleSubmit}> */}
                 <label>*Your Question</label>
                 <br />
                 <textarea
@@ -159,12 +158,6 @@ export default class AddQuestion extends Component {
                 >
                   Submit
                 </button>
-                {/* <input
-                  className="submitModalButton"
-                  type="submit"
-                  value="Submit"
-                /> */}
-                {/* </form> */}
               </div>
             </div>
           </ReactModal>
@@ -173,5 +166,3 @@ export default class AddQuestion extends Component {
     );
   }
 }
-
-// export default AddAnswer;
