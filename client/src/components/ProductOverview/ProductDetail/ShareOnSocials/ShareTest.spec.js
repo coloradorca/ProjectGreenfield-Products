@@ -1,9 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { shallow } from 'enzyme';
-import Share from './ShareOnSocials';
-
-const list = ['a', 'b', 'c'];
+// import { shallow } from 'enzyme';
+// import Share from './ShareOnSocials';
 
 describe('My Test Suite', () => {
   it('My Test Case', () => {
@@ -11,13 +9,13 @@ describe('My Test Suite', () => {
   });
 });
 
-describe('CircleImage', () => {
-  test('snapshot renders', () => {
-    const component = renderer.create(<CircleImage image={'sdf'} />);
-    let tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-});
+// describe('CircleImage', () => {
+//   test('snapshot renders', () => {
+//     const component = renderer.create(<CircleImage image={'sdf'} />);
+//     let tree = component.toJSON();
+//     expect(tree).toMatchSnapshot();
+//   });
+// });
 
 // describe('CircleImage', () => {
 //   test('snapshot renders', () => {

@@ -9,13 +9,7 @@ import StyleSelector from './StyleSelector/styleSelector.jsx';
 import AddToCart from './AddToCart/addToCart.jsx';
 import ProductDescription from './ProductDescription/ProductDescription.jsx';
 import ProductDetail from './ProductDetail/ProductDetail.jsx';
-// import AverageStar from '../RatingsAndReviews/Stars/AverageStar.jsx';
 import AverageStar from './ProductDetail/AvgStar.jsx';
-
-// sample data import
-// import productList from './sampleData/productList.js';
-// import details from './sampleData/details.js';
-// import styles from './sampleData/styles.js';
 
 import './PO.scss';
 
