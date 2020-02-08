@@ -114,7 +114,9 @@ class ReviewBreakdown extends React.Component {
     return (
       <div className="breakdownSection">
         <AverageStar data={this.state.data} />
-        <div>{this.state.recommend}% of viewers reccomend this product</div>
+        <div className="sidePercentRec">
+          {this.state.recommend}% of viewers reccomend this product
+        </div>
         <SideGraph
           fivePercent={this.state.five}
           fourPercent={this.state.four}
