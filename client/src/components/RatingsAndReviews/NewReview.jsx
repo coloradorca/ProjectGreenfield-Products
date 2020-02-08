@@ -22,7 +22,7 @@ class NewReview extends React.Component {
       modalIsOpen: false,
       rating: 0,
       summary: '',
-      reviewTextBody: '',
+      body: '',
       recommend: false,
       name: '',
       email: '',
@@ -47,19 +47,19 @@ class NewReview extends React.Component {
     const {
       rating,
       summary,
-      reviewTextBody,
+      body,
       recommend,
       name,
       email,
       photos,
       characteristics,
     } = this.state;
-    console.log(product);
+    const { product } = this.props;
     axios
       .post(`${url}/${product}`, {
-        body: rating,
+        rating,
         summary,
-        reviewTextBody,
+        body,
         recommend,
         name,
         email,
@@ -207,7 +207,7 @@ class NewReview extends React.Component {
               <br />
               <textArea
                 name="body"
-                className="reviewTextBody"
+                className="body"
                 rows="10"
                 cols="40"
                 placeholder="Why did you like the product or not?"
