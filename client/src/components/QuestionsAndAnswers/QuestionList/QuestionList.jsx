@@ -32,7 +32,6 @@ export default class QuestionList extends Component {
     console.log(productId, this.state);
   }
 
-  // is this needed? I dont have a productId field...
   componentDidUpdate(prevProps) {
     const { productId } = this.props;
     if (prevProps.productId !== productId) {
@@ -83,23 +82,21 @@ export default class QuestionList extends Component {
         </div>
       );
     }
-    // linter prefers subsequent if blocks to else ifs and redundant else
-
     if (showing >= allQuestions.length) {
       return (
-        <div>
+        <div className="questionList">
           <div className="searchQuestions">
             <input
               id="searchBar"
               type="search"
-              placeholder="Have a question? Search for the answers..."
+              placeholder="HAVE A QUESTION? SEARCH FOR THE ANSWERS..."
               size="100"
               maxLength="20"
               value={search}
               onChange={this.handleChange}
             />
           </div>
-          <div className="questionList">
+          <div>
             {renderQuestions.slice(0, showing).map((q) => (
               <div key={q.question_id} className="questionListQuestion">
                 <Question
@@ -119,27 +116,29 @@ export default class QuestionList extends Component {
       );
     }
     return (
-      <div>
+      <div className="questionList">
         <div className="searchQuestions">
           <input
             id="searchBar"
             type="search"
-            placeholder="Have a question? Search for the answers..."
+            placeholder="HAVE A QUESTION? SEARCH FOR THE ANSWERS..."
             size="100"
             maxLength="20"
             value={search}
             onChange={this.handleChange}
           />
         </div>
-        {renderQuestions.slice(0, showing).map((q) => (
-          <div key={q.question_id} className="questionListQuestion">
-            <Question
-              question={q}
-              qId={q.question_id}
-              productDetails={productDetails}
-            />
-          </div>
-        ))}
+        <div>
+          {renderQuestions.slice(0, showing).map((q) => (
+            <div key={q.question_id} className="questionListQuestion">
+              <Question
+                question={q}
+                qId={q.question_id}
+                productDetails={productDetails}
+              />
+            </div>
+          ))}
+        </div>
         <div>
           <span>
             <button
