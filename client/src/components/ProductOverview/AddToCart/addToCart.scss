@@ -4,22 +4,33 @@
   text-transform: uppercase;
 }
 
+// .dropbtn {
+//   background-color: #40c6ff;
+//   color: white;
+//   padding: 16px;
+//   font-size: 16px;
+//   border: none;
+//   cursor: pointer;
+//   margin: 20px;
+//   text-transform: uppercase;
+//   border-radius: 5px;
+// }
 .dropbtn {
-  background-color: #40c6ff;
-  color: white;
+  color: black;
   padding: 16px;
   font-size: 16px;
-  border: none;
+  border: 1px solid black;
   cursor: pointer;
   margin: 20px;
   text-transform: uppercase;
-  border-radius: 5px;
+  border-radius: 2px;
 }
-
-.dropdown,
-.addToCartButton {
+.dropdown {
   position: relative;
   display: inline-block;
+}
+.addToCartButton {
+  margin-left: 65px;
 }
 
 .dropdown-content {
