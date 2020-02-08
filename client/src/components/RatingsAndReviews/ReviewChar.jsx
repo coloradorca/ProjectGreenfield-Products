@@ -18,6 +18,7 @@ class ReviewChar extends React.Component {
           <input type="radio" name="halfSizeBig" /> ½ a size too big
           <input type="radio" name="sizeBig" /> A size too big
         </div>
+        <br />
         <label> *Width </label>
         <div newClass="reviewWidth" required>
           <input type="radio" name="narrowWidth" /> Too narrow
@@ -26,6 +27,7 @@ class ReviewChar extends React.Component {
           <input type="radio" name="slightWideWidth" /> Slightly wide
           <input type="radio" name="wideWidth" /> Too wide
         </div>
+        <br />
         <label>*Comfort </label>
         <div newClass="reviewComfort" required>
           <input type="radio" name="uncomfortable" /> Uncomfortable
@@ -35,6 +37,7 @@ class ReviewChar extends React.Component {
           <input type="radio" name="comfortable" /> Comfortable
           <input type="radio" name="perfectComfort" /> Perfect
         </div>
+        <br />
         <label>*Quality</label>
         <div newClass="reviewQuality" required>
           <input type="radio" name="poorQuality" /> Poor
@@ -43,6 +46,7 @@ class ReviewChar extends React.Component {
           <input type="radio" name="greatQuality" /> Pretty great
           <input type="radio" name="perfectQuality" /> Perfect
         </div>
+        <br />
         <label>*Length </label>
         <div newClass="reviewLength" required>
           <input type="radio" name="shortLength" /> Runs Short
@@ -51,6 +55,7 @@ class ReviewChar extends React.Component {
           <input type="radio" name="slightLongLenth" /> Runs slightly long
           <input type="radio" name="longLength" /> Runs long
         </div>
+        <br />
         <label>*Fit</label>
         <div newClass="reviewFit" required>
           <input type="radio" name="tightFit" /> Runs tight
