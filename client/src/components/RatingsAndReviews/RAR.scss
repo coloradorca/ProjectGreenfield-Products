@@ -144,10 +144,10 @@
 .reviewTileImages {
   max-height: 80px;
   width: 80px;
-  border: 10px solid rgba(0, 0, 0, 0.3);
-  margin: 5px;
+  // border: 10px solid rgba(0, 0, 0, 0.3);
+  border: 10px solid orange;
   cursor: pointer;
-  -webkit-background-clip: padding;
+  // -webkit-background-clip: padding;
   border-radius: 6px;
 }
 
@@ -297,7 +297,7 @@ img {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
+  // border: 10px solid orange;
 }
 
 textarea:focus {
