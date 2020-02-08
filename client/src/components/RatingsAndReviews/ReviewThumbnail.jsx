@@ -42,13 +42,13 @@ class ReviewThumbnail extends React.Component {
           overlayClassName="OverlayModal"
           conentLabel="reviewImageModal"
         >
-          <button
+          {/* <button
             type="button"
             className="closeReviewImage"
             onClick={() => this.closeModal()}
           >
             X
-          </button>
+          </button> */}
           <img src={image.url} alt="" className="expandedReviewImage" />
         </ReactModal>
       </div>
