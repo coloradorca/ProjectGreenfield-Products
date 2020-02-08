@@ -18,7 +18,7 @@ class TileStar extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="tileStar">
         <StarRatingComponent
           name="tileStar"
           editing={false}

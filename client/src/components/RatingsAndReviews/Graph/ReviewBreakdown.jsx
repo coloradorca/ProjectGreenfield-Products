@@ -104,7 +104,9 @@ class ReviewBreakdown extends React.Component {
         recc += 1;
       }
     });
-    const recPercent = (recc / this.state.data.results.length) * 100;
+    const recPercent = Math.round(
+      (recc / this.state.data.results.length) * 100,
+    );
     this.setState({
       recommend: recPercent,
     });
@@ -114,7 +116,9 @@ class ReviewBreakdown extends React.Component {
     return (
       <div className="breakdownSection">
         <AverageStar data={this.state.data} />
-        <div>{this.state.recommend}% of viewers reccomend this product</div>
+        <div className="sidePercentRec">
+          {this.state.recommend}% of viewers reccomend this product
+        </div>
         <SideGraph
           fivePercent={this.state.five}
           fourPercent={this.state.four}

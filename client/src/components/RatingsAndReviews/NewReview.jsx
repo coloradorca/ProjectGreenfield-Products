@@ -22,7 +22,7 @@ class NewReview extends React.Component {
       modalIsOpen: false,
       rating: 0,
       summary: '',
-      reviewTextBody: '',
+      body: '',
       recommend: false,
       name: '',
       email: '',
@@ -47,19 +47,19 @@ class NewReview extends React.Component {
     const {
       rating,
       summary,
-      reviewTextBody,
+      body,
       recommend,
       name,
       email,
       photos,
       characteristics,
     } = this.state;
-    console.log(product);
+    const { product } = this.props;
     axios
       .post(`${url}/${product}`, {
-        body: rating,
+        rating,
         summary,
-        reviewTextBody,
+        body,
         recommend,
         name,
         email,
@@ -164,113 +164,112 @@ class NewReview extends React.Component {
                 close
               </button>
             </div>
-            {/* <form className="newReview" onSubmit={this.onSubmit}>
-              What would you rate this item?* mandatory */}
-            <div>
-              <h4 className="reviewHeader">Write Your Review</h4>
-              <label>*Your Rating</label>
-              <NewReviewStars setStarRating={this.setStarRating} />
-              <br />
-              <label>*Do you recommend this product?</label>
-              <div name="recommend" required>
-                <input
-                  type="radio"
-                  name="yes"
-                  value="true"
-                  checked={this.state.recommend === true}
-                  onChange={this.onRadioChange}
-                />{' '}
-                Yes
-                <input
-                  type="radio"
-                  name="no"
-                  value="no"
-                  checked={this.state.recommend === false}
-                  onChange={this.onRadioChange}
-                />{' '}
-                No
+            <form>
+              <div>
+                <h4 className="reviewHeader">Write Your Review</h4>
+                <label>*Your Rating</label>
+                <NewReviewStars setStarRating={this.setStarRating} />
                 <br />
+                <label>*Do you recommend this product?</label>
+                <div name="recommend" required>
+                  <input
+                    type="radio"
+                    name="yes"
+                    value="true"
+                    checked={this.state.recommend === true}
+                    onChange={this.onRadioChange}
+                  />{' '}
+                  Yes
+                  <input
+                    type="radio"
+                    name="no"
+                    value="no"
+                    checked={this.state.recommend === false}
+                    onChange={this.onRadioChange}
+                  />{' '}
+                  No
+                  <br />
+                </div>
+                <br />
+                <ReviewChar setCharRating={this.setCharRating} />
+                <br />
+                <label>Review Summary</label>
+                <br />
+                <input
+                  type="text"
+                  name="summary"
+                  maxLength="60"
+                  onChange={this.onChange}
+                />
+                <br />
+                <label>*Your Review</label>
+                <br />
+                <textArea
+                  name="body"
+                  className="body"
+                  rows="10"
+                  cols="40"
+                  placeholder="Why did you like the product or not?"
+                  minLength="50"
+                  maxLength="1000"
+                  onChange={(e) => this.handleChange(e)}
+                  required
+                />
+                <div>{this.state.charCountDown}</div>
+                <br />
+                <label>Add your photo url</label>
+                <br />
+                <input
+                  type="url"
+                  className="photos"
+                  pattern="https://.*"
+                  size="30"
+                  placeholder="https://example.com"
+                  accept="image/*"
+                  onChange={this.onChange}
+                  multiple
+                />
+                <br />
+                <br />
+                <label>*Your Name </label>
+                <br />
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Example: Luke456"
+                  maxLength="60"
+                  size="30"
+                  onChange={this.onChange}
+                  required
+                />
+                <div className="disclaimer">
+                  <em>For privacy reasons, do not use your full name</em>
+                </div>
+                <br />
+                <label>*Your email</label>
+                <br />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Example: falcon@rebel.net"
+                  size="30"
+                  maxLength="60"
+                  onChange={this.onChange}
+                  required
+                />
+                <div className="disclaimer">
+                  <em>For authentication reasons, you will not be emailed</em>
+                </div>
+                <br />
+                <button
+                  type="button"
+                  className="submitReview"
+                  onClick={this.onSubmit}
+                >
+                  Submit
+                </button>
               </div>
-              <br />
-              <ReviewChar setCharRating={this.setCharRating} />
-              <br />
-              <label>Review Summary</label>
-              <br />
-              <input
-                type="text"
-                name="summary"
-                maxLength="60"
-                onChange={this.onChange}
-              />
-              <br />
-              <label>*Your Review</label>
-              <br />
-              <textArea
-                name="body"
-                className="reviewTextBody"
-                rows="10"
-                cols="40"
-                placeholder="Why did you like the product or not?"
-                minLength="50"
-                maxLength="1000"
-                onChange={(e) => this.handleChange(e)}
-                required
-              />
-              <div>{this.state.charCountDown}</div>
-              <br />
-              <label>Add your photo url</label>
-              <br />
-              <input
-                type="url"
-                className="photos"
-                pattern="https://.*"
-                size="30"
-                placeholder="https://example.com"
-                accept="image/*"
-                onChange={this.onChange}
-                multiple
-              />
-              <br />
-              <br />
-              <label>*Your Name </label>
-              <br />
-              <input
-                type="text"
-                name="name"
-                placeholder="Example: Luke456"
-                maxLength="60"
-                size="30"
-                onChange={this.onChange}
-                required
-              />
-              <div className="disclaimer">
-                <em>For privacy reasons, do not use your full name</em>
-              </div>
-              <br />
-              <label>*Your email</label>
-              <br />
-              <input
-                type="email"
-                name="email"
-                placeholder="Example: falcon@rebel.net"
-                size="30"
-                maxLength="60"
-                onChange={this.onChange}
-                required
-              />
-              <div className="disclaimer">
-                <em>For authentication reasons, you will not be emailed</em>
-              </div>
-              <br />
-              <button
-                type="button"
-                className="submitReview"
-                onClick={this.onSubmit}
-              >
-                Submit
-              </button>
-              {/* </form> */}
-            </div>
+            </form>
           </ReactModal>
         </div>
       </span>

@@ -36,7 +36,7 @@ class HelpfulClick extends React.Component {
         >
           Yes
         </button>
-        <div className="helpfulnessRating">{helpfulness}</div>
+        <div className="helpfulnessRating">({helpfulness})</div>
       </div>
     );
   }
