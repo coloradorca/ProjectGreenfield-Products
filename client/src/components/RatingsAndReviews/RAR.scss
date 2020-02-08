@@ -215,11 +215,13 @@ img {
 .helpTile {
   display: inline-flex;
   font-size: 16px;
+  align-self: center;
 }
 
 .helpfulnessRating {
   margin-left: 8px;
   font-size: 16px;
+  align-self: center;
 }
 
 .yesHelp {
@@ -230,7 +232,7 @@ img {
   text-decoration: underline;
   display: inline;
   margin-left: 10px;
-  margin-bottom: 4.5px;
+  align-self: center;
   padding: 0;
 }
 
@@ -239,8 +241,13 @@ img {
   text-decoration: none;
 }
 
+.helpfulnessRating {
+  font-size: x-small;
+}
+
 .reportTile {
   margin-left: 25px;
+  align-self: center;
 }
 
 .reviewReport {
@@ -250,7 +257,6 @@ img {
   cursor: pointer;
   text-decoration: underline;
   display: inline;
-  margin-bottom: 10px;
   padding: 0;
 }
 
