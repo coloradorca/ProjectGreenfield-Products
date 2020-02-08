@@ -40,10 +40,10 @@ class QuestionsAndAnswers extends Component {
     console.log('productId in QA:', productId);
 
     return (
-      <div className="questionsAndAnswersBox">
-        <span className="questionsAndAnswersHeading">QUESTIONS & ANSWERS</span>
+      <div id="questionsAndAnswersBox">
+        <div className="questionsAndAnswersHeading">QUESTIONS & ANSWERS</div>
         <QuestionList productId={productId} productDetails={productDetails} />
-        {/* couldn't productId={productDetails.id} ? */}
+        {/* alternative approach: { productId={productDetails.id} } */}
       </div>
     );
   }
