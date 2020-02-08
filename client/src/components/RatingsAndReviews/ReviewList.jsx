@@ -97,17 +97,24 @@ class ReviewList extends React.Component {
     console.log(this.state.totalReviews);
     return (
       <div>
-        {this.state.totalReviews} Reviews sorted by
-        <select
-          className="reviewFilters"
-          value={this.state.selectedValue}
-          onChange={this.handleChange}
-        >
-          <option value="newest">Newest</option>
-          <option value="helpful">Helpful</option>
-          <option value="relevant">Relevant</option>
-        </select>
-        <br />
+        <div className="reviewSort">
+          {this.state.totalReviews} Reviews sorted by
+          <select
+            className="reviewFilters"
+            value={this.state.selectedValue}
+            onChange={this.handleChange}
+          >
+            <option className="filterOptions" value="newest">
+              Newest
+            </option>
+            <option value="helpful" className="filterOptions">
+              Helpful
+            </option>
+            <option className="filterOptions" value="relevant">
+              Relevant
+            </option>
+          </select>
+        </div>
         <div className="reviewList">
           {this.state.data.slice(0, this.state.i).map((review) => {
             return <ReviewTile review={review} reviewId={review.review_id} />;
