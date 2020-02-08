@@ -10,7 +10,7 @@ class AddToCart extends React.Component {
       cart: [],
       allsizes: '',
       size: 'Select a Size',
-      amount: 'Quantity',
+      amount: '-',
       numberOfSizeSelected: 15,
     };
     this.createQuantity = this.createQuantity.bind(this);
@@ -28,7 +28,7 @@ class AddToCart extends React.Component {
   createQuantity() {
     const { numberOfSizeSelected } = this.state;
     const quantity = [];
-    for (let i = 0; i <= numberOfSizeSelected; i += 1) {
+    for (let i = 1; i <= numberOfSizeSelected; i += 1) {
       quantity.push(
         <a onClick={(e) => this.changeAmount(e, i)} key={i}>
           {i}
@@ -47,6 +47,7 @@ class AddToCart extends React.Component {
       if (select === key) {
         this.setState({
           numberOfSizeSelected: allsizes[0][key],
+          amount: 1,
         });
       }
     }
@@ -91,6 +92,7 @@ class AddToCart extends React.Component {
           </button>
           <div className="dropdown-content">{this.createQuantity()}</div>
         </div>
+        <br></br>
         <div className="dropdown">
           <button
             type="button"

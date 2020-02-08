@@ -48,6 +48,7 @@ class SideGraph extends React.Component {
         onePercent,
       });
     }
+    return null;
   }
 
   render() {
