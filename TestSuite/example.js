@@ -1,4 +1,3 @@
-/* eslint-disable */
 function sum(a, b) {
   return a + b;
 }
@@ -14,5 +13,5 @@ function addTwo(q) {
 module.exports = {
   sum,
   addone,
-  addTwo
+  addTwo,
 };
