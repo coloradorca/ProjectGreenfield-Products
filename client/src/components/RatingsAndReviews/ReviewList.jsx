@@ -88,6 +88,15 @@ class ReviewList extends React.Component {
   }
 
   render() {
+    const {
+      data,
+      i,
+      reviewShown,
+      reviewSplitNum,
+      selectedValue,
+      productId,
+    } = this.state;
+
     // this.addToData();
     if (this.props.showReviewList === false) {
       return null;
@@ -97,7 +106,7 @@ class ReviewList extends React.Component {
         Number of Reviews sorted by
         <select
           className="reviewFilters"
-          value={this.state.selectedValue}
+          value={selectedValue}
           onChange={this.handleChange}
         >
           <option value="newest">Newest</option>
@@ -105,9 +114,11 @@ class ReviewList extends React.Component {
           <option value="relevant">Relevant</option>
         </select>
         <br />
-        {this.state.data.slice(0, this.state.i).map((review) => {
-          return <ReviewTile review={review} reviewId={review.review_id} />;
-        })}
+        {data.slice(0, i).map((review) => (
+          <div key={review.review_id}>
+            <ReviewTile review={review} reviewId={review.review_id} />;
+          </div>
+        ))}
         <button
           className="moreReviews"
           onClick={(e) => {
