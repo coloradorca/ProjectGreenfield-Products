@@ -61,7 +61,7 @@ export default class AnswerList extends Component {
             </div>
           ))}
           <button
-            className="questionButton"
+            className="expandList"
             style={custom}
             type="button"
             onClick={() => {

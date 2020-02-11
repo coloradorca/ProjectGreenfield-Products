@@ -130,7 +130,7 @@ class ReviewList extends React.Component {
           })}
         </div>
         <button
-          className="moreReviews"
+          className="expandList"
           onClick={(e) => {
             this.moreReviews(e);
           }}
@@ -138,7 +138,7 @@ class ReviewList extends React.Component {
           MORE REVIEWS
         </button>
         {/* <button
-          className="addReview"
+          className="expandList"
           onClick={() => {
             return this.openNewReview();
           }}

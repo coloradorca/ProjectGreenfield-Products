@@ -81,10 +81,10 @@ export default class AddQuestion extends Component {
       <span>
         <button
           type="button"
-          className="questionButton"
+          className="expandList"
           onClick={() => this.openModal()}
         >
-          ADD A QUESTION +
+          ADD A QUESTION+
         </button>
         <div>
           <ReactModal

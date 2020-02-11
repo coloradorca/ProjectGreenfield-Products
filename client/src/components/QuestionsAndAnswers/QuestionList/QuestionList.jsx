@@ -146,7 +146,7 @@ export default class QuestionList extends Component {
         <div>
           <span>
             <button
-              className="questionButton"
+              className="expandList"
               type="button"
               onClick={() => this.handleClick()}
             >
