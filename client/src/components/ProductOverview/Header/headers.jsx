@@ -42,7 +42,11 @@ class Headers extends React.Component {
               onChange={this.changeValue}
               placeholder="Search by product number...."
             />
-            <button className="fas fa-search"></button>
+            <button
+              aria-label="Search"
+              type="button"
+              className="fas fa-search"
+            />
           </form>
         </div>
       </div>

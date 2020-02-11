@@ -51,7 +51,10 @@ class StyleSelector extends React.Component {
     if (images) {
       return (
         <div className="styleSelectorContainer">
-          <div className="styleSelectorText">Style > {selected}</div>
+          <div className="styleSelectorText">
+            <strong>Style > </strong>
+            {`  ${selected}`}
+          </div>
           <br />
           <div className="smallImages">
             {styles.map((element, i) => {

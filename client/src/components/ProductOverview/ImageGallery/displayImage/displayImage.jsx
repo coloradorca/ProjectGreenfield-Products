@@ -8,7 +8,7 @@ class DisplayImage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      checkedThumb: undefined,
+      checkedThumb: 0,
       start: 0,
       end: 3,
     };

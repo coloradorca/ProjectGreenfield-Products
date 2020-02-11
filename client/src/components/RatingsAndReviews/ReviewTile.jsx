@@ -12,7 +12,10 @@ class ReviewTile extends React.Component {
     super(props);
     this.state = {
       date: '',
+      response: '',
+      recommend: 'Yes',
     };
+    this.toBuy = this.toBuy.bind(this);
   }
 
   componentDidMount() {
@@ -23,9 +26,26 @@ class ReviewTile extends React.Component {
       newDate.getDate() +
       '-' +
       newDate.getFullYear();
-    this.setState({
-      date: formatDate,
-    });
+    this.toBuy();
+    if (this.props.review.response === 'null') {
+      this.setState({
+        date: formatDate,
+        response: '',
+      });
+    } else {
+      this.setState({
+        date: formatDate,
+        response: this.props.review.response,
+      });
+    }
+  }
+
+  toBuy() {
+    if (this.props.review.recommend === 0) {
+      this.setState({
+        recommend: 'No',
+      });
+    }
   }
 
   render() {
@@ -46,9 +66,14 @@ class ReviewTile extends React.Component {
         {/* // review body */}
         <div className="reviewBody">{this.props.review.body}</div>
         {/* // recommned */}
-        <div className="productRecommend">{this.props.review.recommend}</div>
+        <br />
+        <div className="productRecommend">
+          Recommend?
+          <div className="recAnswer">{this.state.recommend}</div>
+        </div>
         {/* // reviewer name */}
         {/* // response to review */}
+        <br />
         <div className="thumbnailTile">
           {this.props.review.photos.map((picture) => (
             <div key={picture.id}>
@@ -56,8 +81,9 @@ class ReviewTile extends React.Component {
             </div>
           ))}
         </div>
-        <div className="sellerResponse">{this.props.review.response}</div>
+        <div className="sellerResponse">{this.state.response}</div>
         {/* // rating helpfulness */}
+        <br />
         <div className="bottomLine">
           <HelpfulClick
             reviewId={this.props.reviewId}

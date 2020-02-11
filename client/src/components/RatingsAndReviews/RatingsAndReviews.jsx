@@ -40,7 +40,7 @@ class RatingsAndReviews extends React.Component {
   render() {
     return (
       <div id="ratingsComp" className="ratingsComp">
-        Ratings and Reviews
+        <div className="rarHeading">RATINGS & REVIEWS</div>
         <br />
         <br />
         <div className="rar">

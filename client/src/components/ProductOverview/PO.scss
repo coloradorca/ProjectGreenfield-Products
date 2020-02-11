@@ -10,9 +10,10 @@
 }
 
 .rightContainer {
+  margin-left: 2%;
   height: 80%;
-  width: 50%;
-  float: right;
+  width: 40%;
+  // float: left;
 }
 
 .bottomContainer {
@@ -20,6 +21,7 @@
 
 .ImageView {
   float: left;
+  // height: ;
 }
 
 .StyleSelector {
@@ -30,26 +32,32 @@
   width: auto;
 }
 .prodcutDescription {
-  background-color: #e9e9e9;
   column-count: 2;
   border-radius: 15px;
   text-align: center;
   padding: 20px;
-  color: darkgreen;
+  color: black;
   margin-bottom: 50px;
 }
 
+// column-count: 2;
+//     text-align: center;
+//     padding: 20px;
+//     color: black;
+//     border-top: 2px solid black;
+//     margin-bottom: 50px;
+
 .starReviews {
-  margin: 20px;
+  // margin: 20px;
   display: inline;
 }
 
 .dv-star-rating {
-  font-size: 30px;
+  font-size: 20px;
   margin-right: 20px;
 }
 .ratingAndReviews {
-  margin-top: 20px;
+  margin-top: 10px;
   text-align: center;
   display: inline-flex;
 }

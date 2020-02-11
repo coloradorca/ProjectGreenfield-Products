@@ -43,22 +43,39 @@ class NewReview extends React.Component {
     this.setCharRating = this.setCharRating.bind(this);
   }
 
-  onSubmit(e) {
-    e.preventDefault();
+  onSubmit() {
+    const {
+      rating,
+      summary,
+      body,
+      recommend,
+      name,
+      email,
+      photos,
+      characteristics,
+    } = this.state;
     const { product } = this.props;
-
-    axios.post(`${url}/${product}`, {
-      body: {
-        rating: this.state.rating,
-        summary: this.state.summary,
-        body: this.state.body,
-        recommend: this.state.recommend,
-        name: this.state.name,
-        email: this.state.email,
-        photos: this.state.photos,
-        characteristics: this.state.characteristics,
-      },
-    });
+    axios
+      .post(`${url}/${product}`, {
+        rating,
+        summary,
+        body,
+        recommend,
+        name,
+        email,
+        photos,
+        characteristics,
+      })
+      .then((response) => {
+        console.log(response);
+        alert('Thank you! Your review has been submitted');
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .then(() => {
+        this.closeModal();
+      });
   }
 
   onRadioChange(e) {
@@ -100,7 +117,7 @@ class NewReview extends React.Component {
 
   handleChange(e) {
     let countdown = this.state.charCountDown - 1;
-    if (countdown <= 0) {
+    if (countdown <= 0 || isNaN(countdown)) {
       countdown = 'Minimum reached';
     }
     this.setState({
@@ -127,7 +144,7 @@ class NewReview extends React.Component {
           className="addReview"
           onClick={() => this.openModal()}
         >
-          New Review +
+          NEW REVIEW+
         </button>
         <div>
           <ReactModal
@@ -144,87 +161,114 @@ class NewReview extends React.Component {
                 className="closeReview"
                 onClick={() => this.closeModal()}
               >
-                X
+                close
               </button>
             </div>
-            <form className="newReview" onSubmit={this.onSubmit}>
-              What would you rate this item?* mandatory
-              <NewReviewStars setStarRating={this.setStarRating} />
-              Do you recommend this product?* mandatory
-              <div name="recommend" required>
-                <input
-                  type="radio"
-                  name="yes"
-                  value="true"
-                  checked={this.state.recommend === true}
-                  onChange={this.onRadioChange}
-                />{' '}
-                Yes
-                <input
-                  type="radio"
-                  name="no"
-                  value="no"
-                  checked={this.state.recommend === false}
-                  onChange={this.onRadioChange}
-                />{' '}
-                No
+            <form>
+              <div>
+                <h4 className="reviewHeader">Write Your Review</h4>
+                <label>*Your Rating</label>
+                <NewReviewStars setStarRating={this.setStarRating} />
                 <br />
+                <label>*Do you recommend this product?</label>
+                <div name="recommend" required>
+                  <input
+                    type="radio"
+                    name="yes"
+                    value="true"
+                    checked={this.state.recommend === true}
+                    onChange={this.onRadioChange}
+                  />{' '}
+                  Yes
+                  <input
+                    type="radio"
+                    name="no"
+                    value="no"
+                    checked={this.state.recommend === false}
+                    onChange={this.onRadioChange}
+                  />{' '}
+                  No
+                  <br />
+                </div>
+                <br />
+                <ReviewChar setCharRating={this.setCharRating} />
+                <br />
+                <label>Review Summary</label>
+                <br />
+                <input
+                  type="text"
+                  name="summary"
+                  maxLength="60"
+                  onChange={this.onChange}
+                />
+                <br />
+                <label>*Your Review</label>
+                <br />
+                <textArea
+                  name="body"
+                  className="body"
+                  rows="10"
+                  cols="40"
+                  placeholder="Why did you like the product or not?"
+                  minLength="50"
+                  maxLength="1000"
+                  onChange={(e) => this.handleChange(e)}
+                  required
+                />
+                <div>{this.state.charCountDown}</div>
+                <br />
+                <label>Add your photo url</label>
+                <br />
+                <input
+                  type="url"
+                  className="photos"
+                  pattern="https://.*"
+                  size="30"
+                  placeholder="https://example.com"
+                  accept="image/*"
+                  onChange={this.onChange}
+                  multiple
+                />
+                <br />
+                <br />
+                <label>*Your Name </label>
+                <br />
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Example: Luke456"
+                  maxLength="60"
+                  size="30"
+                  onChange={this.onChange}
+                  required
+                />
+                <div className="disclaimer">
+                  <em>For privacy reasons, do not use your full name</em>
+                </div>
+                <br />
+                <label>*Your email</label>
+                <br />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Example: falcon@rebel.net"
+                  size="30"
+                  maxLength="60"
+                  onChange={this.onChange}
+                  required
+                />
+                <div className="disclaimer">
+                  <em>For authentication reasons, you will not be emailed</em>
+                </div>
+                <br />
+                <button
+                  type="button"
+                  className="submitReview"
+                  onClick={this.onSubmit}
+                >
+                  Submit
+                </button>
               </div>
-              <ReviewChar setCharRating={this.setCharRating} />
-              Review Summary
-              <br />
-              <input
-                type="text"
-                name="summary"
-                maxLength="60"
-                onChange={this.onChange}
-              />
-              <br />
-              Your Review* - mandatory
-              <br />
-              <textArea
-                name="body"
-                rows="10"
-                cols="40"
-                placeholder="Why did you like the product or not?"
-                minLength="50"
-                maxLength="1000"
-                onChange={(e) => this.handleChange(e)}
-                required
-              />
-              <div>{this.state.charCountDown}</div>
-              <br />
-              Submit your photos here
-              <br />
-              <input
-                type="file"
-                name="photos"
-                accept="image/*"
-                onChange={this.onChange}
-                multiple
-              />
-              <br />
-              Your Name * mandatory & will be shared
-              <br />
-              <input
-                type="text"
-                name="name"
-                maxLength="60"
-                onChange={this.onChange}
-                required
-              />
-              <br />
-              Your email * mandatory will not be shared
-              <br />
-              <input
-                type="email"
-                name="email"
-                maxLength="60"
-                onChange={this.onChange}
-                required
-              />
-              <br />
-              <input type="submit" />
             </form>
           </ReactModal>
         </div>

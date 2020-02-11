@@ -19,6 +19,7 @@ class ReviewList extends React.Component {
       data: [],
       selectedValue: 'newest',
       i: 2,
+      totalReviews: 0,
     };
     this.moreReviews = this.moreReviews.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -36,6 +37,7 @@ class ReviewList extends React.Component {
       });
       this.setState({
         data: getReviews.data.results,
+        totalReviews: getReviews.data.results.length,
       });
       // this.loadList();
     } catch (error) {
@@ -101,31 +103,39 @@ class ReviewList extends React.Component {
     if (this.props.showReviewList === false) {
       return null;
     }
+    console.log(this.state.totalReviews);
     return (
-      <div className="reviewList">
-        Number of Reviews sorted by
-        <select
-          className="reviewFilters"
-          value={selectedValue}
-          onChange={this.handleChange}
-        >
-          <option value="newest">Newest</option>
-          <option value="helpful">Helpful</option>
-          <option value="relevant">Relevant</option>
-        </select>
-        <br />
-        {data.slice(0, i).map((review) => (
-          <div key={review.review_id}>
-            <ReviewTile review={review} reviewId={review.review_id} />;
-          </div>
-        ))}
+      <div>
+        <div className="reviewSort">
+          {this.state.totalReviews} Reviews sorted by
+          <select
+            className="reviewFilters"
+            value={this.state.selectedValue}
+            onChange={this.handleChange}
+          >
+            <option className="filterOptions" value="newest">
+              Newest
+            </option>
+            <option value="helpful" className="filterOptions">
+              Helpful
+            </option>
+            <option className="filterOptions" value="relevant">
+              Relevant
+            </option>
+          </select>
+        </div>
+        <div className="reviewList">
+          {this.state.data.slice(0, this.state.i).map((review) => {
+            return <ReviewTile review={review} reviewId={review.review_id} />;
+          })}
+        </div>
         <button
           className="moreReviews"
           onClick={(e) => {
             this.moreReviews(e);
           }}
         >
-          More Reviews
+          MORE REVIEWS
         </button>
         {/* <button
           className="addReview"
