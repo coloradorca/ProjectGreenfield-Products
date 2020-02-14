@@ -15,8 +15,7 @@ CREATE TABLE product (
 );
 
 CREATE TABLE styles (
-  -- id SERIAL PRIMARY KEY,
-  id INT,
+  id SERIAL PRIMARY KEY,
   productId INTEGER,
   name TEXT,
   sale_price TEXT,
@@ -26,8 +25,7 @@ CREATE TABLE styles (
 );
 
 CREATE TABLE features (
-  -- id SERIAL PRIMARY KEY,
-  id INT,
+  id SERIAL PRIMARY KEY,
   style_id INTEGER,
   val TEXT,
   attribute TEXT,
@@ -35,8 +33,7 @@ CREATE TABLE features (
 );
 
 CREATE TABLE skus (
-  -- id SERIAL PRIMARY KEY,
-  id INT,
+  id SERIAL PRIMARY KEY,
   style_id INTEGER,
   size TEXT,
   quantity INTEGER,
@@ -44,8 +41,7 @@ CREATE TABLE skus (
 );
 
 CREATE TABLE photos (
-  -- id SERIAL PRIMARY KEY,
-  id INT,
+  id SERIAL PRIMARY KEY,
   style_id INTEGER,
   url TEXT,
   thumbnail_url TEXT,
@@ -54,20 +50,20 @@ CREATE TABLE photos (
 
 COPY product
 FROM
-  '/Users/robgonzalez-pita/Desktop/UglyDog/PO/ProjectGreenfield-Products/SDCFiles/Sample10/SampleProduct.csv' DELIMITER ',' CSV HEADER;
+  '/Users/robgonzalez-pita/Desktop/UglyDog/PersonalRepofromColoradorca/ProjectGreenfield-Products/SCDFILES/Sample10/SampleProduct.csv' DELIMITER ',' CSV HEADER;
 
 COPY styles
 FROM
-  '/Users/robgonzalez-pita/Desktop/UglyDog/PO/ProjectGreenfield-Products/SDCFiles/Sample10/stylesSample.csv' DELIMITER ',' CSV HEADER;
+  '/Users/robgonzalez-pita/Desktop/UglyDog/PersonalRepofromColoradorca/ProjectGreenfield-Products/SCDFILES/Sample10/stylesSample.csv' DELIMITER ',' CSV HEADER;
 
 COPY features
 FROM
-  '/Users/robgonzalez-pita/Desktop/UglyDog/PO/ProjectGreenfield-Products/SDCFiles/Sample10/SampleFeatures.csv' DELIMITER ',' NULL AS 'null' CSV HEADER;
+  '/Users/robgonzalez-pita/Desktop/UglyDog/PersonalRepofromColoradorca/ProjectGreenfield-Products/SCDFILES/Sample10/SampleFeatures.csv' DELIMITER ',' NULL AS 'null' CSV HEADER;
 
 COPY skus
 FROM
-  '/Users/robgonzalez-pita/Desktop/UglyDog/PO/ProjectGreenfield-Products/SDCFiles/Sample10/SampleSKUS.csv' DELIMITER ',' CSV HEADER;
+  '/Users/robgonzalez-pita/Desktop/UglyDog/PersonalRepofromColoradorca/ProjectGreenfield-Products/SCDFILES/Sample10/SampleSKUS.csv' DELIMITER ',' CSV HEADER;
 
 COPY photos
 FROM
-  '/Users/robgonzalez-pita/Desktop/UglyDog/PO/ProjectGreenfield-Products/SDCFiles/Sample10/SamplePhotos.csv' DELIMITER ',' CSV HEADER;
+  '/Users/robgonzalez-pita/Desktop/UglyDog/PersonalRepofromColoradorca/ProjectGreenfield-Products/SCDFILES/Sample10/SamplePhotos.csv' DELIMITER ',' CSV HEADER;
