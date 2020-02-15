@@ -1,28 +1,29 @@
 const faker = require('faker');
 const fs = require('fs');
 
+//set the header
+var header = 'id, name, slogan, description, category, default_price \n';
+
+//create the dummy data
 var createFakeProduct = (num) => {
+  var string = '';
   for (var i = 0; i < num; i++) {
-    return faker.fake(
-      `"{{commerce.productName}}", "{{lorem.sentence}}", "{{lorem.paragraph}}", "{{commerce.product}}", {{random.number(400)}}`,
+    string += faker.fake(
+      `${i +
+        60}, "{{commerce.productName}}", "{{lorem.sentence}}", "{{lorem.paragraph}}", "{{commerce.product}}", {{random.number(400)}} \n`,
     );
   }
+  return string;
 };
 
-// fs.writeFile('./' + 'sample1.csv', createFakeProduct, 'ascii', (err) => {
-//   if (err) throw err;
-//   console.log('Entry saved!');
-// });
+//write the dummy data to the .csv file
 
-var wstream = fs.createWriteStream('./sample1.csv');
-
-wstream.on('finish', function() {
-  console.log('file has been written');
-});
-
-wstream.write(createFakeProduct(10));
-
-wstream.end();
+try {
+  fs.appendFileSync('./sample1.csv', header + createFakeProduct(10));
+  console.log('The data was appended to file!');
+} catch (err) {
+  console.log('error writing the files');
+}
 
 // id, name, slogan, description, category, default_price
 // 1,"Camo Onesie","Blend in to your crowd","The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.","Jackets", 140
