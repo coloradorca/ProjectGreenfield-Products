@@ -2,11 +2,11 @@
 
 The Ugly Dog Store is a redesign of an outdated E-Commerce site.
 
-![Product Overview](./assets/po1.png)
+![Product Overview](./assets/po2.png)
 
-![Questions and Answers](./assets/qa.png)
+![Questions and Answers](./assets/qa1.png)
 
-![Ratings and Reviews](./assets/rr.png)
+![Ratings and Reviews](./assets/rr3.png)
 
 # Description
 
