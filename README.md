@@ -24,11 +24,6 @@ Enzyme,
 CircleCI,
 Surge
 
-## Experience
-
-Visit the deployed version via Surge here: [Ugly Dog Store](http://uglydogstore.surge.sh/)
-
-Or follow installation instructions below to run in your environment
 
 # Installation
 
