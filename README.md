@@ -49,4 +49,4 @@ Alternatively one could run:
 
 [Savi Williams](https://github.com/savi1623) -github profile
 
-[Palmi Moeller](https://github.com/Palmipalooza) - githubg profile
+[Palmi Moeller](https://github.com/Palmipalooza) - github profile
